@@ -1,0 +1,30 @@
+/* App-specific styles */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-layout {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - var(--header-height));
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--space-6);
+  overflow-y: auto;
+  background-color: var(--secondary-50);
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .main-content {
+    padding: var(--space-4);
+  }
+}
