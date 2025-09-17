@@ -270,3 +270,20 @@
         justify-content: flex-start;
     }
 }
+
+/* Copyright Section */
+.copyright-section {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--secondary-200);
+}
+
+.copyright-notice {
+    text-align: center;
+    color: var(--secondary-600);
+    font-size: var(--font-size-sm);
+}
+
+.copyright-notice p {
+    margin: 0;
+}

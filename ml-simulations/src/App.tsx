@@ -11,6 +11,10 @@ import CosineSimilarity from './pages/CosineSimilarity';
 import './pages/CosineSimilarity.css';
 import DecisionTree from './pages/DecisionTree';
 import './pages/DecisionTree.css';
+import KMeansClustering from './pages/KMeansClustering';
+import './pages/KMeansClustering.css';
+import About from './pages/About';
+import './pages/About.css';
 import './App.css';
 
 function App() {
@@ -26,6 +30,8 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/cosine-similarity" element={<CosineSimilarity />} />
                 <Route path="/decision-trees" element={<DecisionTree />} />
+                <Route path="/kmeans-clustering" element={<KMeansClustering />} />
+                <Route path="/about" element={<About />} />
               </Routes>
             </main>
           </div>

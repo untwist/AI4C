@@ -162,6 +162,13 @@ const Home: React.FC = () => {
                         </div>
                     </div>
                 </section>
+
+                {/* Copyright Notice */}
+                <section className="copyright-section">
+                    <div className="copyright-notice">
+                        <p>&copy; 2025, Todd Brous. All rights reserved.</p>
+                    </div>
+                </section>
             </div>
         </div>
     );

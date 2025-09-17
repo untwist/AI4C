@@ -31,8 +31,8 @@ const simulations: Simulation[] = [
         id: 'k-means',
         title: 'K-Means Clustering',
         description: 'Watch clusters form and move with different initialization strategies',
-        path: '/k-means',
-        status: 'coming-soon',
+        path: '/kmeans-clustering',
+        status: 'available',
         category: 'Clustering'
     },
     {

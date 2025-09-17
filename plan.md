@@ -7,8 +7,10 @@ A comprehensive collection of web-based interactive simulations and tutorials fo
 - ✅ **Project Foundation**: React + TypeScript + D3.js setup complete
 - ✅ **Design System**: Professional, consistent UI with CSS variables
 - ✅ **Cosine Similarity Simulator**: Fully functional with RAG/LLM applications
+- ✅ **Decision Tree Builder**: Interactive tree construction with feature selection and educational content
+- ✅ **K-Means Clustering Simulator**: Complete with multiple datasets, step-by-step animation, and real-world applications
 - ✅ **GitHub Pages Deployment**: Ready for production use
-- 🎯 **Next Priority**: Decision Tree Builder (high educational value, builds on existing foundation)
+- 🎯 **Next Priority**: Linear Regression Visualizer or Neural Network Explorer
 
 ## Core Philosophy
 - **Visual Learning**: Every concept should have visual representations
@@ -71,10 +73,13 @@ A comprehensive collection of web-based interactive simulations and tutorials fo
   - Gradient descent animation
 
 ### 5. Clustering Algorithms
-- **K-Means Clustering Simulator**
-  - Interactive cluster formation with adjustable K
-  - Show centroid movement and convergence
-  - Different initialization strategies comparison
+- ✅ **K-Means Clustering Simulator** (COMPLETED)
+  - Interactive cluster formation with adjustable K (2-6 clusters)
+  - Real-time centroid movement and convergence visualization
+  - Multiple datasets: Customer Segmentation, Iris, Synthetic Blobs
+  - Step-by-step animation with WCSS tracking
+  - Voronoi diagram for decision boundaries
+  - Comprehensive educational content with real-world applications
 - **Hierarchical Clustering Explorer**
   - Dendrogram visualization with interactive cutting
   - Show different linkage methods (single, complete, average)

@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header: React.FC = () => {
+    const location = useLocation();
+
     return (
         <header className="header">
             <div className="container">
@@ -18,9 +20,15 @@ const Header: React.FC = () => {
                     <nav className="header-nav">
                         <Link
                             to="/"
-                            className="btn btn-outline"
+                            className={`btn ${location.pathname === '/' ? 'btn-primary' : 'btn-outline'}`}
                         >
                             Home
+                        </Link>
+                        <Link
+                            to="/about"
+                            className={`btn ${location.pathname === '/about' ? 'btn-primary' : 'btn-outline'}`}
+                        >
+                            About
                         </Link>
                     </nav>
                 </div>
