@@ -9,6 +9,8 @@ import Home from './pages/Home';
 import './pages/Home.css';
 import CosineSimilarity from './pages/CosineSimilarity';
 import './pages/CosineSimilarity.css';
+import DecisionTree from './pages/DecisionTree';
+import './pages/DecisionTree.css';
 import './App.css';
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/cosine-similarity" element={<CosineSimilarity />} />
+                <Route path="/decision-trees" element={<DecisionTree />} />
               </Routes>
             </main>
           </div>

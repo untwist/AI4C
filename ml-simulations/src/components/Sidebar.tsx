@@ -24,7 +24,7 @@ const simulations: Simulation[] = [
         title: 'Decision Trees',
         description: 'Build and visualize decision trees with interactive feature selection',
         path: '/decision-trees',
-        status: 'coming-soon',
+        status: 'available',
         category: 'Classification'
     },
     {
