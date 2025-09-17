@@ -14,7 +14,7 @@ import './App.css';
 function App() {
   return (
     <StrictMode>
-      <Router>
+      <Router basename="/AI4C">
         <div className="app">
           <Header />
           <div className="app-layout">

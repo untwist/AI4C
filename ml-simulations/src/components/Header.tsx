@@ -16,14 +16,12 @@ const Header: React.FC = () => {
                     </Link>
 
                     <nav className="header-nav">
-                        <a
-                            href="https://github.com/untwist/AI4C.git"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <Link
+                            to="/"
                             className="btn btn-outline"
                         >
                             Home
-                        </a>
+                        </Link>
                     </nav>
                 </div>
             </div>
