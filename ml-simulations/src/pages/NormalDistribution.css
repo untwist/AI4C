@@ -121,6 +121,84 @@
     font-weight: 600;
 }
 
+/* Simulation vs Reality */
+.simulation-vs-reality {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.reality-explanation,
+.simulation-explanation {
+    padding: 1rem;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.reality-explanation h5,
+.simulation-explanation h5 {
+    color: #1e293b;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.reality-explanation ul,
+.simulation-explanation ul {
+    color: #475569;
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.reality-explanation li,
+.simulation-explanation li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.real-world-process {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.real-world-process h5 {
+    color: #0369a1;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.real-world-process ol {
+    color: #0c4a6e;
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.real-world-process li {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.real-world-process strong {
+    color: #0369a1;
+    font-weight: 600;
+}
+
 .distribution-svg {
     width: 100%;
     height: 500px;

@@ -69,6 +69,24 @@ const NormalDistribution: React.FC = () => {
         }
     };
 
+    // Dataset-specific ranges for realistic parameter control
+    const datasetRanges = {
+        height: { meanMin: 140, meanMax: 200, stdDevMin: 5, stdDevMax: 20 },
+        iq: { meanMin: 70, meanMax: 130, stdDevMin: 5, stdDevMax: 25 },
+        temperature: { meanMin: 35, meanMax: 39, stdDevMin: 0.1, stdDevMax: 1.0 },
+        test: { meanMin: 40, meanMax: 100, stdDevMin: 5, stdDevMax: 20 },
+        weight: { meanMin: 2000, meanMax: 4500, stdDevMin: 200, stdDevMax: 800 }
+    };
+
+    // Dataset-specific x-axis ranges for fixed visualization
+    const datasetXAxisRanges = {
+        height: { min: 120, max: 220, unit: 'cm' },
+        iq: { min: 40, max: 160, unit: 'IQ Score' },
+        temperature: { min: 34, max: 40, unit: '°C' },
+        test: { min: 20, max: 120, unit: 'Points' },
+        weight: { min: 1000, max: 5000, unit: 'grams' }
+    };
+
     // Generate normal distribution data using Box-Muller transform
     const generateNormalData = (mean: number, stdDev: number, n: number): number[] => {
         const data: number[] = [];
@@ -148,14 +166,10 @@ const NormalDistribution: React.FC = () => {
             .style("border-radius", "8px")
             .style("background", "white");
 
-        // Calculate data bounds
-        const dataMin = Math.min(...generatedData);
-        const dataMax = Math.max(...generatedData);
-        const dataRange = dataMax - dataMin;
-        const padding = dataRange * 0.1;
-
-        const xMin = dataMin - padding;
-        const xMax = dataMax + padding;
+        // Use fixed x-axis range for each dataset
+        const xAxisRange = datasetXAxisRanges[selectedDataset];
+        const xMin = xAxisRange.min;
+        const xMax = xAxisRange.max;
 
         // Create scales
         const xScale = d3.scaleLinear()
@@ -194,7 +208,7 @@ const NormalDistribution: React.FC = () => {
             .style("font-size", "14px")
             .style("font-weight", "600")
             .style("fill", "#374151")
-            .text("Value");
+            .text(`Value (${datasetXAxisRanges[selectedDataset].unit})`);
 
         svg.append("text")
             .attr("x", 15)
@@ -430,14 +444,14 @@ const NormalDistribution: React.FC = () => {
                                         <label className="label">Mean (μ)</label>
                                         <input
                                             type="range"
-                                            min={mean - 50}
-                                            max={mean + 50}
-                                            step="0.1"
+                                            min={datasetRanges[selectedDataset].meanMin}
+                                            max={datasetRanges[selectedDataset].meanMax}
+                                            step={selectedDataset === 'temperature' ? "0.1" : "1"}
                                             value={mean}
                                             onChange={(e) => setMean(parseFloat(e.target.value))}
                                             className="slider"
                                         />
-                                        <span className="value-display">{mean.toFixed(1)}</span>
+                                        <span className="value-display">{mean.toFixed(selectedDataset === 'temperature' ? 1 : 0)} {datasetXAxisRanges[selectedDataset].unit}</span>
                                         <small className="parameter-help">Center of the distribution</small>
                                     </div>
 
@@ -445,14 +459,14 @@ const NormalDistribution: React.FC = () => {
                                         <label className="label">Standard Deviation (σ)</label>
                                         <input
                                             type="range"
-                                            min="0.5"
-                                            max="25"
-                                            step="0.1"
+                                            min={datasetRanges[selectedDataset].stdDevMin}
+                                            max={datasetRanges[selectedDataset].stdDevMax}
+                                            step={selectedDataset === 'temperature' ? "0.1" : "1"}
                                             value={stdDev}
                                             onChange={(e) => setStdDev(parseFloat(e.target.value))}
                                             className="slider"
                                         />
-                                        <span className="value-display">{stdDev.toFixed(1)}</span>
+                                        <span className="value-display">{stdDev.toFixed(selectedDataset === 'temperature' ? 1 : 0)} {datasetXAxisRanges[selectedDataset].unit}</span>
                                         <small className="parameter-help">Spread of the distribution</small>
                                     </div>
 
@@ -674,6 +688,39 @@ const NormalDistribution: React.FC = () => {
                                     <li><strong>Central Limit Theorem:</strong> Sums of random variables tend to be normal</li>
                                     <li><strong>Maximum Entropy:</strong> Normal distribution has maximum entropy for given mean and variance</li>
                                 </ul>
+
+                                <h4>Important: Simulation vs. Real-World Data Analysis</h4>
+                                <div className="simulation-vs-reality">
+                                    <div className="reality-explanation">
+                                        <h5>🎯 In the Real World:</h5>
+                                        <ul>
+                                            <li><strong>We don't set parameters:</strong> We collect data and discover the mean and standard deviation through analysis</li>
+                                            <li><strong>Data comes first:</strong> Scientists measure actual birth weights, heights, IQ scores, etc.</li>
+                                            <li><strong>Statistics reveal patterns:</strong> We calculate the mean (170cm) and standard deviation (10cm) from real measurements</li>
+                                            <li><strong>Distribution emerges:</strong> The normal curve appears naturally from the data</li>
+                                        </ul>
+                                    </div>
+
+                                    <div className="simulation-explanation">
+                                        <h5>📊 In This Simulation:</h5>
+                                        <ul>
+                                            <li><strong>We set parameters:</strong> You can adjust the mean and standard deviation to see what happens</li>
+                                            <li><strong>Educational purpose:</strong> This helps you understand how these parameters affect the distribution shape</li>
+                                            <li><strong>What-if scenarios:</strong> "What would the distribution look like if the mean was 180cm instead of 170cm?"</li>
+                                            <li><strong>Conceptual learning:</strong> You're learning the relationship between parameters and distribution shape</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div className="real-world-process">
+                                    <h5>🔬 Real-World Statistical Process:</h5>
+                                    <ol>
+                                        <li><strong>Collect Data:</strong> Measure 1000 newborn babies' weights</li>
+                                        <li><strong>Calculate Statistics:</strong> Find mean = 3200g, standard deviation = 500g</li>
+                                        <li><strong>Discover Pattern:</strong> The data forms a bell curve around 3200g</li>
+                                        <li><strong>Make Predictions:</strong> Use the distribution to predict future birth weights</li>
+                                    </ol>
+                                </div>
 
                                 <h4>Why is it so Important?</h4>
                                 <ul>
