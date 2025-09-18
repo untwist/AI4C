@@ -544,7 +544,7 @@ const BayesTheorem: React.FC = () => {
                                 </div>
 
                                 <div className="interpretation-box">
-                                    <h4>💡 What This Means:</h4>
+                                    <h4>What This Means:</h4>
                                     <p>
                                         {results.posterior > parameters.prior ? (
                                             <>The evidence supports your hypothesis! Your belief increased from {(parameters.prior * 100).toFixed(0)}% to {(results.posterior * 100).toFixed(1)}%.</>
@@ -564,13 +564,13 @@ const BayesTheorem: React.FC = () => {
                 <div className="tutorial-section">
                     <div className="card">
                         <div className="card-header">
-                            <h3 className="card-title">🎓 Learn Bayes' Theorem: A Complete Guide</h3>
+                            <h3 className="card-title">Learn Bayes' Theorem: A Complete Guide</h3>
                         </div>
                         <div className="card-body">
                             <div className="tutorial-content">
                                 {/* FOUNDATION: Probability Basics */}
                                 <div className="tutorial-step foundation-step">
-                                    <h4>🏗️ Foundation: Understanding Probabilities</h4>
+                                    <h4>Foundation: Understanding Probabilities</h4>
                                     <p>
                                         Before diving into Bayes' theorem, let's make sure you understand what probabilities mean:
                                     </p>
@@ -590,7 +590,7 @@ const BayesTheorem: React.FC = () => {
 
                                 {/* CONDITIONAL PROBABILITY */}
                                 <div className="tutorial-step">
-                                    <h4>🔗 Step 1: Conditional Probability (The Key Concept)</h4>
+                                    <h4>Step 1: Conditional Probability (The Key Concept)</h4>
                                     <p>
                                         <strong>Conditional probability</strong> asks: "Given that X happened, what's the chance of Y?"
                                     </p>
@@ -603,13 +603,13 @@ const BayesTheorem: React.FC = () => {
                                         </div>
                                     </div>
                                     <p>
-                                        <strong>⚠️ Common Mistake:</strong> P(A|B) ≠ P(B|A). These are completely different!
+                                        <strong>Common Mistake:</strong> P(A|B) ≠ P(B|A). These are completely different!
                                     </p>
                                 </div>
 
                                 {/* BAYES THEOREM INTUITION */}
                                 <div className="tutorial-step">
-                                    <h4>🧠 Step 2: The Intuition Behind Bayes' Theorem</h4>
+                                    <h4>Step 2: The Intuition Behind Bayes' Theorem</h4>
                                     <p>
                                         Bayes' theorem answers: <em>"Given this evidence, how should I update my belief?"</em>
                                     </p>
@@ -627,7 +627,7 @@ const BayesTheorem: React.FC = () => {
 
                                 {/* VISUALIZATION EXPLANATION */}
                                 <div className="tutorial-step">
-                                    <h4>👁️ Step 3: Reading the Visualization</h4>
+                                    <h4>Step 3: Reading the Visualization</h4>
                                     <p>
                                         The square above shows <strong>all possible outcomes</strong>. Here's how to read it:
                                     </p>
@@ -656,23 +656,23 @@ const BayesTheorem: React.FC = () => {
 
                                 {/* INTERACTIVE PRACTICE */}
                                 <div className="tutorial-step">
-                                    <h4>🎮 Step 4: Practice with Real Examples</h4>
+                                    <h4>Step 4: Practice with Real Examples</h4>
                                     <p>
                                         <strong>Try these scenarios:</strong> Click each button and watch how the areas change.
                                     </p>
                                     <div className="practice-scenarios">
                                         <div className="scenario-card">
-                                            <h5>🏥 Medical Test</h5>
+                                            <h5>Medical Test</h5>
                                             <p>1% disease rate, 95% accurate test</p>
                                             <p><strong>Question:</strong> If someone tests positive, what's their actual disease probability?</p>
                                         </div>
                                         <div className="scenario-card">
-                                            <h5>📧 Spam Filter</h5>
+                                            <h5>Spam Filter</h5>
                                             <p>30% spam rate, 80% detection rate</p>
                                             <p><strong>Question:</strong> If an email is flagged as spam, how confident should you be?</p>
                                         </div>
                                         <div className="scenario-card">
-                                            <h5>🪙 Coin Bias</h5>
+                                            <h5>Coin Bias</h5>
                                             <p>50% prior belief, testing for bias</p>
                                             <p><strong>Question:</strong> After seeing heads, how likely is the coin biased?</p>
                                         </div>
@@ -681,7 +681,7 @@ const BayesTheorem: React.FC = () => {
 
                                 {/* REFLECTION PROMPT */}
                                 <div className="tutorial-step reflection-step">
-                                    <h4>🤔 Step 5: Check Your Understanding</h4>
+                                    <h4>Step 5: Check Your Understanding</h4>
                                     <div className="reflection-questions">
                                         <p><strong>Before moving on, ask yourself:</strong></p>
                                         <ul>
@@ -690,7 +690,7 @@ const BayesTheorem: React.FC = () => {
                                             <li>What happens to your belief when evidence is more likely under one hypothesis than another?</li>
                                         </ul>
                                         <div className="confidence-check">
-                                            <p><strong>Confidence Check:</strong> If you can answer these questions, you're ready for the deep dive! 🎉</p>
+                                            <p><strong>Confidence Check:</strong> If you can answer these questions, you're ready for the deep dive!</p>
                                         </div>
                                     </div>
                                 </div>
@@ -703,7 +703,7 @@ const BayesTheorem: React.FC = () => {
                 <div className="explanation-section">
                     <div className="card">
                         <div className="card-header">
-                            <h3 className="card-title">🔬 Deep Dive: The Science Behind Bayes' Theorem</h3>
+                            <h3 className="card-title">Deep Dive: The Science Behind Bayes' Theorem</h3>
                         </div>
                         <div className="card-body">
                             <div className="explanation-content">
@@ -750,7 +750,7 @@ const BayesTheorem: React.FC = () => {
                                     <li><strong>Recommendation Systems:</strong> Updating user preference models with new interactions</li>
                                 </ul>
 
-                                <h4>🧠 Common Misconceptions and Pitfalls</h4>
+                                <h4>Common Misconceptions and Pitfalls</h4>
                                 <p>
                                     Many people struggle with Bayesian thinking. Here are the most common mistakes:
                                 </p>
@@ -779,7 +779,7 @@ const BayesTheorem: React.FC = () => {
                                     <p><strong>Result:</strong> Even with a positive test, you only have a 16.1% chance of having the disease!</p>
                                 </div>
 
-                                <h4>🎯 When to Use Bayesian Thinking</h4>
+                                <h4>When to Use Bayesian Thinking</h4>
                                 <p>
                                     Bayesian reasoning is most valuable when:
                                 </p>
@@ -790,7 +790,7 @@ const BayesTheorem: React.FC = () => {
                                     <li><strong>Quantifying uncertainty:</strong> You need to express how confident you are in your conclusions</li>
                                 </ul>
 
-                                <h4>🔬 Advanced Applications in Data Science</h4>
+                                <h4>Advanced Applications in Data Science</h4>
                                 <p>
                                     Beyond basic applications, Bayes' theorem powers sophisticated data science techniques:
                                 </p>
@@ -815,7 +815,7 @@ const BayesTheorem: React.FC = () => {
                                 </ul>
 
 
-                                <h4>💡 Pro Tips for Bayesian Thinking</h4>
+                                <h4>Pro Tips for Bayesian Thinking</h4>
                                 <ul>
                                     <li><strong>Start with the base rate:</strong> Always consider the prior probability before looking at evidence</li>
                                     <li><strong>Think in terms of ratios:</strong> How much more likely is the evidence under one hypothesis vs. another?</li>
