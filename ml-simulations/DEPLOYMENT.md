@@ -67,10 +67,18 @@ npm run deploy
 
 ### Common Issues
 
-1. **404 Error**: Make sure the repository name matches the base path in `vite.config.ts`
-2. **Build Fails**: Check for TypeScript errors with `npm run build`
-3. **Styling Issues**: Ensure all CSS files are properly imported
-4. **Routing Issues**: Make sure you're using `BrowserRouter` (already configured)
+1. **404 Error on Direct URLs**: This is fixed with the included `404.html` file that handles SPA routing
+2. **Repository Name Mismatch**: Make sure the repository name matches the base path in `vite.config.ts`
+3. **Build Fails**: Check for TypeScript errors with `npm run build`
+4. **Styling Issues**: Ensure all CSS files are properly imported
+5. **Routing Issues**: The `404.html` and updated `index.html` handle client-side routing for GitHub Pages
+
+### SPA Routing Fix
+
+The project includes a `404.html` file that redirects all 404 errors back to the main `index.html`, allowing React Router to handle the routing. This enables direct linking to simulation pages like:
+- `https://untwist.github.io/AI4C/kmeans-clustering`
+- `https://untwist.github.io/AI4C/cosine-similarity`
+- `https://untwist.github.io/AI4C/decision-trees`
 
 ### Custom Domain (Optional)
 
