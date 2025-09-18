@@ -37,7 +37,7 @@ const Home: React.FC = () => {
                     <div className="features-header">
                         <h2 className="features-title">Why Interactive Learning?</h2>
                         <p className="features-description">
-                            Traditional textbooks can make ML concepts feel abstract. Our simulations
+                            Traditional textbooks can make ML concepts feel abstract. These simulations
                             bring these ideas to life through visual, interactive experiences.
                         </p>
                     </div>
