@@ -33,10 +33,8 @@ const YourSimulationName: React.FC = () => {
     // 3. SETUP REFS AND STATE
     // ============================================================================
     const svgRef = useRef<SVGSVGElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
-
     // State for your simulation data
-    const [dataPoints, setDataPoints] = useState<YourDataPoint[]>([]);
+    const [dataPoints] = useState<YourDataPoint[]>([]);
     const [parameters, setParameters] = useState<YourParameters>({
         parameter1: 0.5,
         parameter2: 'default',
@@ -57,7 +55,7 @@ const YourSimulationName: React.FC = () => {
 
     // 4. DEFINE YOUR ALGORITHM FUNCTIONS
     // ============================================================================
-    const calculateYourAlgorithm = (data: YourDataPoint[], params: YourParameters) => {
+    const calculateYourAlgorithm = (data: YourDataPoint[]) => {
         // Implement your specific algorithm here
         // This is where the core ML logic goes
         return {
@@ -74,7 +72,7 @@ const YourSimulationName: React.FC = () => {
         setIsAnimating(true);
 
         // Your simulation logic here
-        const result = calculateYourAlgorithm(dataPoints, parameters);
+        const result = calculateYourAlgorithm(dataPoints);
         setResults(result.metrics);
 
         setTimeout(() => {

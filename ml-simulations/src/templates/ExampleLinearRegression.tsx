@@ -27,7 +27,6 @@ interface RegressionParameters {
 const ExampleLinearRegression: React.FC = () => {
     // 2. SETUP REFS AND STATE
     const svgRef = useRef<SVGSVGElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
 
     // State for data points
     const [dataPoints, setDataPoints] = useState<DataPoint[]>([]);

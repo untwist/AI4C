@@ -2,17 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import './NormalDistribution.css';
 
-interface DataPoint {
-    x: number;
-    y: number;
-    id: string;
-}
-
-interface NormalDistributionParams {
-    mean: number;
-    stdDev: number;
-    sampleSize: number;
-}
 
 interface Dataset {
     name: string;
@@ -33,8 +22,6 @@ const NormalDistribution: React.FC = () => {
     const [showHistogram, setShowHistogram] = useState<boolean>(true);
     const [showEmpirical, setShowEmpirical] = useState<boolean>(true);
     const [showPercentiles, setShowPercentiles] = useState<boolean>(false);
-    const [animationSpeed, setAnimationSpeed] = useState<number>(1000);
-    const [isAnimating, setIsAnimating] = useState<boolean>(false);
     const [generatedData, setGeneratedData] = useState<number[]>([]);
     const [percentiles, setPercentiles] = useState<{ [key: string]: number }>({});
 
@@ -222,7 +209,7 @@ const NormalDistribution: React.FC = () => {
         // Draw histogram if enabled
         if (showHistogram) {
             const histogram = d3.histogram()
-                .domain(xScale.domain())
+                .domain([xMin, xMax])
                 .thresholds(30);
 
             const bins = histogram(generatedData);
@@ -268,7 +255,7 @@ const NormalDistribution: React.FC = () => {
         // Draw empirical curve if enabled
         if (showEmpirical) {
             const histogram = d3.histogram()
-                .domain(xScale.domain())
+                .domain([xMin, xMax])
                 .thresholds(30);
 
             const bins = histogram(generatedData);
@@ -295,7 +282,7 @@ const NormalDistribution: React.FC = () => {
         // Draw percentiles if enabled
         if (showPercentiles) {
             const percentileValues = Object.entries(percentiles);
-            percentileValues.forEach(([label, value], index) => {
+            percentileValues.forEach(([label, value]) => {
                 const x = xScale(value);
 
                 svg.append("line")

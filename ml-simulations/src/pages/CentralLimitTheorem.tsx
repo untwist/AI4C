@@ -2,18 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import './CentralLimitTheorem.css';
 
-interface SampleData {
-    id: string;
-    value: number;
-    sampleNumber: number;
-    mean: number;
-}
-
-interface DistributionData {
-    value: number;
-    frequency: number;
-    probability: number;
-}
 
 interface PopulationData {
     id: string;
@@ -34,14 +22,11 @@ const CentralLimitTheorem: React.FC = () => {
     const [selectedDistribution, setSelectedDistribution] = useState<string>('uniform');
     const [sampleSize, setSampleSize] = useState<number>(30);
     const [numSamples, setNumSamples] = useState<number>(100);
-    const [isAnimating, setIsAnimating] = useState<boolean>(false);
     const [animationSpeed, setAnimationSpeed] = useState<number>(100);
     const [showPopulation, setShowPopulation] = useState<boolean>(true);
-    const [showSampleMeans, setShowSampleMeans] = useState<boolean>(true);
     const [showNormalOverlay, setShowNormalOverlay] = useState<boolean>(true);
     const [populationData, setPopulationData] = useState<PopulationData[]>([]);
     const [sampleMeans, setSampleMeans] = useState<number[]>([]);
-    const [sampleStats, setSampleStats] = useState<SampleStats[]>([]);
     const [currentSample, setCurrentSample] = useState<number>(0);
     const [isRunning, setIsRunning] = useState<boolean>(false);
     const [isStopped, setIsStopped] = useState<boolean>(false);
@@ -122,10 +107,8 @@ const CentralLimitTheorem: React.FC = () => {
 
         setIsRunning(true);
         setIsStopped(false);
-        setIsAnimating(true);
         setCurrentSample(0);
         setSampleMeans([]);
-        setSampleStats([]);
 
         const newSampleMeans: number[] = [];
         const newSampleStats: SampleStats[] = [];
@@ -154,7 +137,6 @@ const CentralLimitTheorem: React.FC = () => {
             if ((i + 1) % batchSize === 0 || i === numSamples - 1) {
                 setCurrentSample(i + 1);
                 setSampleMeans([...newSampleMeans]);
-                setSampleStats([...newSampleStats]);
 
                 // Only add delay for visual effect, not for every sample
                 if (animationSpeed > 0 && !fastMode) {
@@ -163,7 +145,6 @@ const CentralLimitTheorem: React.FC = () => {
             }
         }
 
-        setIsAnimating(false);
         setIsRunning(false);
     };
 
@@ -171,16 +152,13 @@ const CentralLimitTheorem: React.FC = () => {
     const stopSamplingSimulation = () => {
         setIsStopped(true);
         setIsRunning(false);
-        setIsAnimating(false);
     };
 
     // Reset simulation
     const resetSimulation = () => {
         setSampleMeans([]);
-        setSampleStats([]);
         setCurrentSample(0);
         setIsRunning(false);
-        setIsAnimating(false);
         setIsStopped(false);
     };
 
@@ -210,12 +188,11 @@ const CentralLimitTheorem: React.FC = () => {
             .style("background", "white");
 
         // Create histogram
-        const histogram = d3.histogram<PopulationData>()
-            .value(d => d.value)
+        const histogram = d3.histogram()
             .domain([0, 100])
             .thresholds(20);
 
-        const bins = histogram(populationData);
+        const bins = histogram(populationData.map(d => d.value));
 
         const xScale = d3.scaleLinear()
             .domain([0, 100])
@@ -309,8 +286,7 @@ const CentralLimitTheorem: React.FC = () => {
             .style("background", "white");
 
         // Create histogram for sample means
-        const histogram = d3.histogram<number>()
-            .value(d => d)
+        const histogram = d3.histogram()
             .domain(d3.extent(sampleMeans) as [number, number])
             .thresholds(15);
 

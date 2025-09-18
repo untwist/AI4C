@@ -33,7 +33,6 @@ const LinearRegression: React.FC = () => {
     const [regularization, setRegularization] = useState<number>(0);
     const [showResiduals, setShowResiduals] = useState<boolean>(false);
     const [regressionResult, setRegressionResult] = useState<RegressionResult | null>(null);
-    const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
     // Sample datasets
     const datasets: { [key: string]: Dataset } = {
@@ -317,7 +316,7 @@ const LinearRegression: React.FC = () => {
             .style("stroke", "#ffffff")
             .style("stroke-width", "2px")
             .style("cursor", "pointer")
-            .on("mouseover", function (event, d) {
+            .on("mouseover", function (_, d) {
                 d3.select(this)
                     .transition()
                     .duration(200)
@@ -358,7 +357,6 @@ const LinearRegression: React.FC = () => {
         if (showResiduals) {
             dataset.data.forEach((point, i) => {
                 const prediction = regressionResult.predictions[i];
-                const residual = regressionResult.residuals[i];
 
                 svg.append("line")
                     .attr("x1", xScale(point.x))
