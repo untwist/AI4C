@@ -167,7 +167,7 @@ const NormalDistribution: React.FC = () => {
             .style("background", "white");
 
         // Use fixed x-axis range for each dataset
-        const xAxisRange = datasetXAxisRanges[selectedDataset];
+        const xAxisRange = datasetXAxisRanges[selectedDataset as keyof typeof datasetXAxisRanges];
         const xMin = xAxisRange.min;
         const xMax = xAxisRange.max;
 
@@ -208,7 +208,7 @@ const NormalDistribution: React.FC = () => {
             .style("font-size", "14px")
             .style("font-weight", "600")
             .style("fill", "#374151")
-            .text(`Value (${datasetXAxisRanges[selectedDataset].unit})`);
+            .text(`Value (${datasetXAxisRanges[selectedDataset as keyof typeof datasetXAxisRanges].unit})`);
 
         svg.append("text")
             .attr("x", 15)
@@ -444,14 +444,14 @@ const NormalDistribution: React.FC = () => {
                                         <label className="label">Mean (μ)</label>
                                         <input
                                             type="range"
-                                            min={datasetRanges[selectedDataset].meanMin}
-                                            max={datasetRanges[selectedDataset].meanMax}
+                                            min={datasetRanges[selectedDataset as keyof typeof datasetRanges].meanMin}
+                                            max={datasetRanges[selectedDataset as keyof typeof datasetRanges].meanMax}
                                             step={selectedDataset === 'temperature' ? "0.1" : "1"}
                                             value={mean}
                                             onChange={(e) => setMean(parseFloat(e.target.value))}
                                             className="slider"
                                         />
-                                        <span className="value-display">{mean.toFixed(selectedDataset === 'temperature' ? 1 : 0)} {datasetXAxisRanges[selectedDataset].unit}</span>
+                                        <span className="value-display">{mean.toFixed(selectedDataset === 'temperature' ? 1 : 0)} {datasetXAxisRanges[selectedDataset as keyof typeof datasetXAxisRanges].unit}</span>
                                         <small className="parameter-help">Center of the distribution</small>
                                     </div>
 
@@ -459,14 +459,14 @@ const NormalDistribution: React.FC = () => {
                                         <label className="label">Standard Deviation (σ)</label>
                                         <input
                                             type="range"
-                                            min={datasetRanges[selectedDataset].stdDevMin}
-                                            max={datasetRanges[selectedDataset].stdDevMax}
+                                            min={datasetRanges[selectedDataset as keyof typeof datasetRanges].stdDevMin}
+                                            max={datasetRanges[selectedDataset as keyof typeof datasetRanges].stdDevMax}
                                             step={selectedDataset === 'temperature' ? "0.1" : "1"}
                                             value={stdDev}
                                             onChange={(e) => setStdDev(parseFloat(e.target.value))}
                                             className="slider"
                                         />
-                                        <span className="value-display">{stdDev.toFixed(selectedDataset === 'temperature' ? 1 : 0)} {datasetXAxisRanges[selectedDataset].unit}</span>
+                                        <span className="value-display">{stdDev.toFixed(selectedDataset === 'temperature' ? 1 : 0)} {datasetXAxisRanges[selectedDataset as keyof typeof datasetXAxisRanges].unit}</span>
                                         <small className="parameter-help">Spread of the distribution</small>
                                     </div>
 
