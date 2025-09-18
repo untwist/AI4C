@@ -1,0 +1,549 @@
+/* ============================================================================
+   PERCEPTRON LEARNING SIMULATOR CSS
+   ============================================================================
+   Based on the standardized simulation template
+   Customized for perceptron learning visualization
+   ============================================================================ */
+
+/* 1. PAGE WRAPPER - ALWAYS START WITH THIS */
+/* ============================================================================ */
+.perceptron-learning {
+    padding: var(--space-6) 0;
+}
+
+/* 2. STANDARDIZED PAGE HEADER - NEVER CHANGE THESE PATTERNS */
+/* ============================================================================ */
+.perceptron-learning .page-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.perceptron-learning .page-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-4) 0;
+}
+
+.perceptron-learning .page-description {
+    font-size: var(--font-size-lg);
+    color: var(--secondary-600);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: var(--line-height-relaxed);
+}
+
+/* 3. STANDARDIZED SIMULATION LAYOUT - NEVER CHANGE */
+/* ============================================================================ */
+.perceptron-learning .simulation-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+/* 4. STANDARDIZED VISUALIZATION PANEL */
+/* ============================================================================ */
+.perceptron-learning .visualization-panel {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+/* 5. STANDARDIZED VISUALIZATION HEADER - ALWAYS USE LIGHT GRAY BACKGROUND */
+/* ============================================================================ */
+.perceptron-learning .visualization-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--secondary-200);
+    background-color: var(--secondary-50);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+}
+
+.perceptron-learning .visualization-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0;
+}
+
+.perceptron-learning .visualization-controls {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.perceptron-learning .control-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--secondary-700);
+    cursor: pointer;
+}
+
+.perceptron-learning .control-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-600);
+}
+
+/* 6. STANDARDIZED VISUALIZATION CONTAINER */
+/* ============================================================================ */
+.perceptron-learning .visualization-container {
+    padding: var(--space-6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 450px;
+    background-color: #f8fafc;
+    position: relative;
+}
+
+.perceptron-learning .simulation-svg {
+    border: 1px solid var(--secondary-200);
+    border-radius: var(--radius-md);
+    background-color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* 7. STANDARDIZED CONTROLS PANEL */
+/* ============================================================================ */
+.perceptron-learning .controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+/* 8. STANDARDIZED CARD STYLES */
+/* ============================================================================ */
+.perceptron-learning .card {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+.perceptron-learning .card-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--secondary-200);
+    background-color: var(--secondary-50);
+}
+
+.perceptron-learning .card-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0;
+    text-align: center;
+}
+
+.perceptron-learning .card-body {
+    padding: var(--space-6);
+}
+
+/* 9. STANDARDIZED FORM CONTROLS */
+/* ============================================================================ */
+.perceptron-learning .parameter-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.perceptron-learning .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.perceptron-learning .label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-700);
+    margin: 0;
+}
+
+.perceptron-learning .input {
+    width: 100%;
+    padding: var(--space-3);
+    border: 1px solid var(--secondary-300);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    background-color: white;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.perceptron-learning .input:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+.perceptron-learning .slider {
+    width: 100%;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--secondary-200);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.perceptron-learning .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: var(--primary-600);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: var(--shadow-sm);
+}
+
+.perceptron-learning .slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: var(--primary-600);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: var(--shadow-sm);
+}
+
+.perceptron-learning .value-display {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--primary-600);
+    text-align: center;
+    padding: var(--space-1) var(--space-2);
+    background-color: var(--primary-50);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--primary-200);
+}
+
+.perceptron-learning .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* 10. STANDARDIZED ALGORITHM CONTROLS */
+/* ============================================================================ */
+.perceptron-learning .algorithm-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* 11. STANDARDIZED RESULTS DISPLAY */
+/* ============================================================================ */
+.perceptron-learning .results-display {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.perceptron-learning .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--secondary-200);
+}
+
+.perceptron-learning .result-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-700);
+}
+
+.perceptron-learning .result-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-600);
+    font-family: var(--font-family-mono);
+}
+
+/* 12. STANDARDIZED EXPLANATION SECTION */
+/* ============================================================================ */
+.perceptron-learning .explanation-section {
+    margin-top: var(--space-8);
+}
+
+.perceptron-learning .explanation-content h4 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: var(--space-6) 0 var(--space-3) 0;
+}
+
+.perceptron-learning .explanation-content h4:first-child {
+    margin-top: 0;
+}
+
+.perceptron-learning .explanation-content p {
+    color: var(--secondary-700);
+    line-height: var(--line-height-relaxed);
+    margin: var(--space-4) 0;
+}
+
+.perceptron-learning .explanation-content ul {
+    margin: var(--space-4) 0;
+    padding-left: var(--space-6);
+}
+
+.perceptron-learning .explanation-content li {
+    margin-bottom: var(--space-2);
+    line-height: var(--line-height-relaxed);
+    color: var(--secondary-700);
+}
+
+.perceptron-learning .explanation-content strong {
+    color: var(--secondary-800);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* 13. STANDARDIZED COPYRIGHT SECTION */
+/* ============================================================================ */
+.perceptron-learning .copyright-section {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--secondary-200);
+}
+
+.perceptron-learning .copyright-notice {
+    text-align: center;
+    color: var(--secondary-600);
+    font-size: var(--font-size-sm);
+}
+
+.perceptron-learning .copyright-notice p {
+    margin: 0;
+}
+
+/* 14. RESPONSIVE DESIGN - STANDARDIZED BREAKPOINTS */
+/* ============================================================================ */
+@media (max-width: 1024px) {
+    .perceptron-learning .simulation-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    .perceptron-learning .controls-panel {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .perceptron-learning {
+        padding: var(--space-4) 0;
+    }
+
+    .perceptron-learning .page-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .perceptron-learning .page-description {
+        font-size: var(--font-size-base);
+    }
+
+    .perceptron-learning .visualization-header {
+        flex-direction: column;
+        gap: var(--space-4);
+        align-items: center;
+    }
+
+    .perceptron-learning .visualization-controls {
+        flex-wrap: wrap;
+        gap: var(--space-3);
+    }
+
+    .perceptron-learning .visualization-container {
+        padding: var(--space-4);
+        min-height: 400px;
+    }
+
+    .perceptron-learning .simulation-svg {
+        width: 100%;
+        height: auto;
+    }
+
+    .perceptron-learning .result-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+    }
+
+    .perceptron-learning .result-value {
+        font-size: var(--font-size-base);
+    }
+}
+
+/* 15. CUSTOM PERCEPTRON-SPECIFIC STYLES */
+/* ============================================================================ */
+
+/* Data point hover effects */
+.perceptron-learning .data-point:hover {
+    transform: scale(1.1);
+    transition: transform var(--transition-fast);
+}
+
+/* Decision boundary animation */
+.perceptron-learning .decision-boundary {
+    animation: dash 2s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -10;
+    }
+}
+
+/* Weight vector styling */
+.perceptron-learning .weight-vector {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Custom dataset instructions */
+.perceptron-learning .custom-instructions {
+    background-color: var(--primary-50);
+    border: 1px solid var(--primary-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    margin-top: var(--space-4);
+    font-size: var(--font-size-sm);
+    color: var(--primary-800);
+}
+
+/* Learning animation */
+.perceptron-learning .learning-animation {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Step-by-step controls */
+.perceptron-learning .step-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    padding: var(--space-3);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--secondary-200);
+}
+
+.perceptron-learning .step-counter {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-700);
+    padding: var(--space-2) var(--space-3);
+    background-color: var(--primary-50);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--primary-200);
+}
+
+/* Enhanced result display for step-by-step */
+.perceptron-learning .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--secondary-200);
+    margin-bottom: var(--space-2);
+}
+
+.perceptron-learning .result-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Current point highlighting */
+.perceptron-learning .current-point {
+    stroke: #f59e0b;
+    stroke-width: 3;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* Step-by-step mode indicators */
+.perceptron-learning .step-indicator {
+    background-color: var(--primary-100);
+    color: var(--primary-800);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    border: 1px solid var(--primary-300);
+}
+
+/* Enhanced explanation content styling */
+.perceptron-learning .explanation-content h5 {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: var(--space-4) 0 var(--space-2) 0;
+}
+
+.perceptron-learning .explanation-content code {
+    background-color: var(--secondary-100);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+    color: var(--secondary-800);
+}
+
+/* Remove all loading animations and spinners */
+.perceptron-learning .btn {
+    position: relative;
+}
+
+.perceptron-learning .btn::after {
+    display: none !important;
+}
+
+.perceptron-learning .btn::before {
+    display: none !important;
+}
+
+.perceptron-learning .btn * {
+    animation: none !important;
+}
+
+.perceptron-learning .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--secondary-300) !important;
+    color: var(--secondary-600) !important;
+    border-color: var(--secondary-300) !important;
+}
+
+.perceptron-learning .btn:disabled:hover {
+    background-color: var(--secondary-300) !important;
+    color: var(--secondary-600) !important;
+    border-color: var(--secondary-300) !important;
+}

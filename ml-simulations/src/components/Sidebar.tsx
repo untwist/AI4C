@@ -78,7 +78,7 @@ const simulations: Simulation[] = [
         title: 'Perceptron Learning Simulator',
         description: 'Understand the foundation of neural networks with single-layer perceptrons',
         path: '/perceptron-learning',
-        status: 'coming-soon',
+        status: 'available',
         category: 'Deep Learning'
     },
     {
