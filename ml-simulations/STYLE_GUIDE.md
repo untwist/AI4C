@@ -1,11 +1,40 @@
 # ML Simulations Style Guide
 
+## **🎯 Template System (Use This First!)**
+
+### **ALWAYS Use the Template System**
+For new simulations, **ALWAYS** start with our standardized template system:
+
+```bash
+# Copy the template files
+cp src/templates/SimulationTemplate.tsx src/pages/YourSimulationName.tsx
+cp src/templates/SimulationTemplate.css src/pages/YourSimulationName.css
+
+# Update class names
+sed -i 's/your-simulation-name/your-actual-simulation-name/g' src/pages/YourSimulationName.css
+```
+
+### **Template System Benefits:**
+- ✅ **Consistent Styling** - All simulations look professional
+- ✅ **Design System Compliance** - Proper use of CSS variables
+- ✅ **Responsive Design** - Mobile-friendly out of the box
+- ✅ **Faster Development** - No need to reinvent the wheel
+- ✅ **Easy Maintenance** - Update template, update all simulations
+
+### **Template Documentation:**
+- **Complete Guide**: `SIMULATION_TEMPLATE_GUIDE.md`
+- **Working Example**: `src/templates/ExampleLinearRegression.tsx`
+- **Template Files**: `src/templates/SimulationTemplate.*`
+
+---
+
 ## **Design Principles**
 
 ### **1. Consistency First**
 - All simulations must follow the same visual design patterns
 - Use the established design system variables
 - Maintain consistent spacing, typography, and color schemes
+- **Use the template system for new simulations**
 
 ### **2. Readability Priority**
 - Text must be highly readable against backgrounds
@@ -49,7 +78,37 @@
 }
 ```
 
-## **Component Templates**
+## **🎯 Template System Components**
+
+### **Use Template System Instead of Manual Components**
+**Don't manually create components - use the template system:**
+
+```bash
+# ✅ CORRECT - Use template system
+cp src/templates/SimulationTemplate.tsx src/pages/YourSimulation.tsx
+cp src/templates/SimulationTemplate.css src/pages/YourSimulation.css
+
+# ❌ AVOID - Manual component creation
+# Don't create components from scratch
+```
+
+### **Template System Structure:**
+The template system provides these standardized components:
+- **Page Header** - Title and description
+- **Simulation Layout** - Grid with visualization and controls
+- **Visualization Panel** - D3.js visualization with controls
+- **Controls Panel** - Parameter controls, algorithm controls, results
+- **Explanation Section** - Educational content
+- **Copyright Notice** - Standard footer
+
+### **Template System Benefits:**
+- ✅ **Consistent Styling** - All components follow the same patterns
+- ✅ **Design System Compliance** - Proper use of CSS variables
+- ✅ **Responsive Design** - Mobile-friendly out of the box
+- ✅ **Faster Development** - No need to create components from scratch
+- ✅ **Easy Maintenance** - Update template, update all simulations
+
+## **Legacy Component Templates (Use Template System Instead)**
 
 ### **Visualization Header Template**
 ```css
@@ -69,6 +128,8 @@
     margin: 0;
 }
 ```
+
+**Note**: These manual templates are for reference only. Use the template system for new simulations.
 
 ### **Page Header Template**
 ```css
@@ -153,6 +214,16 @@
 
 ## **Testing Checklist**
 
+### **🎯 Template System Checklist (For New Simulations)**
+Before deploying any new simulation:
+
+- [ ] **Used template system** - Started with `SimulationTemplate.tsx` and `SimulationTemplate.css`
+- [ ] **Updated class names** - Replaced `your-simulation-name` with actual class name
+- [ ] **Followed template structure** - Used the standardized component layout
+- [ ] **Customized algorithm only** - Only modified the algorithm logic and visualization
+- [ ] **No manual styling** - Didn't create custom CSS that overrides the template
+
+### **📋 General Simulation Checklist**
 Before deploying any simulation:
 
 - [ ] Header has light gray background (`var(--secondary-50)`)
@@ -162,6 +233,7 @@ Before deploying any simulation:
 - [ ] Responsive design works on mobile
 - [ ] No CSS conflicts with other simulations
 - [ ] All interactive elements are accessible
+- [ ] **Template system compliance** - Follows the standardized template patterns
 
 ## **Quick Fix Commands**
 

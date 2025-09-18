@@ -133,21 +133,71 @@ The project uses a comprehensive design system with:
 
 ## 🔧 Adding New Simulations
 
+### 🎯 **Use the Template System (Recommended)**
+
+**For consistent, professional simulations, always use our standardized template system:**
+
+1. **Copy the template files:**
+   ```bash
+   cp src/templates/SimulationTemplate.tsx src/pages/YourSimulationName.tsx
+   cp src/templates/SimulationTemplate.css src/pages/YourSimulationName.css
+   ```
+
+2. **Customize your simulation:**
+   - Replace `your-simulation-name` with your actual class name
+   - Implement your algorithm logic
+   - Add your D3.js visualization
+   - Follow the template structure
+
+3. **Add to routing:**
+   - Add route in `src/App.tsx`
+   - Update sidebar in `src/components/Sidebar.tsx`
+
+### 📚 **Template System Benefits:**
+- ✅ **Consistent Styling** - All simulations look professional
+- ✅ **Design System Compliance** - Proper use of CSS variables
+- ✅ **Responsive Design** - Mobile-friendly out of the box
+- ✅ **Faster Development** - No need to reinvent the wheel
+- ✅ **Easy Maintenance** - Update template, update all simulations
+
+### 📖 **Documentation:**
+- **Quick Reference**: `TEMPLATE_QUICK_REFERENCE.md` - Fast start guide
+- **Template Guide**: `SIMULATION_TEMPLATE_GUIDE.md` - Complete customization guide
+- **Example Implementation**: `src/templates/ExampleLinearRegression.tsx` - Working example
+- **Style Guide**: `STYLE_GUIDE.md` - Design system standards
+
+### 🚀 **Quick Start:**
+```bash
+# 1. Copy template files
+cp src/templates/SimulationTemplate.tsx src/pages/MyNewSimulation.tsx
+cp src/templates/SimulationTemplate.css src/pages/MyNewSimulation.css
+
+# 2. Update class names
+sed -i 's/your-simulation-name/my-new-simulation/g' src/pages/MyNewSimulation.css
+
+# 3. Customize your algorithm and visualization
+# 4. Add to routing and sidebar
+```
+
+### 📁 **Template Structure:**
+```
+src/templates/
+├── SimulationTemplate.tsx          # Standardized React component
+├── SimulationTemplate.css          # Standardized CSS
+├── ExampleLinearRegression.tsx     # Working example
+├── ExampleLinearRegression.css     # Example CSS
+└── README.md                       # Template documentation
+```
+
+### ⚠️ **Legacy Method (Not Recommended):**
+If you must create simulations without the template system:
 1. **Create a new page** in `src/pages/`
 2. **Add routing** in `src/App.tsx`
 3. **Update the sidebar** in `src/components/Sidebar.tsx`
 4. **Follow the design system** for consistent styling
 5. **Use D3.js** for interactive visualizations
 
-### Example Structure
-```
-src/pages/NewSimulation/
-├── NewSimulation.tsx
-├── NewSimulation.css
-└── components/
-    ├── Visualization.tsx
-    └── Controls.tsx
-```
+**Note**: Legacy simulations should be migrated to use the template system for consistency.
 
 ## 📱 Browser Support
 
