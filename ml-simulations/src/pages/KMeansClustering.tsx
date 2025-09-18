@@ -1111,7 +1111,7 @@ const KMeansClustering: React.FC = () => {
                                         fontWeight: activeTab === 'graph' ? '600' : '500'
                                     }}
                                 >
-                                    📊 Clustering Visualization
+                                    Clustering Visualization
                                 </button>
                                 <button
                                     className={`tab-button ${activeTab === 'elbow' ? 'active' : ''}`}
@@ -1123,7 +1123,7 @@ const KMeansClustering: React.FC = () => {
                                         fontWeight: activeTab === 'elbow' ? '600' : '500'
                                     }}
                                 >
-                                    📈 Elbow Method Analysis
+                                    Elbow Method Analysis
                                 </button>
                             </div>
                             <div className="clustering-stats" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -1138,7 +1138,7 @@ const KMeansClustering: React.FC = () => {
                                     {showTips && (
                                         <div className="visualization-instructions">
                                             <div className="tips-content">
-                                                <strong>💡 Tips:</strong> Use controls to adjust parameters • Watch centroids move • Toggle Voronoi to see decision boundaries
+                                                <strong>Tips:</strong> Use controls to adjust parameters • Watch centroids move • Toggle Voronoi to see decision boundaries
                                                 {isManualMode && (
                                                     <span className="manual-mode-tip">
                                                         • <strong>Manual Mode:</strong> Drag centroids to reposition them and see immediate cluster reassignment
@@ -1150,7 +1150,7 @@ const KMeansClustering: React.FC = () => {
                                                 onClick={() => setShowTips(false)}
                                                 title="Hide tips"
                                             >
-                                                ✕
+                                                ×
                                             </button>
                                         </div>
                                     )}
@@ -1216,7 +1216,7 @@ const KMeansClustering: React.FC = () => {
                                             className="btn btn-outline"
                                             disabled={isAnimating}
                                         >
-                                            📊 Calculate Elbow Method
+                                            Calculate Elbow Method
                                         </button>
                                     </div>
                                 </div>
@@ -1251,7 +1251,7 @@ const KMeansClustering: React.FC = () => {
                                             className="btn btn-outline btn-sm"
                                             disabled={isAnimating}
                                         >
-                                            🎲 Generate New Random Data
+                                            Generate New Random Data
                                         </button>
                                     )}
                                 </div>
@@ -1340,7 +1340,7 @@ const KMeansClustering: React.FC = () => {
                                                     onClick={() => setShowTips(true)}
                                                     title="Show tips"
                                                 >
-                                                    💡 Show Tips
+                                                    Show Tips
                                                 </button>
                                             </label>
                                         )}
@@ -1432,19 +1432,19 @@ const KMeansClustering: React.FC = () => {
                                 <h4>Key Concepts</h4>
                                 <div className="concepts-grid">
                                     <div className="concept-item">
-                                        <h5>🎯 Centroids</h5>
+                                        <h5>Centroids</h5>
                                         <p>The center points of each cluster. They represent the "average" position of all points in that cluster and are updated iteratively to minimize the total distance to their assigned points.</p>
                                     </div>
                                     <div className="concept-item">
-                                        <h5>📊 WCSS (Within-Cluster Sum of Squares)</h5>
+                                        <h5>WCSS (Within-Cluster Sum of Squares)</h5>
                                         <p>A measure of cluster quality that calculates the sum of squared distances from each point to its cluster centroid. Lower WCSS indicates tighter, more cohesive clusters.</p>
                                     </div>
                                     <div className="concept-item">
-                                        <h5>🔄 Convergence</h5>
+                                        <h5>Convergence</h5>
                                         <p>The algorithm stops when centroids stop moving significantly between iterations. This indicates the clusters have stabilized and further iterations won't improve the results.</p>
                                     </div>
                                     <div className="concept-item">
-                                        <h5>🔢 K Value</h5>
+                                        <h5>K Value</h5>
                                         <p>The number of clusters to find, which must be specified beforehand. Choosing the right K is crucial - too few clusters may miss important patterns, while too many may over-segment the data.</p>
                                     </div>
                                 </div>
@@ -1452,27 +1452,27 @@ const KMeansClustering: React.FC = () => {
                                 <h4>Real-World Applications</h4>
                                 <div className="applications-grid">
                                     <div className="application-item">
-                                        <h5>🛍️ Customer Segmentation</h5>
+                                        <h5>Customer Segmentation</h5>
                                         <p>Group customers by purchasing behavior, demographics, and preferences to create targeted marketing campaigns and personalized experiences.</p>
                                     </div>
                                     <div className="application-item">
-                                        <h5>🖼️ Image Compression</h5>
+                                        <h5>Image Compression</h5>
                                         <p>Reduce image file sizes by clustering similar pixel colors and replacing them with representative colors, maintaining visual quality while reducing storage.</p>
                                     </div>
                                     <div className="application-item">
-                                        <h5>🧬 Gene Expression Analysis</h5>
+                                        <h5>Gene Expression Analysis</h5>
                                         <p>Identify groups of genes that are co-expressed or have similar functions, helping researchers understand biological processes and disease mechanisms.</p>
                                     </div>
                                     <div className="application-item">
-                                        <h5>📚 Document Clustering</h5>
+                                        <h5>Document Clustering</h5>
                                         <p>Organize large collections of documents by topic similarity, enabling better search, recommendation systems, and content management.</p>
                                     </div>
                                     <div className="application-item">
-                                        <h5>📊 Market Research</h5>
+                                        <h5>Market Research</h5>
                                         <p>Identify distinct market segments based on consumer behavior, preferences, and demographics to inform product development and marketing strategies.</p>
                                     </div>
                                     <div className="application-item">
-                                        <h5>🏥 Medical Diagnosis</h5>
+                                        <h5>Medical Diagnosis</h5>
                                         <p>Group patients with similar symptoms or genetic profiles to identify disease subtypes and develop personalized treatment plans.</p>
                                     </div>
                                 </div>
@@ -1480,7 +1480,7 @@ const KMeansClustering: React.FC = () => {
                                 <h4>Algorithm Limitations & Best Practices</h4>
                                 <div className="limitations-grid">
                                     <div className="limitation-item">
-                                        <h5>⚠️ Limitations</h5>
+                                        <h5>Limitations</h5>
                                         <ul>
                                             <li><strong>Spherical Clusters:</strong> Works best with circular/spherical clusters</li>
                                             <li><strong>Fixed K:</strong> Requires knowing the number of clusters beforehand</li>
@@ -1490,7 +1490,7 @@ const KMeansClustering: React.FC = () => {
                                         </ul>
                                     </div>
                                     <div className="limitation-item">
-                                        <h5>✅ Best Practices</h5>
+                                        <h5>Best Practices</h5>
                                         <ul>
                                             <li><strong>Normalize Data:</strong> Scale features to similar ranges</li>
                                             <li><strong>Multiple Runs:</strong> Run algorithm several times with different initializations</li>
@@ -1575,23 +1575,23 @@ const KMeansClustering: React.FC = () => {
                                     <h4>How K-Means Discovers Customer Segments</h4>
                                     <div className="insights-grid">
                                         <div className="insight-item">
-                                            <h5>🎯 Young High Spenders (Cluster 1)</h5>
+                                            <h5>Young High Spenders (Cluster 1)</h5>
                                             <p>Young customers (22-28) with high spending scores (85-92). These are typically early-career professionals or young adults with disposable income who enjoy premium products and experiences.</p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>💰 Young Conservative (Cluster 2)</h5>
+                                            <h5>Young Conservative (Cluster 2)</h5>
                                             <p>Young customers (22-28) with low spending scores (11-18). These might be students, early-career individuals, or those saving for major purchases like homes or education.</p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>💎 Middle-aged Affluent (Cluster 3)</h5>
+                                            <h5>Middle-aged Affluent (Cluster 3)</h5>
                                             <p>Middle-aged customers (42-48) with high spending scores (85-91). These are typically established professionals with stable incomes who can afford premium products.</p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>🏠 Middle-aged Practical (Cluster 4)</h5>
+                                            <h5>Middle-aged Practical (Cluster 4)</h5>
                                             <p>Middle-aged customers (42-48) with low spending scores (12-18). These customers prioritize practical purchases and may be focused on family expenses or long-term savings.</p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>👴 Senior Conservative (Cluster 5)</h5>
+                                            <h5>Senior Conservative (Cluster 5)</h5>
                                             <p>Senior customers (62-68) with moderate spending scores (22-28). These customers are typically retired or near retirement, focusing on value and practical purchases.</p>
                                         </div>
                                     </div>
@@ -1601,19 +1601,19 @@ const KMeansClustering: React.FC = () => {
                                     <h4>Business Applications of Customer Segmentation</h4>
                                     <div className="applications-grid">
                                         <div className="application-item">
-                                            <h5>📧 Targeted Marketing</h5>
+                                            <h5>Targeted Marketing</h5>
                                             <p>Send different promotional campaigns to each segment. Young high spenders might receive premium product ads, while conservative customers get value-focused messaging.</p>
                                         </div>
                                         <div className="application-item">
-                                            <h5>🛍️ Product Recommendations</h5>
+                                            <h5>Product Recommendations</h5>
                                             <p>Recommend products based on segment characteristics. High spenders get premium options, while conservative customers see budget-friendly alternatives.</p>
                                         </div>
                                         <div className="application-item">
-                                            <h5>💳 Pricing Strategies</h5>
+                                            <h5>Pricing Strategies</h5>
                                             <p>Develop segment-specific pricing. High spenders might pay premium prices, while conservative customers get discounts and value bundles.</p>
                                         </div>
                                         <div className="application-item">
-                                            <h5>📊 Inventory Management</h5>
+                                            <h5>Inventory Management</h5>
                                             <p>Stock products based on segment preferences. High-spending segments get premium inventory, while conservative segments get value products.</p>
                                         </div>
                                     </div>

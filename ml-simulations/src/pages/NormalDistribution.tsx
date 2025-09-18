@@ -691,14 +691,14 @@ const NormalDistribution: React.FC = () => {
 
                                 <h4>Understanding the Mean (μ) - The Center of the Universe</h4>
                                 <div className="concept-explanation">
-                                    <h5>🎯 What is the Mean?</h5>
+                                    <h5>What is the Mean?</h5>
                                     <p>
                                         The mean is the "average" value - the balancing point of your data. Think of it like the center of gravity
                                         on a seesaw. If you placed all your data points on a number line, the mean is where you'd put the fulcrum
                                         to make the seesaw perfectly balanced.
                                     </p>
 
-                                    <h5>📊 How to Calculate the Mean</h5>
+                                    <h5>How to Calculate the Mean</h5>
                                     <div className="calculation-steps">
                                         <p><strong>Step 1:</strong> Add up all your numbers</p>
                                         <p><strong>Step 2:</strong> Count how many numbers you have</p>
@@ -708,10 +708,10 @@ const NormalDistribution: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <h5>🧠 Intuitive Understanding</h5>
+                                    <h5>Intuitive Understanding</h5>
                                     <div className="intuitive-examples">
                                         <div className="example-item">
-                                            <h6>🏠 Real Estate Example:</h6>
+                                            <h6>Real Estate Example:</h6>
                                             <p>
                                                 If you have house prices: $200k, $300k, $400k, $500k, $600k<br />
                                                 Mean = ($200k + $300k + $400k + $500k + $600k) ÷ 5 = $400k<br />
@@ -720,7 +720,7 @@ const NormalDistribution: React.FC = () => {
                                         </div>
 
                                         <div className="example-item">
-                                            <h6>🎓 Test Scores Example:</h6>
+                                            <h6>Test Scores Example:</h6>
                                             <p>
                                                 If students scored: 70, 80, 85, 90, 95<br />
                                                 Mean = (70 + 80 + 85 + 90 + 95) ÷ 5 = 84<br />
@@ -729,7 +729,7 @@ const NormalDistribution: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <h5>⚖️ Why the Mean Matters in Normal Distributions</h5>
+                                    <h5>Why the Mean Matters in Normal Distributions</h5>
                                     <p>
                                         In a normal distribution, the mean is where the bell curve peaks - it's the most likely value.
                                         The curve is perfectly symmetric around the mean, meaning:
@@ -743,14 +743,14 @@ const NormalDistribution: React.FC = () => {
 
                                 <h4>Understanding Standard Deviation (σ) - The Measure of Spread</h4>
                                 <div className="concept-explanation">
-                                    <h5>📏 What is Standard Deviation?</h5>
+                                    <h5>What is Standard Deviation?</h5>
                                     <p>
                                         Standard deviation tells you how "spread out" your data is. Think of it as measuring the
                                         "typical distance" that data points are from the mean. It's like measuring how far people
                                         typically sit from the center of a room.
                                     </p>
 
-                                    <h5>🔢 How to Calculate Standard Deviation</h5>
+                                    <h5>How to Calculate Standard Deviation</h5>
                                     <div className="calculation-steps">
                                         <p><strong>Step 1:</strong> Find the mean of your data</p>
                                         <p><strong>Step 2:</strong> For each data point, find how far it is from the mean (subtract mean from each value)</p>
@@ -762,10 +762,10 @@ const NormalDistribution: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <h5>🧠 Intuitive Understanding</h5>
+                                    <h5>Intuitive Understanding</h5>
                                     <div className="intuitive-examples">
                                         <div className="example-item">
-                                            <h6>🎯 Dart Throwing Example:</h6>
+                                            <h6>Dart Throwing Example:</h6>
                                             <p>
                                                 <strong>Small Standard Deviation:</strong> All your darts land close to the bullseye<br />
                                                 <strong>Large Standard Deviation:</strong> Your darts are scattered all over the board<br />
@@ -774,7 +774,7 @@ const NormalDistribution: React.FC = () => {
                                         </div>
 
                                         <div className="example-item">
-                                            <h6>📊 Test Scores Example:</h6>
+                                            <h6>Test Scores Example:</h6>
                                             <p>
                                                 <strong>Small σ (σ = 5):</strong> Most students scored between 80-90<br />
                                                 <strong>Large σ (σ = 20):</strong> Students scored anywhere from 40-120<br />
@@ -783,21 +783,21 @@ const NormalDistribution: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <h5>📈 What Standard Deviation Looks Like</h5>
+                                    <h5>What Standard Deviation Looks Like</h5>
                                     <div className="visual-explanation">
                                         <div className="std-dev-example">
-                                            <h6>🔵 Small Standard Deviation (σ = 2)</h6>
+                                            <h6>Small Standard Deviation (σ = 2)</h6>
                                             <p>Data points are clustered tightly around the mean - the bell curve is tall and narrow</p>
 
-                                            <h6>🟡 Medium Standard Deviation (σ = 5)</h6>
+                                            <h6>Medium Standard Deviation (σ = 5)</h6>
                                             <p>Data points are moderately spread out - the bell curve has a moderate width</p>
 
-                                            <h6>🔴 Large Standard Deviation (σ = 10)</h6>
+                                            <h6>Large Standard Deviation (σ = 10)</h6>
                                             <p>Data points are widely scattered - the bell curve is short and wide</p>
                                         </div>
                                     </div>
 
-                                    <h5>🎯 The 68-95-99.7 Rule</h5>
+                                    <h5>The 68-95-99.7 Rule</h5>
                                     <p>
                                         This is the magic of normal distributions! No matter what the mean and standard deviation are:
                                     </p>
@@ -814,17 +814,17 @@ const NormalDistribution: React.FC = () => {
 
                                 <h4>Understanding Sample Size (n) - The Power of Numbers</h4>
                                 <div className="concept-explanation">
-                                    <h5>🔢 What is Sample Size?</h5>
+                                    <h5>What is Sample Size?</h5>
                                     <p>
                                         Sample size is simply how many data points you have. But it's incredibly important!
                                         Think of it like taking a survey - the more people you ask, the more confident you can be
                                         about your results.
                                     </p>
 
-                                    <h5>📊 Why Sample Size Matters</h5>
+                                    <h5>Why Sample Size Matters</h5>
                                     <div className="sample-size-effects">
                                         <div className="effect-item">
-                                            <h6>🎯 Small Sample (n = 10)</h6>
+                                            <h6>Small Sample (n = 10)</h6>
                                             <p>
                                                 <strong>Problem:</strong> Your histogram might look jagged and irregular<br />
                                                 <strong>Why:</strong> Not enough data points to fill all the "bins" smoothly<br />
@@ -833,7 +833,7 @@ const NormalDistribution: React.FC = () => {
                                         </div>
 
                                         <div className="effect-item">
-                                            <h6>📈 Medium Sample (n = 100)</h6>
+                                            <h6>Medium Sample (n = 100)</h6>
                                             <p>
                                                 <strong>Improvement:</strong> Histogram starts to look more bell-shaped<br />
                                                 <strong>Why:</strong> More data points fill in the gaps<br />
@@ -842,7 +842,7 @@ const NormalDistribution: React.FC = () => {
                                         </div>
 
                                         <div className="effect-item">
-                                            <h6>🏆 Large Sample (n = 1000+)</h6>
+                                            <h6>Large Sample (n = 1000+)</h6>
                                             <p>
                                                 <strong>Excellent:</strong> Histogram looks very smooth and bell-shaped<br />
                                                 <strong>Why:</strong> Lots of data points create a smooth curve<br />
@@ -851,7 +851,7 @@ const NormalDistribution: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <h5>🧠 The Law of Large Numbers</h5>
+                                    <h5>The Law of Large Numbers</h5>
                                     <p>
                                         This is a fundamental principle in statistics: <strong>As your sample size increases,
                                             your sample statistics get closer to the true population parameters.</strong>
@@ -859,7 +859,7 @@ const NormalDistribution: React.FC = () => {
 
                                     <div className="law-examples">
                                         <div className="example-item">
-                                            <h6>🎲 Coin Flipping Example:</h6>
+                                            <h6>Coin Flipping Example:</h6>
                                             <p>
                                                 <strong>10 flips:</strong> You might get 7 heads (70%) - not very close to 50%<br />
                                                 <strong>100 flips:</strong> You might get 52 heads (52%) - closer to 50%<br />
@@ -869,7 +869,7 @@ const NormalDistribution: React.FC = () => {
                                         </div>
 
                                         <div className="example-item">
-                                            <h6>📊 Height Measurement Example:</h6>
+                                            <h6>Height Measurement Example:</h6>
                                             <p>
                                                 <strong>10 people:</strong> Mean might be 168cm (just by chance)<br />
                                                 <strong>100 people:</strong> Mean might be 171cm (closer to true average)<br />
@@ -879,16 +879,16 @@ const NormalDistribution: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <h5>⚖️ Sample Size vs. Accuracy Trade-off</h5>
+                                    <h5>Sample Size vs. Accuracy Trade-off</h5>
                                     <div className="trade-off-explanation">
-                                        <h6>🎯 The Sweet Spot</h6>
+                                        <h6>The Sweet Spot</h6>
                                         <ul>
                                             <li><strong>Too Small (n &lt; 30):</strong> Results are unreliable, patterns unclear</li>
                                             <li><strong>Good Size (n = 100-500):</strong> Clear patterns, reliable statistics</li>
                                             <li><strong>Very Large (n &gt; 1000):</strong> Excellent accuracy, but diminishing returns</li>
                                         </ul>
 
-                                        <h6>💰 Cost vs. Benefit</h6>
+                                        <h6>Cost vs. Benefit</h6>
                                         <p>
                                             In real research, larger samples cost more money and time. The goal is to find the
                                             minimum sample size that gives you reliable results. For normal distributions,
@@ -897,33 +897,33 @@ const NormalDistribution: React.FC = () => {
                                     </div>
                                 </div>
 
-                                <h4>🎓 Common Student Misconceptions</h4>
+                                <h4>Common Student Misconceptions</h4>
                                 <div className="misconceptions">
                                     <div className="misconception-item">
-                                        <h5>❌ "Mean is always the most common value"</h5>
-                                        <p><strong>✅ Truth:</strong> Mean is the average, not necessarily the most frequent. In normal distributions, the mean happens to be the most likely value, but this isn't always true for other distributions.</p>
+                                        <h5>"Mean is always the most common value"</h5>
+                                        <p><strong>Truth:</strong> Mean is the average, not necessarily the most frequent. In normal distributions, the mean happens to be the most likely value, but this isn't always true for other distributions.</p>
                                     </div>
 
                                     <div className="misconception-item">
-                                        <h5>❌ "Standard deviation is just the range divided by 4"</h5>
-                                        <p><strong>✅ Truth:</strong> Standard deviation measures typical distance from the mean, not the total spread. While there's a rough relationship (range ≈ 4σ for normal distributions), they measure different things.</p>
+                                        <h5>"Standard deviation is just the range divided by 4"</h5>
+                                        <p><strong>Truth:</strong> Standard deviation measures typical distance from the mean, not the total spread. While there's a rough relationship (range ≈ 4σ for normal distributions), they measure different things.</p>
                                     </div>
 
                                     <div className="misconception-item">
-                                        <h5>❌ "Bigger sample size always means better results"</h5>
-                                        <p><strong>✅ Truth:</strong> While larger samples are generally better, there are diminishing returns. A sample of 1000 isn't necessarily much better than 500, but both are much better than 10.</p>
+                                        <h5>"Bigger sample size always means better results"</h5>
+                                        <p><strong>Truth:</strong> While larger samples are generally better, there are diminishing returns. A sample of 1000 isn't necessarily much better than 500, but both are much better than 10.</p>
                                     </div>
 
                                     <div className="misconception-item">
-                                        <h5>❌ "If data looks normal, it must be normal"</h5>
-                                        <p><strong>✅ Truth:</strong> Visual inspection isn't enough. Many distributions can look roughly bell-shaped but aren't truly normal. Statistical tests can help determine if data is actually normal.</p>
+                                        <h5>"If data looks normal, it must be normal"</h5>
+                                        <p><strong>Truth:</strong> Visual inspection isn't enough. Many distributions can look roughly bell-shaped but aren't truly normal. Statistical tests can help determine if data is actually normal.</p>
                                     </div>
                                 </div>
 
                                 <h4>Important: Simulation vs. Real-World Data Analysis</h4>
                                 <div className="simulation-vs-reality">
                                     <div className="reality-explanation">
-                                        <h5>🎯 In the Real World:</h5>
+                                        <h5>In the Real World:</h5>
                                         <ul>
                                             <li><strong>We don't set parameters:</strong> We collect data and discover the mean and standard deviation through analysis</li>
                                             <li><strong>Data comes first:</strong> Scientists measure actual birth weights, heights, IQ scores, etc.</li>
@@ -933,7 +933,7 @@ const NormalDistribution: React.FC = () => {
                                     </div>
 
                                     <div className="simulation-explanation">
-                                        <h5>📊 In This Simulation:</h5>
+                                        <h5>In This Simulation:</h5>
                                         <ul>
                                             <li><strong>We set parameters:</strong> You can adjust the mean and standard deviation to see what happens</li>
                                             <li><strong>Educational purpose:</strong> This helps you understand how these parameters affect the distribution shape</li>
@@ -944,7 +944,7 @@ const NormalDistribution: React.FC = () => {
                                 </div>
 
                                 <div className="real-world-process">
-                                    <h5>🔬 Real-World Statistical Process:</h5>
+                                    <h5>Real-World Statistical Process:</h5>
                                     <ol>
                                         <li><strong>Collect Data:</strong> Measure 1000 newborn babies' weights</li>
                                         <li><strong>Calculate Statistics:</strong> Find mean = 3200g, standard deviation = 500g</li>
@@ -965,27 +965,27 @@ const NormalDistribution: React.FC = () => {
                                 <h4>Real-World Applications</h4>
                                 <div className="applications-grid">
                                     <div className="application-item">
-                                        <h5>📊 Quality Control</h5>
+                                        <h5>Quality Control</h5>
                                         <p>Manufacturing processes use normal distributions to set quality standards and detect defects. Control charts monitor whether processes stay within normal variation.</p>
                                     </div>
                                     <div className="application-item">
-                                        <h5>🏥 Medical Research</h5>
+                                        <h5>Medical Research</h5>
                                         <p>Clinical trials assume normal distributions for drug effectiveness, blood pressure measurements, and other biological variables to determine statistical significance.</p>
                                     </div>
                                     <div className="application-item">
-                                        <h5>💰 Financial Modeling</h5>
+                                        <h5>Financial Modeling</h5>
                                         <p>Stock returns, option pricing, and risk management models often assume normal distributions for portfolio optimization and risk assessment.</p>
                                     </div>
                                     <div className="application-item">
-                                        <h5>🎯 Machine Learning</h5>
+                                        <h5>Machine Learning</h5>
                                         <p>Many ML algorithms assume normal distributions in features. Data preprocessing often includes normalization to make data more normally distributed.</p>
                                     </div>
                                     <div className="application-item">
-                                        <h5>📈 Market Research</h5>
+                                        <h5>Market Research</h5>
                                         <p>Consumer behavior, survey responses, and market data often follow normal distributions, enabling better predictions and segmentation.</p>
                                     </div>
                                     <div className="application-item">
-                                        <h5>🧬 Genetics</h5>
+                                        <h5>Genetics</h5>
                                         <p>Many genetic traits follow normal distributions due to the combined effect of multiple genes, making it crucial for genetic research and personalized medicine.</p>
                                     </div>
                                 </div>
@@ -1009,21 +1009,21 @@ const NormalDistribution: React.FC = () => {
 
                                     <div className="insights-grid">
                                         <div className="insight-item">
-                                            <h5>🧬 Genetic Factors</h5>
+                                            <h5>Genetic Factors</h5>
                                             <p>
                                                 Height is influenced by hundreds of genes, each contributing a small amount.
                                                 The combined effect of these genetic factors creates a normal distribution.
                                             </p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>🍎 Environmental Factors</h5>
+                                            <h5>Environmental Factors</h5>
                                             <p>
                                                 Nutrition, healthcare, and living conditions also affect height.
                                                 These factors combine with genetics to create the bell curve.
                                             </p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>📊 Statistical Properties</h5>
+                                            <h5>Statistical Properties</h5>
                                             <p>
                                                 Adult male height typically has mean ~170cm and standard deviation ~10cm.
                                                 This means 68% of men are between 160-180cm tall.
@@ -1061,21 +1061,21 @@ const NormalDistribution: React.FC = () => {
 
                                     <div className="insights-grid">
                                         <div className="insight-item">
-                                            <h5>🎯 Test Design</h5>
+                                            <h5>Test Design</h5>
                                             <p>
                                                 IQ tests are carefully calibrated to ensure normal distribution.
                                                 Questions are selected and weighted to create the desired statistical properties.
                                             </p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>📊 Score Interpretation</h5>
+                                            <h5>Score Interpretation</h5>
                                             <p>
                                                 Scores are interpreted relative to the normal distribution:
                                                 68% score between 85-115, 95% between 70-130, and 99.7% between 55-145.
                                             </p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>🔬 Research Applications</h5>
+                                            <h5>Research Applications</h5>
                                             <p>
                                                 Normal distribution enables statistical analysis in psychology,
                                                 education research, and cognitive science studies.
@@ -1113,21 +1113,21 @@ const NormalDistribution: React.FC = () => {
 
                                     <div className="insights-grid">
                                         <div className="insight-item">
-                                            <h5>🏥 Medical Significance</h5>
+                                            <h5>Medical Significance</h5>
                                             <p>
                                                 Normal body temperature range is 36.1-37.2°C (97-99°F).
                                                 Temperatures outside this range may indicate illness or infection.
                                             </p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>⚖️ Homeostatic Control</h5>
+                                            <h5>Homeostatic Control</h5>
                                             <p>
                                                 The body maintains temperature through sweating, shivering, and blood vessel
                                                 dilation. These mechanisms keep temperature within narrow normal ranges.
                                             </p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>📊 Clinical Applications</h5>
+                                            <h5>Clinical Applications</h5>
                                             <p>
                                                 Understanding normal temperature distribution helps in fever detection,
                                                 treatment monitoring, and medical diagnosis.

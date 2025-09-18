@@ -1,0 +1,72 @@
+# ML Simulations - Cursor Rules
+
+## 🚫 STRICT NO EMOJIS POLICY
+
+### This project has ZERO tolerance for emojis.
+
+**Why?** This is a professional educational platform for SVA Continuing Education students. Emojis are:
+- Unprofessional for academic content
+- Accessibility barriers for screen readers
+- Inconsistent across platforms
+- Not appropriate for serious educational material
+
+### What to do instead:
+- Use clear, descriptive text
+- Use CSS styling for emphasis
+- Use professional academic language
+- Use icons from icon libraries if needed
+
+### Examples:
+
+❌ **DON'T DO THIS:**
+```tsx
+<h3>🎯 Target Audience</h3>
+<p>💡 This is a great tip!</p>
+<button>📊 View Data</button>
+<div className="feature-icon">🎓</div>
+```
+
+✅ **DO THIS INSTEAD:**
+```tsx
+<h3>Target Audience</h3>
+<p><strong>Tip:</strong> This is a great tip!</p>
+<button>View Data</button>
+<div className="feature-icon"></div>
+```
+
+## Code Standards
+
+### React/TypeScript:
+- Use proper TypeScript types
+- Follow existing component patterns
+- Use semantic HTML
+- Maintain accessibility standards
+
+### Styling:
+- Use CSS variables from design system
+- Follow existing class patterns
+- Maintain responsive design
+- Use professional color schemes
+
+### Educational Content:
+- Write clear, academic explanations
+- Use consistent terminology
+- Include practical examples
+- Maintain professional tone
+
+## File Structure:
+- New pages go in `src/pages/`
+- New components go in `src/components/`
+- Follow existing naming conventions
+- Update routing as needed
+
+## Testing:
+- Always run `npm run build` before committing
+- Test all interactive features
+- Verify no emojis appear anywhere
+- Check responsive design
+- Test accessibility
+
+## Remember:
+**This is an educational platform. Professional presentation is essential.**
+**No emojis = Professional, accessible, consistent experience.**

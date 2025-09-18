@@ -45,7 +45,7 @@ const Home: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="card feature-card">
                             <div className="card-body">
-                                <div className="feature-icon">🎯</div>
+                                <div className="feature-icon"></div>
                                 <h3 className="feature-title">Visual Understanding</h3>
                                 <p className="feature-description">
                                     See how algorithms work in real-time with dynamic visualizations
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
 
                         <div className="card feature-card">
                             <div className="card-body">
-                                <div className="feature-icon">⚡</div>
+                                <div className="feature-icon"></div>
                                 <h3 className="feature-title">Immediate Feedback</h3>
                                 <p className="feature-description">
                                     Experiment with parameters and see instant results. Learn through
@@ -67,7 +67,7 @@ const Home: React.FC = () => {
 
                         <div className="card feature-card">
                             <div className="card-body">
-                                <div className="feature-icon">🎓</div>
+                                <div className="feature-icon"></div>
                                 <h3 className="feature-title">Built for Education</h3>
                                 <p className="feature-description">
                                     Designed specifically for SVA Continuing Education students

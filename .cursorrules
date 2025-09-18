@@ -1,0 +1,110 @@
+# Cursor Rules for ML Simulations Project
+
+## 🚫 NO EMOJIS POLICY
+**CRITICAL: This project has a strict NO EMOJIS policy.**
+
+### Why No Emojis?
+- Professional educational platform
+- Accessibility compliance
+- Cross-platform compatibility
+- Clean, academic presentation
+- Consistent user experience
+
+### What This Means:
+- ❌ NO emojis in any code files (.tsx, .ts, .js, .jsx)
+- ❌ NO emojis in any documentation files (.md, .txt)
+- ❌ NO emojis in any configuration files
+- ❌ NO emojis in any comments or strings
+- ❌ NO emojis in any UI text or content
+
+### Acceptable Alternatives:
+- ✅ Use descriptive text instead of emojis
+- ✅ Use icons from icon libraries (if needed)
+- ✅ Use CSS styling for visual emphasis
+- ✅ Use clear, professional language
+
+### Examples of What NOT to Do:
+```tsx
+// ❌ WRONG - Don't do this
+<h3>🎯 Target Audience</h3>
+<p>💡 This is a great tip!</p>
+<button>📊 View Data</button>
+```
+
+### Examples of What TO Do:
+```tsx
+// ✅ CORRECT - Do this instead
+<h3>Target Audience</h3>
+<p><strong>Tip:</strong> This is a great tip!</p>
+<button>View Data</button>
+```
+
+## Code Quality Standards
+
+### TypeScript/React Best Practices:
+- Use TypeScript for all new files
+- Follow existing component patterns
+- Use proper prop types and interfaces
+- Maintain consistent naming conventions
+
+### Styling Guidelines:
+- Use CSS variables from design system
+- Follow existing class naming patterns
+- Maintain responsive design principles
+- Use semantic HTML structure
+
+### Educational Content:
+- Write clear, accessible explanations
+- Use professional academic language
+- Include practical examples
+- Maintain consistent terminology
+
+## File Organization
+
+### New Components:
+- Place in appropriate directories
+- Follow existing naming conventions
+- Include proper TypeScript types
+- Add to routing if needed
+
+### Documentation:
+- Update README.md for new features
+- Maintain consistent documentation style
+- Include setup and usage instructions
+- Keep examples current
+
+## Testing Requirements
+
+### Before Committing:
+- Run `npm run build` successfully
+- Test all interactive features
+- Verify responsive design
+- Check accessibility compliance
+
+### Code Review Checklist:
+- [ ] No emojis anywhere in the code
+- [ ] TypeScript types are correct
+- [ ] Components follow existing patterns
+- [ ] Styling uses design system
+- [ ] Educational content is clear
+- [ ] All functionality works
+- [ ] Build passes without errors
+
+## Deployment
+
+### Pre-deployment:
+- Run full build test
+- Verify all simulations work
+- Check for any remaining emojis
+- Test on multiple devices/browsers
+
+### Post-deployment:
+- Verify live site functionality
+- Check for any visual issues
+- Confirm no emojis appear
+- Test user interactions
+
+## Remember:
+**This is an educational platform for SVA Continuing Education students.**
+**Professional presentation is essential for academic credibility.**
+**No emojis = Professional, accessible, and consistent user experience.**

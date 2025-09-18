@@ -509,7 +509,7 @@ const BayesTheorem: React.FC = () => {
                         {/* RESULTS CARD */}
                         <div className="card">
                             <div className="card-header">
-                                <h3 className="card-title">📊 Your Updated Beliefs</h3>
+                                <h3 className="card-title">Your Updated Beliefs</h3>
                             </div>
                             <div className="card-body">
                                 <div className="results-display">
@@ -761,7 +761,7 @@ const BayesTheorem: React.FC = () => {
                                     <li><strong>False Precision:</strong> Treating probability estimates as more certain than they actually are</li>
                                 </ul>
 
-                                <h4>📊 Understanding the Math: Step-by-Step</h4>
+                                <h4>Understanding the Math: Step-by-Step</h4>
                                 <p>
                                     Let's break down the formula with a concrete example:
                                 </p>
@@ -802,7 +802,7 @@ const BayesTheorem: React.FC = () => {
                                     <li><strong>Bayesian Deep Learning:</strong> Neural networks that provide uncertainty estimates</li>
                                 </ul>
 
-                                <h4>📈 Career Applications</h4>
+                                <h4>Career Applications</h4>
                                 <p>
                                     Understanding Bayes' theorem opens doors in many careers:
                                 </p>

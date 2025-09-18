@@ -194,7 +194,7 @@ const LinearRegression: React.FC = () => {
     useEffect(() => {
         const dataset = datasets[selectedDataset];
         if (dataset) {
-            console.log('🔄 Performing linear regression:', {
+            console.log('Performing linear regression:', {
                 dataset: selectedDataset,
                 learningRate,
                 iterations,
@@ -205,7 +205,7 @@ const LinearRegression: React.FC = () => {
             const result = performLinearRegression(dataset.data, learningRate, iterations, regularization);
             setRegressionResult(result);
 
-            console.log('✅ Regression completed:', {
+            console.log('Regression completed:', {
                 slope: result.slope,
                 intercept: result.intercept,
                 rSquared: result.rSquared
@@ -420,7 +420,7 @@ const LinearRegression: React.FC = () => {
                         </div>
                         <div className="visualization-container">
                             <div className="visualization-instructions">
-                                <strong>💡 Tips:</strong> Hover over points to see values • Toggle residuals to see prediction errors
+                                <strong>Tips:</strong> Hover over points to see values • Toggle residuals to see prediction errors
                             </div>
                             <svg ref={svgRef} className="regression-svg"></svg>
                         </div>
@@ -659,21 +659,21 @@ const LinearRegression: React.FC = () => {
 
                                     <div className="insights-grid">
                                         <div className="insight-item">
-                                            <h5>🏠 Size vs Price Relationship</h5>
+                                            <h5>Size vs Price Relationship</h5>
                                             <p>
                                                 Generally, larger houses cost more, but the relationship isn't always perfectly linear.
                                                 The slope tells us how much the price increases per square foot.
                                             </p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>📈 Market Trends</h5>
+                                            <h5>Market Trends</h5>
                                             <p>
                                                 The intercept represents the base price for a house with zero square feet (theoretical),
                                                 while the slope shows the price per square foot in this market.
                                             </p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>🎯 Prediction Accuracy</h5>
+                                            <h5>Prediction Accuracy</h5>
                                             <p>
                                                 R-squared values close to 1 indicate a strong linear relationship, while lower values
                                                 suggest other factors (location, age, amenities) also affect price.
@@ -711,21 +711,21 @@ const LinearRegression: React.FC = () => {
 
                                     <div className="insights-grid">
                                         <div className="insight-item">
-                                            <h5>💰 Revenue Impact</h5>
+                                            <h5>Revenue Impact</h5>
                                             <p>
                                                 The slope shows how much the stock price increases for each million in revenue.
                                                 This helps investors understand the market's valuation of revenue growth.
                                             </p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>📊 Market Efficiency</h5>
+                                            <h5>Market Efficiency</h5>
                                             <p>
                                                 High R-squared values suggest the market efficiently prices companies based on revenue,
                                                 while lower values indicate other factors (growth potential, market share) matter more.
                                             </p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>🎯 Investment Strategy</h5>
+                                            <h5>Investment Strategy</h5>
                                             <p>
                                                 Investors can use this model to identify potentially undervalued or overvalued stocks
                                                 based on their revenue-to-price ratio compared to the market average.
@@ -763,21 +763,21 @@ const LinearRegression: React.FC = () => {
 
                                     <div className="insights-grid">
                                         <div className="insight-item">
-                                            <h5>🌡️ Weather Impact</h5>
+                                            <h5>Weather Impact</h5>
                                             <p>
                                                 The slope shows how much sales increase per degree of temperature rise.
                                                 This helps businesses plan inventory and staffing based on weather forecasts.
                                             </p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>📈 Seasonal Planning</h5>
+                                            <h5>Seasonal Planning</h5>
                                             <p>
                                                 The intercept represents base sales at zero temperature (theoretical),
                                                 while the slope helps predict sales during different weather conditions.
                                             </p>
                                         </div>
                                         <div className="insight-item">
-                                            <h5>🎯 Business Strategy</h5>
+                                            <h5>Business Strategy</h5>
                                             <p>
                                                 High R-squared values indicate temperature is a strong predictor, while lower values
                                                 suggest other factors (location, marketing, competition) also affect sales.

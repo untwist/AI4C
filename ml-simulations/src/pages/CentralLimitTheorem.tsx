@@ -420,13 +420,13 @@ const CentralLimitTheorem: React.FC = () => {
                             {showTips && (
                                 <div className="visualization-instructions">
                                     <div className="tips-content">
-                                        <strong>💡 Tips:</strong> Choose different distributions • Adjust sample size • Watch the magic happen!
+                                        <strong>Tips:</strong> Choose different distributions • Adjust sample size • Watch the magic happen!
                                     </div>
                                     <button
                                         className="dismiss-tips-btn"
                                         onClick={() => setShowTips(false)}
                                     >
-                                        ✕
+                                        ×
                                     </button>
                                 </div>
                             )}
@@ -598,7 +598,7 @@ const CentralLimitTheorem: React.FC = () => {
                                                 className="show-tips-btn-inline"
                                                 onClick={() => setShowTips(true)}
                                             >
-                                                💡 Show Tips
+                                                Show Tips
                                             </button>
                                         </label>
                                     )}
@@ -734,7 +734,7 @@ const CentralLimitTheorem: React.FC = () => {
                             <div className="distribution-analysis">
                                 <div className="distribution-grid">
                                     <div className="distribution-item">
-                                        <h5>🎲 Uniform Distribution</h5>
+                                        <h5>Uniform Distribution</h5>
                                         <p>
                                             All values are equally likely, like rolling a fair die. This creates a flat distribution
                                             where every outcome has the same probability. Despite this flat shape, sample means
@@ -746,7 +746,7 @@ const CentralLimitTheorem: React.FC = () => {
                                     </div>
 
                                     <div className="distribution-item">
-                                        <h5>📈 Exponential Distribution</h5>
+                                        <h5>Exponential Distribution</h5>
                                         <p>
                                             Highly skewed with most values near zero and a long tail. Common in waiting times,
                                             service durations, and failure times. The CLT still applies despite the extreme skewness.
@@ -757,7 +757,7 @@ const CentralLimitTheorem: React.FC = () => {
                                     </div>
 
                                     <div className="distribution-item">
-                                        <h5>👥 Bimodal Distribution</h5>
+                                        <h5>Bimodal Distribution</h5>
                                         <p>
                                             Two distinct peaks, like combining two different populations. Despite having two modes,
                                             sample means from this distribution still form a normal distribution.
@@ -768,7 +768,7 @@ const CentralLimitTheorem: React.FC = () => {
                                     </div>
 
                                     <div className="distribution-item">
-                                        <h5>💰 Right-Skewed Distribution</h5>
+                                        <h5>Right-Skewed Distribution</h5>
                                         <p>
                                             Most values are low with a few very high values. Common in income, house prices, and
                                             other economic data. The CLT works even with this extreme asymmetry.
@@ -779,7 +779,7 @@ const CentralLimitTheorem: React.FC = () => {
                                     </div>
 
                                     <div className="distribution-item">
-                                        <h5>🔔 Normal Distribution</h5>
+                                        <h5>Normal Distribution</h5>
                                         <p>
                                             The classic bell curve. When sampling from a normal distribution, sample means
                                             are also normally distributed, but with different parameters.
@@ -811,19 +811,19 @@ const CentralLimitTheorem: React.FC = () => {
                                 <h4>Key Mathematical Properties</h4>
                                 <div className="properties-grid">
                                     <div className="property-item">
-                                        <h5>📊 Mean of Sample Means</h5>
+                                        <h5>Mean of Sample Means</h5>
                                         <p>The mean of the sampling distribution equals the population mean: <strong>μₓ̄ = μ</strong></p>
                                     </div>
                                     <div className="property-item">
-                                        <h5>📏 Standard Error</h5>
+                                        <h5>Standard Error</h5>
                                         <p>The standard deviation of sample means: <strong>σₓ̄ = σ/√n</strong></p>
                                     </div>
                                     <div className="property-item">
-                                        <h5>🎯 Convergence Rate</h5>
+                                        <h5>Convergence Rate</h5>
                                         <p>Larger sample sizes lead to faster convergence to normality</p>
                                     </div>
                                     <div className="property-item">
-                                        <h5>📈 Shape Independence</h5>
+                                        <h5>Shape Independence</h5>
                                         <p>The original distribution shape doesn't affect the final normal shape</p>
                                     </div>
                                 </div>

@@ -331,7 +331,7 @@ const DecisionTree: React.FC = () => {
     useEffect(() => {
         const dataset = datasets[selectedDataset];
         if (dataset) {
-            console.log('🔄 Rebuilding tree with parameters:', {
+            console.log('Rebuilding tree with parameters:', {
                 dataset: selectedDataset,
                 maxDepth,
                 minSamplesSplit,
@@ -346,7 +346,7 @@ const DecisionTree: React.FC = () => {
             const newAccuracy = calculateAccuracy(dataset.data, newTree);
             setAccuracy(newAccuracy);
 
-            console.log('✅ Tree rebuilt:', {
+            console.log('Tree rebuilt:', {
                 totalNodes: countNodes(newTree),
                 leafNodes: countLeaves(newTree),
                 maxDepth: getMaxDepth(newTree),
@@ -590,7 +590,7 @@ const DecisionTree: React.FC = () => {
                         </div>
                         <div className="visualization-container">
                             <div className="visualization-instructions">
-                                <strong>💡 Tips:</strong> Drag to pan • Scroll to zoom • Use controls for precise zoom
+                                <strong>Tips:</strong> Drag to pan • Scroll to zoom • Use controls for precise zoom
                             </div>
                             <svg ref={svgRef} className="tree-svg"></svg>
                         </div>
@@ -634,7 +634,7 @@ const DecisionTree: React.FC = () => {
                                             value={maxDepth}
                                             onChange={(e) => {
                                                 const newValue = parseInt(e.target.value);
-                                                console.log('🎚️ Max Depth changed:', newValue);
+                                                console.log('Max Depth changed:', newValue);
                                                 setMaxDepth(newValue);
                                             }}
                                             className="slider"
@@ -652,7 +652,7 @@ const DecisionTree: React.FC = () => {
                                             value={minSamplesSplit}
                                             onChange={(e) => {
                                                 const newValue = parseInt(e.target.value);
-                                                console.log('🎚️ Min Samples Split changed:', newValue);
+                                                console.log('Min Samples Split changed:', newValue);
                                                 setMinSamplesSplit(newValue);
                                             }}
                                             className="slider"
@@ -670,7 +670,7 @@ const DecisionTree: React.FC = () => {
                                             value={minSamplesLeaf}
                                             onChange={(e) => {
                                                 const newValue = parseInt(e.target.value);
-                                                console.log('🎚️ Min Samples Leaf changed:', newValue);
+                                                console.log('Min Samples Leaf changed:', newValue);
                                                 setMinSamplesLeaf(newValue);
                                             }}
                                             className="slider"
@@ -921,15 +921,15 @@ const DecisionTree: React.FC = () => {
                                         <h4>Business Insights from the Tree</h4>
                                         <div className="insights-grid">
                                             <div className="insight-item">
-                                                <h5>🎯 High-Risk Customers</h5>
+                                                <h5>High-Risk Customers</h5>
                                                 <p>Customers with short tenure, high monthly charges, and month-to-month contracts are most likely to churn.</p>
                                             </div>
                                             <div className="insight-item">
-                                                <h5>💎 Loyal Customers</h5>
+                                                <h5>Loyal Customers</h5>
                                                 <p>Long-term customers with reasonable charges and longer contracts are most likely to stay.</p>
                                             </div>
                                             <div className="insight-item">
-                                                <h5>⚖️ Mixed Patterns</h5>
+                                                <h5>Mixed Patterns</h5>
                                                 <p>Medium-tenure customers show complex patterns that require multiple features to predict accurately.</p>
                                             </div>
                                         </div>
@@ -1063,15 +1063,15 @@ const DecisionTree: React.FC = () => {
                                         <h4>Scientific Insights from the Tree</h4>
                                         <div className="insights-grid">
                                             <div className="insight-item">
-                                                <h5>🌸 Setosa (Iris setosa)</h5>
+                                                <h5>Setosa (Iris setosa)</h5>
                                                 <p>Easily distinguishable with very short, narrow petals. Often separated in the first split of the tree.</p>
                                             </div>
                                             <div className="insight-item">
-                                                <h5>🌺 Versicolor (Iris versicolor)</h5>
+                                                <h5>Versicolor (Iris versicolor)</h5>
                                                 <p>Medium-sized flowers that require multiple features to distinguish from Virginica.</p>
                                             </div>
                                             <div className="insight-item">
-                                                <h5>🌻 Virginica (Iris virginica)</h5>
+                                                <h5>Virginica (Iris virginica)</h5>
                                                 <p>Largest flowers with the longest and widest petals, but can overlap with Versicolor.</p>
                                             </div>
                                         </div>
