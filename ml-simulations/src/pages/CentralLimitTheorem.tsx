@@ -31,7 +31,7 @@ const CentralLimitTheorem: React.FC = () => {
     const [isRunning, setIsRunning] = useState<boolean>(false);
     const [isStopped, setIsStopped] = useState<boolean>(false);
     const [fastMode, setFastMode] = useState<boolean>(false);
-    const [showTips, setShowTips] = useState<boolean>(true);
+    const [showTips, setShowTips] = useState<boolean>(false);
 
     // Distribution configurations
     const distributions = {
@@ -425,7 +425,6 @@ const CentralLimitTheorem: React.FC = () => {
                                     <button
                                         className="dismiss-tips-btn"
                                         onClick={() => setShowTips(false)}
-                                        title="Hide tips"
                                     >
                                         ✕
                                     </button>
@@ -598,7 +597,6 @@ const CentralLimitTheorem: React.FC = () => {
                                             <button
                                                 className="show-tips-btn-inline"
                                                 onClick={() => setShowTips(true)}
-                                                title="Show tips"
                                             >
                                                 💡 Show Tips
                                             </button>
