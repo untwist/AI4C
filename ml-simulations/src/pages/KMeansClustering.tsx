@@ -543,7 +543,7 @@ const KMeansClustering: React.FC = () => {
                 .enter()
                 .append('path')
                 .attr('class', 'voronoi')
-                .attr('d', (d, i) => voronoiCells.renderCell(i))
+                .attr('d', (_, i) => voronoiCells.renderCell(i))
                 .style('fill', 'none')
                 .style('stroke', d => d.color)
                 .style('stroke-width', 1)

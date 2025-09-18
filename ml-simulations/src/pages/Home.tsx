@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
     return (
@@ -17,14 +16,17 @@ const Home: React.FC = () => {
                             mathematics behind machine learning algorithms.
                         </p>
                         <div className="hero-actions">
-                            <Link to="/cosine-similarity" className="btn btn-primary">
-                                Try Cosine Similarity
-                            </Link>
                             <a
                                 href="#features"
-                                className="btn btn-outline"
+                                className="btn btn-primary"
                             >
                                 Learn More
+                            </a>
+                            <a
+                                href="#getting-started"
+                                className="btn btn-outline"
+                            >
+                                Get Started
                             </a>
                         </div>
                     </div>
@@ -76,88 +78,42 @@ const Home: React.FC = () => {
                     </div>
                 </section>
 
-                {/* Available Simulations */}
-                <section className="simulations">
-                    <div className="simulations-header">
-                        <h2 className="simulations-title">Available Simulations</h2>
-                        <p className="simulations-description">
-                            Start with our foundational concepts and work your way up to
-                            advanced algorithms.
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="card simulation-card">
-                            <div className="card-body">
-                                <div className="simulation-header">
-                                    <h3 className="simulation-title">Cosine Similarity</h3>
-                                    <span className="simulation-badge available">Available</span>
-                                </div>
-                                <p className="simulation-description">
-                                    Understand how vectors relate to each other through angle and magnitude.
-                                    Perfect for understanding text similarity, recommendation systems, and more.
-                                </p>
-                                <div className="simulation-features">
-                                    <span className="feature-tag">Interactive Vectors</span>
-                                    <span className="feature-tag">Real-time Calculation</span>
-                                    <span className="feature-tag">Visual Angle Display</span>
-                                </div>
-                                <Link to="/cosine-similarity" className="btn btn-primary">
-                                    Explore Now
-                                </Link>
-                            </div>
-                        </div>
-
-                        <div className="card simulation-card">
-                            <div className="card-body">
-                                <div className="simulation-header">
-                                    <h3 className="simulation-title">Decision Trees</h3>
-                                    <span className="simulation-badge coming-soon">Coming Soon</span>
-                                </div>
-                                <p className="simulation-description">
-                                    Build decision trees interactively and see how different features
-                                    affect classification boundaries.
-                                </p>
-                                <div className="simulation-features">
-                                    <span className="feature-tag">Interactive Tree Building</span>
-                                    <span className="feature-tag">Feature Selection</span>
-                                    <span className="feature-tag">Information Gain</span>
-                                </div>
-                                <button className="btn btn-secondary" disabled>
-                                    Coming Soon
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
 
                 {/* Getting Started */}
-                <section className="getting-started">
-                    <div className="card">
-                        <div className="card-body">
-                            <h2 className="getting-started-title">Getting Started</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div className="step">
-                                    <div className="step-number">1</div>
-                                    <h3 className="step-title">Choose a Simulation</h3>
-                                    <p className="step-description">
-                                        Browse our available simulations and pick one that interests you.
-                                    </p>
-                                </div>
-                                <div className="step">
-                                    <div className="step-number">2</div>
-                                    <h3 className="step-title">Experiment Freely</h3>
-                                    <p className="step-description">
-                                        Adjust parameters, change inputs, and see how the algorithm responds.
-                                    </p>
-                                </div>
-                                <div className="step">
-                                    <div className="step-number">3</div>
-                                    <h3 className="step-title">Learn Through Doing</h3>
-                                    <p className="step-description">
-                                        Build intuition by seeing the math in action, not just on paper.
-                                    </p>
-                                </div>
+                <section id="getting-started" className="getting-started">
+                    <div className="getting-started-header">
+                        <h2 className="getting-started-title">Ready to Explore?</h2>
+                        <p className="getting-started-description">
+                            All simulations are available in the sidebar. Start with any concept that interests you
+                            and learn through hands-on experimentation.
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="card step-card">
+                            <div className="card-body">
+                                <div className="step-number">1</div>
+                                <h3 className="step-title">Choose a Simulation</h3>
+                                <p className="step-description">
+                                    Browse the sidebar to find simulations organized by category - from distance metrics to clustering algorithms.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="card step-card">
+                            <div className="card-body">
+                                <div className="step-number">2</div>
+                                <h3 className="step-title">Experiment Freely</h3>
+                                <p className="step-description">
+                                    Adjust parameters, change inputs, and see how the algorithm responds in real-time.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="card step-card">
+                            <div className="card-body">
+                                <div className="step-number">3</div>
+                                <h3 className="step-title">Learn Through Doing</h3>
+                                <p className="step-description">
+                                    Build intuition by seeing the mathematics in action, not just on paper.
+                                </p>
                             </div>
                         </div>
                     </div>
