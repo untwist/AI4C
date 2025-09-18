@@ -759,6 +759,87 @@ const PerceptronLearning: React.FC = () => {
 
                 {/* ENHANCED EXPLANATION SECTION */}
                 <div className="explanation-section">
+                    {/* PERCEPTRON ANATOMY SECTION */}
+                    <div className="card">
+                        <div className="card-header">
+                            <h3 className="card-title">Perceptron Anatomy: How It's Built</h3>
+                        </div>
+                        <div className="card-body">
+                            <div className="explanation-content">
+                                <h4>Perceptron Structure</h4>
+                                <p>
+                                    Before we understand how a perceptron learns, we need to understand how it's built.
+                                    A perceptron is the simplest type of artificial neural network, consisting of:
+                                </p>
+
+                                <div style={{ backgroundColor: '#f8fafc', padding: '20px', borderRadius: '8px', margin: '16px 0', border: '1px solid #e2e8f0' }}>
+                                    <h5 style={{ margin: '0 0 16px 0', color: '#1e293b' }}>Perceptron Components:</h5>
+                                    <ul style={{ margin: '0', paddingLeft: '20px' }}>
+                                        <li><strong>Inputs (x₁, x₂, x₃, ...):</strong> The data features we want to analyze</li>
+                                        <li><strong>Weights (w₁, w₂, w₃, ...):</strong> How important each input is to the decision</li>
+                                        <li><strong>Bias (b or w₀):</strong> A constant that shifts the decision boundary</li>
+                                        <li><strong>Summation (Σ):</strong> Adds up all weighted inputs plus bias</li>
+                                        <li><strong>Activation Function:</strong> Converts the sum into a final decision (0 or 1)</li>
+                                        <li><strong>Output (ŷ):</strong> The final prediction</li>
+                                    </ul>
+                                </div>
+
+                                <h4>The Forward Pass Calculation</h4>
+                                <p>
+                                    Every time a perceptron makes a decision, it follows this exact process:
+                                </p>
+
+                                <div style={{ backgroundColor: '#f0f9ff', padding: '20px', borderRadius: '8px', margin: '16px 0', border: '1px solid #0ea5e9' }}>
+                                    <h5 style={{ margin: '0 0 16px 0', color: '#0c4a6e' }}>Step-by-Step Forward Pass:</h5>
+                                    <ol style={{ margin: '0', paddingLeft: '20px' }}>
+                                        <li><strong>Calculate Weighted Sum:</strong> Multiply each input by its weight and add the bias</li>
+                                        <li><strong>Apply Activation Function:</strong> Convert the sum into a decision</li>
+                                        <li><strong>Output Prediction:</strong> Return 0 or 1 based on the activation</li>
+                                    </ol>
+                                </div>
+
+                                <div style={{ backgroundColor: '#f8fafc', padding: '20px', borderRadius: '8px', margin: '16px 0', border: '1px solid #e2e8f0' }}>
+                                    <h5 style={{ margin: '0 0 12px 0', color: '#1e293b' }}>Mathematical Formula:</h5>
+                                    <div style={{ fontFamily: 'monospace', fontSize: '18px', textAlign: 'center', margin: '12px 0' }}>
+                                        <strong>Sum = w₀ + w₁×x₁ + w₂×x₂ + w₃×x₃ + ...</strong><br />
+                                        <strong>Output = Activation(Sum)</strong>
+                                    </div>
+                                    <p style={{ margin: '8px 0 0 0', fontSize: '14px', color: '#64748b' }}>
+                                        For our 2D simulation: <strong>Sum = w₀ + w₁×x + w₂×y</strong>
+                                    </p>
+                                </div>
+
+                                <h4>Activation Function</h4>
+                                <p>
+                                    The activation function is what makes the perceptron "decide." In our simulation, we use a simple step function:
+                                </p>
+
+                                <div style={{ backgroundColor: '#f0fdf4', padding: '20px', borderRadius: '8px', margin: '16px 0', border: '1px solid #22c55e' }}>
+                                    <h5 style={{ margin: '0 0 12px 0', color: '#166534' }}>Step Function (Threshold):</h5>
+                                    <div style={{ fontFamily: 'monospace', fontSize: '16px', textAlign: 'center', margin: '12px 0' }}>
+                                        <strong>If Sum &gt; 0: Output = 1</strong><br />
+                                        <strong>If Sum &le; 0: Output = 0</strong>
+                                    </div>
+                                    <p style={{ margin: '8px 0 0 0', fontSize: '14px', color: '#64748b' }}>
+                                        This creates a sharp decision boundary at Sum = 0
+                                    </p>
+                                </div>
+
+                                <h4>Why This Structure Matters</h4>
+                                <p>
+                                    Understanding the perceptron's anatomy helps us understand its limitations:
+                                </p>
+                                <ul>
+                                    <li><strong>Linear Decision Boundary:</strong> The step function creates a straight line (in 2D) or plane (in 3D)</li>
+                                    <li><strong>Binary Output:</strong> Can only make yes/no decisions, not probabilities</li>
+                                    <li><strong>Single Layer:</strong> No hidden layers means limited complexity</li>
+                                    <li><strong>Linear Separability:</strong> Can only solve problems that can be separated by a straight line</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* PERCEPTRON LEARNING ALGORITHM SECTION */}
                     <div className="card">
                         <div className="card-header">
                             <h3 className="card-title">Understanding the Perceptron Learning Algorithm</h3>

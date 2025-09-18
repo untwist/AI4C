@@ -74,6 +74,14 @@ const simulations: Simulation[] = [
         category: 'Deep Learning'
     },
     {
+        id: 'perceptron-anatomy',
+        title: 'Perceptron Anatomy Explorer',
+        description: 'Explore the internal structure and forward pass of a perceptron',
+        path: '/perceptron-anatomy',
+        status: 'available',
+        category: 'Deep Learning'
+    },
+    {
         id: 'perceptron-learning',
         title: 'Perceptron Learning Simulator',
         description: 'Understand the foundation of neural networks with single-layer perceptrons',

@@ -25,6 +25,8 @@ import LogisticRegression from './pages/LogisticRegression';
 import './pages/LogisticRegression.css';
 import KNearestNeighbors from './pages/KNearestNeighbors';
 import './pages/KNearestNeighbors.css';
+import PerceptronAnatomy from './pages/PerceptronAnatomy';
+import './pages/PerceptronAnatomy.css';
 import PerceptronLearning from './pages/PerceptronLearning';
 import './pages/PerceptronLearning.css';
 import About from './pages/About';
@@ -51,6 +53,7 @@ function App() {
                 <Route path="/bayes-theorem" element={<BayesTheorem />} />
                 <Route path="/logistic-regression" element={<LogisticRegression />} />
                 <Route path="/k-nearest-neighbors" element={<KNearestNeighbors />} />
+                <Route path="/perceptron-anatomy" element={<PerceptronAnatomy />} />
                 <Route path="/perceptron-learning" element={<PerceptronLearning />} />
                 <Route path="/about" element={<About />} />
               </Routes>
