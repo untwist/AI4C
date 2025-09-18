@@ -46,7 +46,7 @@ const KMeansClustering: React.FC = () => {
     const [elbowData, setElbowData] = useState<{ k: number, wcss: number }[]>([]);
     const [initializationMethod, setInitializationMethod] = useState<'random' | 'kmeans++' | 'manual'>('random');
     const [isManualMode, setIsManualMode] = useState<boolean>(false);
-    const [showTips, setShowTips] = useState<boolean>(true);
+    const [showTips, setShowTips] = useState<boolean>(false);
     const [dimensions, setDimensions] = useState<{ width: number, height: number }>({ width: 800, height: 600 });
     const [activeTab, setActiveTab] = useState<'graph' | 'elbow'>('graph');
 
