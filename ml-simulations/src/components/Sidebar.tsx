@@ -136,8 +136,8 @@ const simulations: Simulation[] = [
         id: 'knn-explorer',
         title: 'K-Nearest Neighbors (KNN) Explorer',
         description: 'Explore instance-based learning with interactive KNN visualization',
-        path: '/knn-explorer',
-        status: 'coming-soon',
+        path: '/k-nearest-neighbors',
+        status: 'available',
         category: 'Classification'
     },
     {
