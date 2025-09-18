@@ -758,7 +758,7 @@ const KMeansClustering: React.FC = () => {
         // Add drag behavior for manual mode
         if (isManualMode) {
             const drag = d3.drag<SVGCircleElement, Centroid>()
-                .on('start', function (event, d) {
+                .on('start', function (_event, _d) {
                     d3.select(this).style('cursor', 'grabbing');
                 })
                 .on('drag', function (event, d) {
@@ -773,7 +773,7 @@ const KMeansClustering: React.FC = () => {
                     // Update the centroid data and trigger reassignment
                     updateCentroidPosition(d.id, newX, newY);
                 })
-                .on('end', function (event, d) {
+                .on('end', function (_event, _d) {
                     d3.select(this).style('cursor', 'grab');
                 });
 
@@ -876,7 +876,7 @@ const KMeansClustering: React.FC = () => {
             .attr('stroke', 'white')
             .attr('stroke-width', 2)
             .style('cursor', 'pointer')
-            .on('mouseover', function (event, d) {
+            .on('mouseover', function (_event, d) {
                 d3.select(this).attr('r', 8);
 
                 // Show tooltip
