@@ -72,6 +72,98 @@ const simulations: Simulation[] = [
         path: '/neural-networks',
         status: 'coming-soon',
         category: 'Deep Learning'
+    },
+    {
+        id: 'perceptron-learning',
+        title: 'Perceptron Learning Simulator',
+        description: 'Understand the foundation of neural networks with single-layer perceptrons',
+        path: '/perceptron-learning',
+        status: 'coming-soon',
+        category: 'Deep Learning'
+    },
+    {
+        id: 'multilayer-perceptron',
+        title: 'Multi-layer Perceptron Explorer',
+        description: 'Explore how multiple layers create complex decision boundaries',
+        path: '/multilayer-perceptron',
+        status: 'coming-soon',
+        category: 'Deep Learning'
+    },
+    {
+        id: 'cnn-demo',
+        title: 'Convolutional Neural Network Demo',
+        description: 'Visualize how CNNs process images through convolutional layers',
+        path: '/cnn-demo',
+        status: 'coming-soon',
+        category: 'Deep Learning'
+    },
+    // Additional STATISTICS concepts
+    {
+        id: 'bayes-theorem',
+        title: 'Bayes Theorem',
+        description: 'Understand conditional probability and Bayesian inference',
+        path: '/bayes-theorem',
+        status: 'coming-soon',
+        category: 'Statistics'
+    },
+    {
+        id: 'correlation-causation',
+        title: 'Correlation vs Causation',
+        description: 'Learn to distinguish between correlation and causal relationships',
+        path: '/correlation-causation',
+        status: 'coming-soon',
+        category: 'Statistics'
+    },
+    // Additional DISTANCE METRICS
+    {
+        id: 'euclidean-distance',
+        title: 'Euclidean Distance Explorer',
+        description: 'Visualize the most common distance metric in machine learning',
+        path: '/euclidean-distance',
+        status: 'coming-soon',
+        category: 'Distance Metrics'
+    },
+    {
+        id: 'manhattan-euclidean',
+        title: 'Manhattan Distance vs Euclidean',
+        description: 'Compare different distance metrics and their applications',
+        path: '/manhattan-euclidean',
+        status: 'coming-soon',
+        category: 'Distance Metrics'
+    },
+    // Additional CLASSIFICATION methods
+    {
+        id: 'knn-explorer',
+        title: 'K-Nearest Neighbors (KNN) Explorer',
+        description: 'Explore instance-based learning with interactive KNN visualization',
+        path: '/knn-explorer',
+        status: 'coming-soon',
+        category: 'Classification'
+    },
+    {
+        id: 'naive-bayes',
+        title: 'Naive Bayes Classifier',
+        description: 'Understand probabilistic classification with Bayes theorem',
+        path: '/naive-bayes',
+        status: 'coming-soon',
+        category: 'Classification'
+    },
+    {
+        id: 'logistic-regression',
+        title: 'Logistic Regression Visualizer',
+        description: 'Visualize how logistic regression creates decision boundaries',
+        path: '/logistic-regression',
+        status: 'coming-soon',
+        category: 'Classification'
+    },
+    // Additional CLUSTERING methods
+    {
+        id: 'hierarchical-clustering',
+        title: 'Hierarchical Clustering Explorer',
+        description: 'Watch clusters form in a tree-like structure with different linkage methods',
+        path: '/hierarchical-clustering',
+        status: 'coming-soon',
+        category: 'Clustering'
     }
 ];
 
