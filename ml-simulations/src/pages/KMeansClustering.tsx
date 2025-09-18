@@ -940,135 +940,147 @@ const KMeansClustering: React.FC = () => {
 
         console.log('Rendering elbow method chart...');
 
-        // Clear previous chart
+        // Clear previous chart completely and force DOM update
         chartContainer.innerHTML = '';
 
-        const width = 500;
-        const height = 300;
-        const margin = { top: 20, right: 30, bottom: 40, left: 50 };
+        // Force a small delay to ensure DOM is cleared
+        setTimeout(() => {
 
-        const svg = d3.select(chartContainer)
-            .append('svg')
-            .attr('width', width)
-            .attr('height', height);
+            const width = 500;
+            const height = 300;
+            const margin = { top: 20, right: 30, bottom: 40, left: 50 };
 
-        const g = svg.append('g')
-            .attr('transform', `translate(${margin.left},${margin.top})`);
+            const svg = d3.select(chartContainer)
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
 
-        const innerWidth = width - margin.left - margin.right;
-        const innerHeight = height - margin.top - margin.bottom;
+            const g = svg.append('g')
+                .attr('transform', `translate(${margin.left},${margin.top})`);
 
-        // Create scales
-        const xScale = d3.scaleLinear()
-            .domain(d3.extent(elbowData, d => d.k) as [number, number])
-            .range([0, innerWidth]);
+            const innerWidth = width - margin.left - margin.right;
+            const innerHeight = height - margin.top - margin.bottom;
 
-        const yScale = d3.scaleLinear()
-            .domain(d3.extent(elbowData, d => d.wcss) as [number, number])
-            .range([innerHeight, 0]);
+            // Create scales
+            const xScale = d3.scaleLinear()
+                .domain(d3.extent(elbowData, d => d.k) as [number, number])
+                .range([0, innerWidth]);
 
-        // Create line generator
-        const line = d3.line<{ k: number, wcss: number }>()
-            .x(d => xScale(d.k))
-            .y(d => yScale(d.wcss))
-            .curve(d3.curveMonotoneX);
+            const yScale = d3.scaleLinear()
+                .domain(d3.extent(elbowData, d => d.wcss) as [number, number])
+                .range([innerHeight, 0]);
 
-        // Draw line
-        g.append('path')
-            .datum(elbowData)
-            .attr('fill', 'none')
-            .attr('stroke', '#3b82f6')
-            .attr('stroke-width', 3)
-            .attr('d', line);
+            // Create line generator
+            const line = d3.line<{ k: number, wcss: number }>()
+                .x(d => xScale(d.k))
+                .y(d => yScale(d.wcss))
+                .curve(d3.curveMonotoneX);
 
-        // Draw points
-        g.selectAll('.elbow-point')
-            .data(elbowData)
-            .enter()
-            .append('circle')
-            .attr('class', 'elbow-point')
-            .attr('cx', d => xScale(d.k))
-            .attr('cy', d => yScale(d.wcss))
-            .attr('r', 6)
-            .attr('fill', '#3b82f6')
-            .attr('stroke', 'white')
-            .attr('stroke-width', 2)
-            .style('cursor', 'pointer')
-            .on('mouseover', function (_event, d) {
-                d3.select(this).attr('r', 8);
+            // Draw line
+            g.append('path')
+                .datum(elbowData)
+                .attr('fill', 'none')
+                .attr('stroke', '#3b82f6')
+                .attr('stroke-width', 3)
+                .attr('d', line);
 
-                // Show tooltip
-                const tooltip = g.append('g')
-                    .attr('class', 'tooltip')
-                    .style('opacity', 0);
-
-                tooltip.append('rect')
-                    .attr('x', xScale(d.k) - 30)
-                    .attr('y', yScale(d.wcss) - 30)
-                    .attr('width', 60)
-                    .attr('height', 20)
-                    .attr('fill', 'rgba(0,0,0,0.8)')
-                    .attr('rx', 4);
-
-                tooltip.append('text')
-                    .attr('x', xScale(d.k))
-                    .attr('y', yScale(d.wcss) - 15)
-                    .attr('text-anchor', 'middle')
-                    .attr('fill', 'white')
-                    .attr('font-size', '12px')
-                    .text(`K=${d.k}, WCSS=${d.wcss.toFixed(1)}`);
-
-                tooltip.transition().duration(200).style('opacity', 1);
-            })
-            .on('mouseout', function () {
-                d3.select(this).attr('r', 6);
-                g.selectAll('.tooltip').remove();
-            });
-
-        // Add axes
-        const xAxis = d3.axisBottom(xScale).tickFormat(d3.format('d'));
-        const yAxis = d3.axisLeft(yScale);
-
-        g.append('g')
-            .attr('class', 'axis')
-            .attr('transform', `translate(0,${innerHeight})`)
-            .call(xAxis)
-            .style('color', '#64748b');
-
-        g.append('g')
-            .attr('class', 'axis')
-            .call(yAxis)
-            .style('color', '#64748b');
-
-        // Add axis labels
-        g.append('text')
-            .attr('x', innerWidth / 2)
-            .attr('y', innerHeight + 35)
-            .attr('text-anchor', 'middle')
-            .style('font-size', '14px')
-            .style('fill', '#374151')
-            .text('Number of Clusters (K)');
-
-        g.append('text')
-            .attr('x', -innerHeight / 2)
-            .attr('y', -35)
-            .attr('text-anchor', 'middle')
-            .attr('transform', 'rotate(-90)')
-            .style('font-size', '14px')
-            .style('fill', '#374151')
-            .text('WCSS (Within-Cluster Sum of Squares)');
-
-        // Highlight current K value
-        const currentKData = elbowData.find(d => d.k === k);
-        if (currentKData) {
-            g.append('circle')
-                .attr('cx', xScale(currentKData.k))
-                .attr('cy', yScale(currentKData.wcss))
-                .attr('r', 8)
-                .attr('fill', '#ef4444')
+            // Draw points
+            g.selectAll('.elbow-point')
+                .data(elbowData)
+                .enter()
+                .append('circle')
+                .attr('class', 'elbow-point')
+                .attr('cx', d => xScale(d.k))
+                .attr('cy', d => yScale(d.wcss))
+                .attr('r', 6)
+                .attr('fill', '#3b82f6')
                 .attr('stroke', 'white')
-                .attr('stroke-width', 3);
-        }
+                .attr('stroke-width', 2)
+                .style('cursor', 'pointer')
+                .on('mouseover', function (_event, d) {
+                    d3.select(this).attr('r', 8);
+
+                    // Show tooltip
+                    const tooltip = g.append('g')
+                        .attr('class', 'tooltip')
+                        .style('opacity', 0);
+
+                    tooltip.append('rect')
+                        .attr('x', xScale(d.k) - 30)
+                        .attr('y', yScale(d.wcss) - 30)
+                        .attr('width', 60)
+                        .attr('height', 20)
+                        .attr('fill', 'rgba(0,0,0,0.8)')
+                        .attr('rx', 4);
+
+                    tooltip.append('text')
+                        .attr('x', xScale(d.k))
+                        .attr('y', yScale(d.wcss) - 15)
+                        .attr('text-anchor', 'middle')
+                        .attr('fill', 'white')
+                        .attr('font-size', '12px')
+                        .text(`K=${d.k}, WCSS=${d.wcss.toFixed(1)}`);
+
+                    tooltip.transition().duration(200).style('opacity', 1);
+                })
+                .on('mouseout', function () {
+                    d3.select(this).attr('r', 6);
+                    g.selectAll('.tooltip').remove();
+                });
+
+            // Clear any existing axes and labels first
+            g.selectAll('.axis').remove();
+            g.selectAll('.axis-label').remove();
+
+            // Add axes with explicit tick values to prevent duplication
+            const xAxis = d3.axisBottom(xScale)
+                .tickValues(elbowData.map(d => d.k))
+                .tickFormat(d3.format('d'));
+            const yAxis = d3.axisLeft(yScale);
+
+            g.append('g')
+                .attr('class', 'axis')
+                .attr('transform', `translate(0,${innerHeight})`)
+                .call(xAxis)
+                .style('color', '#64748b');
+
+            g.append('g')
+                .attr('class', 'axis')
+                .call(yAxis)
+                .style('color', '#64748b');
+
+            // Add axis labels
+            g.append('text')
+                .attr('class', 'axis-label')
+                .attr('x', innerWidth / 2)
+                .attr('y', innerHeight + 35)
+                .attr('text-anchor', 'middle')
+                .style('font-size', '14px')
+                .style('fill', '#374151')
+                .text('Number of Clusters (K)');
+
+            g.append('text')
+                .attr('class', 'axis-label')
+                .attr('x', -innerHeight / 2)
+                .attr('y', -35)
+                .attr('text-anchor', 'middle')
+                .attr('transform', 'rotate(-90)')
+                .style('font-size', '14px')
+                .style('fill', '#374151')
+                .text('WCSS (Within-Cluster Sum of Squares)');
+
+            // Highlight current K value
+            const currentKData = elbowData.find(d => d.k === k);
+            if (currentKData) {
+                g.append('circle')
+                    .attr('cx', xScale(currentKData.k))
+                    .attr('cy', yScale(currentKData.wcss))
+                    .attr('r', 8)
+                    .attr('fill', '#ef4444')
+                    .attr('stroke', 'white')
+                    .attr('stroke-width', 3);
+            }
+        }, 50); // Small delay to ensure DOM is cleared
 
     }, [elbowData, activeTab, k]);
 
@@ -1140,7 +1152,11 @@ const KMeansClustering: React.FC = () => {
                             {activeTab === 'elbow' && (
                                 <div className="elbow-method-container">
                                     <h3 className="elbow-title">Elbow Method Analysis</h3>
-                                    <div className="elbow-chart" id="elbow-chart"></div>
+                                    <div
+                                        className="elbow-chart"
+                                        id="elbow-chart"
+                                        key={`elbow-chart-${elbowData.length}-${k}`}
+                                    ></div>
                                     <div className="elbow-explanation">
                                         <p><strong>How to read this chart:</strong></p>
                                         <ul>
