@@ -31,6 +31,7 @@ interface Dataset {
 
 const KMeansClustering: React.FC = () => {
     const svgRef = useRef<SVGSVGElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const [selectedDataset, setSelectedDataset] = useState<string>('customer');
     const [k, setK] = useState<number>(3);
     const [centroids, setCentroids] = useState<Centroid[]>([]);
@@ -46,6 +47,55 @@ const KMeansClustering: React.FC = () => {
     const [initializationMethod, setInitializationMethod] = useState<'random' | 'kmeans++' | 'manual'>('random');
     const [isManualMode, setIsManualMode] = useState<boolean>(false);
     const [showTips, setShowTips] = useState<boolean>(true);
+    const [dimensions, setDimensions] = useState<{ width: number, height: number }>({ width: 800, height: 600 });
+    const [activeTab, setActiveTab] = useState<'graph' | 'elbow'>('graph');
+
+    // Calculate dynamic dimensions based on container size
+    const calculateDimensions = () => {
+        if (containerRef.current) {
+            const containerRect = containerRef.current.getBoundingClientRect();
+            const padding = 40; // Account for padding and margins
+
+            // When elbow method is shown, significantly reduce available height
+            const elbowMethodHeight = showElbowMethod ? 500 : 0; // Elbow method takes ~500px
+            const baseHeight = Math.min(800, window.innerHeight * 0.6);
+            const availableHeight = baseHeight - elbowMethodHeight;
+
+            const newWidth = Math.max(600, containerRect.width - padding);
+            const newHeight = Math.max(300, availableHeight); // Minimum 300px height
+
+            console.log('Calculating dimensions:', {
+                showElbowMethod,
+                elbowMethodHeight,
+                baseHeight,
+                availableHeight,
+                newWidth,
+                newHeight
+            });
+            setDimensions({ width: newWidth, height: newHeight });
+        }
+    };
+
+    // Handle window resize
+    useEffect(() => {
+        const handleResize = () => {
+            calculateDimensions();
+        };
+
+        // Initial calculation
+        calculateDimensions();
+
+        // Add resize listener
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup
+        return () => window.removeEventListener('resize', handleResize);
+    }, [showElbowMethod]);
+
+    // Recalculate dimensions when elbow method is toggled
+    useEffect(() => {
+        calculateDimensions();
+    }, [showElbowMethod]);
 
     // Sample datasets
     const datasets: { [key: string]: Dataset } = {
@@ -283,9 +333,16 @@ const KMeansClustering: React.FC = () => {
 
     // Calculate elbow method data
     const calculateElbowMethod = (data: DataPoint[], maxK: number = 8) => {
+        if (data.length === 0) {
+            console.log('No data points available for elbow method calculation');
+            return;
+        }
+
+        console.log('Starting elbow method calculation...');
         const elbowResults: { k: number, wcss: number }[] = [];
 
         for (let testK = 1; testK <= maxK; testK++) {
+            console.log(`Calculating for K=${testK}`);
             // Run K-means with current initialization method
             let testCentroids: Centroid[];
             if (initializationMethod === 'kmeans++') {
@@ -318,7 +375,9 @@ const KMeansClustering: React.FC = () => {
             elbowResults.push({ k: testK, wcss: finalWCSS });
         }
 
+        console.log('Elbow method calculation complete:', elbowResults);
         setElbowData(elbowResults);
+        setActiveTab('elbow'); // Automatically switch to elbow method tab when calculated
     };
 
     // Handle manual centroid movement
@@ -664,163 +723,222 @@ const KMeansClustering: React.FC = () => {
 
     // Draw visualization
     useEffect(() => {
-        if (!svgRef.current) return;
+        if (!svgRef.current || activeTab !== 'graph') return;
 
-        const svg = d3.select(svgRef.current);
-        svg.selectAll("*").remove();
+        // Small delay to ensure tab switch completes
+        const timeoutId = setTimeout(() => {
+            try {
+                const svg = d3.select(svgRef.current);
+                svg.selectAll("*").remove();
 
-        const width = 600;
-        const height = 400;
-        const margin = { top: 20, right: 20, bottom: 40, left: 40 };
-        const innerWidth = width - margin.left - margin.right;
-        const innerHeight = height - margin.top - margin.bottom;
+                const width = dimensions.width;
+                const height = dimensions.height;
+                const margin = { top: 20, right: 20, bottom: 40, left: 40 };
+                const innerWidth = width - margin.left - margin.right;
+                const innerHeight = height - margin.top - margin.bottom;
 
-        const g = svg
-            .attr("width", width)
-            .attr("height", height)
-            .append("g")
-            .attr("transform", `translate(${margin.left},${margin.top})`);
+                const g = svg
+                    .attr("width", width)
+                    .attr("height", height)
+                    .append("g")
+                    .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        // Create scales
-        const xExtent = d3.extent(dataPoints, d => d.x) as [number, number];
-        const yExtent = d3.extent(dataPoints, d => d.y) as [number, number];
+                // Create scales with intelligent padding - include BOTH data points AND centroids
+                const dataXValues = dataPoints.map(d => d.x);
+                const dataYValues = dataPoints.map(d => d.y);
+                const centroidXValues = centroids.map(c => c.x);
+                const centroidYValues = centroids.map(c => c.y);
 
-        const xScale = d3.scaleLinear()
-            .domain([xExtent[0] - 5, xExtent[1] + 5])
-            .range([0, innerWidth]);
+                const allXValues = [...dataXValues, ...centroidXValues];
+                const allYValues = [...dataYValues, ...centroidYValues];
 
-        const yScale = d3.scaleLinear()
-            .domain([yExtent[0] - 5, yExtent[1] + 5])
-            .range([innerHeight, 0]);
+                const xExtent = d3.extent(allXValues) as [number, number];
+                const yExtent = d3.extent(allYValues) as [number, number];
 
-        // Add axes
-        const xAxis = d3.axisBottom(xScale);
-        const yAxis = d3.axisLeft(yScale);
+                // Fallback if no data points - use default extents
+                if (!xExtent[0] || !xExtent[1] || !yExtent[0] || !yExtent[1]) {
+                    // Use default extents for empty state
+                    const defaultXExtent: [number, number] = [0, 100];
+                    const defaultYExtent: [number, number] = [0, 100];
+                    xExtent[0] = defaultXExtent[0];
+                    xExtent[1] = defaultXExtent[1];
+                    yExtent[0] = defaultYExtent[0];
+                    yExtent[1] = defaultYExtent[1];
+                }
 
-        g.append("g")
-            .attr("class", "axis")
-            .attr("transform", `translate(0,${innerHeight})`)
-            .call(xAxis)
-            .style("color", "#64748b");
+                // Calculate data range for better padding
+                const xRange = xExtent[1] - xExtent[0];
+                const yRange = yExtent[1] - yExtent[0];
 
-        g.append("g")
-            .attr("class", "axis")
-            .call(yAxis)
-            .style("color", "#64748b");
+                // Use percentage-based padding (10% of range) with minimum padding
+                const xPadding = Math.max(5, xRange * 0.1);
+                const yPadding = Math.max(5, yRange * 0.1);
 
-        // Draw Voronoi diagram if enabled
-        if (showVoronoi && centroids.length > 0) {
-            const voronoi = d3.Delaunay.from(centroids.map(c => [xScale(c.x), yScale(c.y)]));
-            const voronoiCells = voronoi.voronoi([0, 0, innerWidth, innerHeight]);
+                // When elbow method is shown, use more aggressive scaling to fit everything
+                const scaleFactor = showElbowMethod ? 0.1 : 1.0; // Very aggressive scaling when elbow method is shown
 
-            g.selectAll('.voronoi')
-                .data(centroids)
-                .enter()
-                .append('path')
-                .attr('class', 'voronoi')
-                .attr('d', (_, i) => voronoiCells.renderCell(i))
-                .style('fill', 'none')
-                .style('stroke', d => d.color)
-                .style('stroke-width', 1)
-                .style('stroke-dasharray', '3,3')
-                .style('opacity', 0.5);
-        }
+                // Debug logging (can be removed in production)
+                // console.log('Scaling debug:', {
+                //     dataPointsCount: dataPoints.length,
+                //     centroidsCount: centroids.length,
+                //     xExtent,
+                //     yExtent,
+                //     showElbowMethod,
+                //     scaleFactor
+                // });
 
-        // Draw data points
-        g.selectAll('.data-point')
-            .data(dataPoints)
-            .enter()
-            .append('circle')
-            .attr('class', 'data-point')
-            .attr('cx', d => xScale(d.x))
-            .attr('cy', d => yScale(d.y))
-            .attr('r', 4)
-            .style('fill', d => d.color || '#6b7280')
-            .style('stroke', '#374151')
-            .style('stroke-width', 1)
-            .style('opacity', 0.8);
+                // Ensure minimum padding for readability
+                const finalXPadding = Math.max(1, xPadding * scaleFactor);
+                const finalYPadding = Math.max(1, yPadding * scaleFactor);
 
-        // Draw centroids
-        const centroidCircles = g.selectAll('.centroid')
-            .data(centroids)
-            .enter()
-            .append('circle')
-            .attr('class', 'centroid')
-            .attr('cx', d => xScale(d.x))
-            .attr('cy', d => yScale(d.y))
-            .attr('r', 8)
-            .style('fill', d => d.color)
-            .style('stroke', '#374151')
-            .style('stroke-width', 3)
-            .style('opacity', 0.9)
-            .style('cursor', isManualMode ? 'grab' : 'default');
+                const xScale = d3.scaleLinear()
+                    .domain([xExtent[0] - finalXPadding, xExtent[1] + finalXPadding])
+                    .range([0, innerWidth]);
 
-        // Add drag behavior for manual mode
-        if (isManualMode) {
-            const drag = d3.drag<SVGCircleElement, Centroid>()
-                .on('start', function (_event, _d) {
-                    d3.select(this).style('cursor', 'grabbing');
-                })
-                .on('drag', function (event, d) {
-                    const newX = xScale.invert(event.x);
-                    const newY = yScale.invert(event.y);
+                const yScale = d3.scaleLinear()
+                    .domain([yExtent[0] - finalYPadding, yExtent[1] + finalYPadding])
+                    .range([innerHeight, 0]);
 
-                    // Update centroid position
-                    d3.select(this)
-                        .attr('cx', event.x)
-                        .attr('cy', event.y);
+                // Add axes
+                const xAxis = d3.axisBottom(xScale);
+                const yAxis = d3.axisLeft(yScale);
 
-                    // Update the centroid data and trigger reassignment
-                    updateCentroidPosition(d.id, newX, newY);
-                })
-                .on('end', function (_event, _d) {
-                    d3.select(this).style('cursor', 'grab');
-                });
+                g.append("g")
+                    .attr("class", "axis")
+                    .attr("transform", `translate(0,${innerHeight})`)
+                    .call(xAxis)
+                    .style("color", "#64748b");
 
-            centroidCircles.call(drag);
-        }
+                g.append("g")
+                    .attr("class", "axis")
+                    .call(yAxis)
+                    .style("color", "#64748b");
 
-        // Add centroid labels
-        g.selectAll('.centroid-label')
-            .data(centroids)
-            .enter()
-            .append('text')
-            .attr('class', 'centroid-label')
-            .attr('x', d => xScale(d.x))
-            .attr('y', d => yScale(d.y) - 15)
-            .attr('text-anchor', 'middle')
-            .style('font-size', '12px')
-            .style('font-weight', 'bold')
-            .style('fill', d => d.color)
-            .text(d => `C${d.cluster + 1}`);
+                // Draw Voronoi diagram if enabled
+                if (showVoronoi && centroids.length > 0) {
+                    const voronoi = d3.Delaunay.from(centroids.map(c => [xScale(c.x), yScale(c.y)]));
+                    const voronoiCells = voronoi.voronoi([0, 0, innerWidth, innerHeight]);
 
-        // Add axis labels
-        const dataset = datasets[selectedDataset];
-        g.append('text')
-            .attr('x', innerWidth / 2)
-            .attr('y', innerHeight + 35)
-            .attr('text-anchor', 'middle')
-            .style('font-size', '14px')
-            .style('fill', '#374151')
-            .text(dataset.features[0]);
+                    g.selectAll('.voronoi')
+                        .data(centroids)
+                        .enter()
+                        .append('path')
+                        .attr('class', 'voronoi')
+                        .attr('d', (_, i) => voronoiCells.renderCell(i))
+                        .style('fill', 'none')
+                        .style('stroke', d => d.color)
+                        .style('stroke-width', 1)
+                        .style('stroke-dasharray', '3,3')
+                        .style('opacity', 0.5);
+                }
 
-        g.append('text')
-            .attr('x', -innerHeight / 2)
-            .attr('y', -25)
-            .attr('text-anchor', 'middle')
-            .attr('transform', 'rotate(-90)')
-            .style('font-size', '14px')
-            .style('fill', '#374151')
-            .text(dataset.features[1]);
+                // Draw data points
+                g.selectAll('.data-point')
+                    .data(dataPoints)
+                    .enter()
+                    .append('circle')
+                    .attr('class', 'data-point')
+                    .attr('cx', d => xScale(d.x))
+                    .attr('cy', d => yScale(d.y))
+                    .attr('r', 4)
+                    .style('fill', d => d.color || '#6b7280')
+                    .style('stroke', '#374151')
+                    .style('stroke-width', 1)
+                    .style('opacity', 0.8);
 
-    }, [dataPoints, centroids, showVoronoi, selectedDataset, isManualMode]);
+                // Draw centroids
+                const centroidCircles = g.selectAll('.centroid')
+                    .data(centroids)
+                    .enter()
+                    .append('circle')
+                    .attr('class', 'centroid')
+                    .attr('cx', d => xScale(d.x))
+                    .attr('cy', d => yScale(d.y))
+                    .attr('r', 8)
+                    .style('fill', d => d.color)
+                    .style('stroke', '#374151')
+                    .style('stroke-width', 3)
+                    .style('opacity', 0.9)
+                    .style('cursor', isManualMode ? 'grab' : 'default');
+
+                // Add drag behavior for manual mode
+                if (isManualMode) {
+                    const drag = d3.drag<SVGCircleElement, Centroid>()
+                        .on('start', function (_event, _d) {
+                            d3.select(this).style('cursor', 'grabbing');
+                        })
+                        .on('drag', function (event, d) {
+                            const newX = xScale.invert(event.x);
+                            const newY = yScale.invert(event.y);
+
+                            // Update centroid position
+                            d3.select(this)
+                                .attr('cx', event.x)
+                                .attr('cy', event.y);
+
+                            // Update the centroid data and trigger reassignment
+                            updateCentroidPosition(d.id, newX, newY);
+                        })
+                        .on('end', function (_event, _d) {
+                            d3.select(this).style('cursor', 'grab');
+                        });
+
+                    centroidCircles.call(drag);
+                }
+
+                // Add centroid labels
+                g.selectAll('.centroid-label')
+                    .data(centroids)
+                    .enter()
+                    .append('text')
+                    .attr('class', 'centroid-label')
+                    .attr('x', d => xScale(d.x))
+                    .attr('y', d => yScale(d.y) - 15)
+                    .attr('text-anchor', 'middle')
+                    .style('font-size', '12px')
+                    .style('font-weight', 'bold')
+                    .style('fill', d => d.color)
+                    .text(d => `C${d.cluster + 1}`);
+
+                // Add axis labels
+                const dataset = datasets[selectedDataset];
+                g.append('text')
+                    .attr('x', innerWidth / 2)
+                    .attr('y', innerHeight + 35)
+                    .attr('text-anchor', 'middle')
+                    .style('font-size', '14px')
+                    .style('fill', '#374151')
+                    .text(dataset.features[0]);
+
+                g.append('text')
+                    .attr('x', -innerHeight / 2)
+                    .attr('y', -25)
+                    .attr('text-anchor', 'middle')
+                    .attr('transform', 'rotate(-90)')
+                    .style('font-size', '14px')
+                    .style('fill', '#374151')
+                    .text(dataset.features[1]);
+
+            } catch (error) {
+                console.error('Error rendering visualization:', error);
+            }
+        }, 100);
+
+        return () => clearTimeout(timeoutId);
+    }, [dataPoints, centroids, showVoronoi, selectedDataset, isManualMode, dimensions, activeTab]);
 
     // Draw elbow method chart
     useEffect(() => {
-        if (!showElbowMethod || elbowData.length === 0) return;
+        console.log('Elbow method useEffect triggered:', { activeTab, elbowDataLength: elbowData.length });
+        if (activeTab !== 'elbow' || elbowData.length === 0) return;
 
         const chartContainer = document.getElementById('elbow-chart');
-        if (!chartContainer) return;
+        if (!chartContainer) {
+            console.log('Elbow chart container not found');
+            return;
+        }
+
+        console.log('Rendering elbow method chart...');
 
         // Clear previous chart
         chartContainer.innerHTML = '';
@@ -952,7 +1070,7 @@ const KMeansClustering: React.FC = () => {
                 .attr('stroke-width', 3);
         }
 
-    }, [elbowData, showElbowMethod, k]);
+    }, [elbowData, activeTab, k]);
 
     return (
         <div className="kmeans-clustering fade-in">
@@ -969,36 +1087,57 @@ const KMeansClustering: React.FC = () => {
                 <div className="simulation-layout">
                     <div className="visualization-panel">
                         <div className="visualization-header">
-                            <h2 className="visualization-title">Clustering Visualization</h2>
+                            <div className="tab-navigation">
+                                <button
+                                    className={`tab-button ${activeTab === 'graph' ? 'active' : ''}`}
+                                    onClick={() => setActiveTab('graph')}
+                                >
+                                    📊 Clustering Visualization
+                                </button>
+                                <button
+                                    className={`tab-button ${activeTab === 'elbow' ? 'active' : ''}`}
+                                    onClick={() => setActiveTab('elbow')}
+                                >
+                                    📈 Elbow Method Analysis
+                                </button>
+                            </div>
                             <div className="clustering-stats">
                                 <span className="stat">Iterations: {iterations}</span>
                                 <span className="stat">WCSS: {currentWcss.toFixed(2)}</span>
                                 <span className="stat">Points: {dataPoints.length}</span>
                             </div>
                         </div>
-                        <div className="visualization-container">
-                            {showTips && (
-                                <div className="visualization-instructions">
-                                    <div className="tips-content">
-                                        <strong>💡 Tips:</strong> Use controls to adjust parameters • Watch centroids move • Toggle Voronoi to see decision boundaries
-                                        {isManualMode && (
-                                            <span className="manual-mode-tip">
-                                                • <strong>Manual Mode:</strong> Drag centroids to reposition them and see immediate cluster reassignment
-                                            </span>
-                                        )}
-                                    </div>
-                                    <button
-                                        className="dismiss-tips-btn"
-                                        onClick={() => setShowTips(false)}
-                                        title="Hide tips"
-                                    >
-                                        ✕
-                                    </button>
-                                </div>
+                        <div className="visualization-container" ref={containerRef}>
+                            {activeTab === 'graph' && (
+                                <>
+                                    {showTips && (
+                                        <div className="visualization-instructions">
+                                            <div className="tips-content">
+                                                <strong>💡 Tips:</strong> Use controls to adjust parameters • Watch centroids move • Toggle Voronoi to see decision boundaries
+                                                {isManualMode && (
+                                                    <span className="manual-mode-tip">
+                                                        • <strong>Manual Mode:</strong> Drag centroids to reposition them and see immediate cluster reassignment
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <button
+                                                className="dismiss-tips-btn"
+                                                onClick={() => setShowTips(false)}
+                                                title="Hide tips"
+                                            >
+                                                ✕
+                                            </button>
+                                        </div>
+                                    )}
+                                    <svg
+                                        ref={svgRef}
+                                        className="clustering-svg"
+                                        key={`graph-${activeTab}-${dataPoints.length}`}
+                                    ></svg>
+                                </>
                             )}
-                            <svg ref={svgRef} className="clustering-svg"></svg>
 
-                            {showElbowMethod && elbowData.length > 0 && (
+                            {activeTab === 'elbow' && (
                                 <div className="elbow-method-container">
                                     <h3 className="elbow-title">Elbow Method Analysis</h3>
                                     <div className="elbow-chart" id="elbow-chart"></div>
@@ -1012,6 +1151,47 @@ const KMeansClustering: React.FC = () => {
                                     </div>
                                 </div>
                             )}
+                        </div>
+
+                        {/* Algorithm Controls - Now positioned below the graph */}
+                        <div className="algorithm-controls-section">
+                            <div className="card">
+                                <div className="card-header">
+                                    <h3 className="card-title">Algorithm Controls</h3>
+                                </div>
+                                <div className="card-body">
+                                    <div className="algorithm-controls">
+                                        <button
+                                            onClick={runKMeansIteration}
+                                            className="btn btn-primary"
+                                            disabled={isAnimating}
+                                        >
+                                            {isAnimating ? 'Running...' : 'Run One Iteration'}
+                                        </button>
+                                        <button
+                                            onClick={runFullAlgorithm}
+                                            className="btn btn-secondary"
+                                            disabled={isAnimating}
+                                        >
+                                            {isAnimating ? 'Running...' : 'Run Until Convergence'}
+                                        </button>
+                                        <button
+                                            onClick={resetAlgorithm}
+                                            className="btn btn-outline"
+                                            disabled={isAnimating}
+                                        >
+                                            Reset Algorithm
+                                        </button>
+                                        <button
+                                            onClick={() => calculateElbowMethod(dataPoints)}
+                                            className="btn btn-outline"
+                                            disabled={isAnimating}
+                                        >
+                                            📊 Calculate Elbow Method
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -1140,43 +1320,6 @@ const KMeansClustering: React.FC = () => {
                             </div>
                         </div>
 
-                        <div className="card">
-                            <div className="card-header">
-                                <h3 className="card-title">Algorithm Controls</h3>
-                            </div>
-                            <div className="card-body">
-                                <div className="algorithm-controls">
-                                    <button
-                                        onClick={runKMeansIteration}
-                                        className="btn btn-primary"
-                                        disabled={isAnimating}
-                                    >
-                                        {isAnimating ? 'Running...' : 'Run One Iteration'}
-                                    </button>
-                                    <button
-                                        onClick={runFullAlgorithm}
-                                        className="btn btn-secondary"
-                                        disabled={isAnimating}
-                                    >
-                                        {isAnimating ? 'Running...' : 'Run Until Convergence'}
-                                    </button>
-                                    <button
-                                        onClick={resetAlgorithm}
-                                        className="btn btn-outline"
-                                        disabled={isAnimating}
-                                    >
-                                        Reset Algorithm
-                                    </button>
-                                    <button
-                                        onClick={() => calculateElbowMethod(dataPoints)}
-                                        className="btn btn-outline"
-                                        disabled={isAnimating || dataPoints.length === 0}
-                                    >
-                                        📊 Calculate Elbow Method
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
 
                         <div className="card">
                             <div className="card-header">
@@ -1219,44 +1362,115 @@ const KMeansClustering: React.FC = () => {
                                         <div className="step-number">1</div>
                                         <div className="step-content">
                                             <strong>Initialize:</strong> Randomly place K centroids in the data space
+                                            <div className="step-detail">
+                                                The algorithm starts by placing K centroids at random positions. The number K must be specified beforehand.
+                                                Different initialization methods (Random, K-Means++) can affect the final results.
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="step">
                                         <div className="step-number">2</div>
                                         <div className="step-content">
                                             <strong>Assign:</strong> Assign each data point to the nearest centroid
+                                            <div className="step-detail">
+                                                For each data point, calculate the Euclidean distance to all centroids and assign it to the closest one.
+                                                This creates the initial clusters based on proximity.
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="step">
                                         <div className="step-number">3</div>
                                         <div className="step-content">
                                             <strong>Update:</strong> Move each centroid to the center of its assigned points
+                                            <div className="step-detail">
+                                                Calculate the mean position of all points assigned to each centroid and move the centroid there.
+                                                This step optimizes the centroid positions to better represent their clusters.
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="step">
                                         <div className="step-number">4</div>
                                         <div className="step-content">
                                             <strong>Repeat:</strong> Continue until centroids stop moving significantly
+                                            <div className="step-detail">
+                                                The algorithm repeats steps 2 and 3 until convergence. Convergence occurs when centroids
+                                                move less than a threshold distance or after a maximum number of iterations.
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <h4>Key Concepts</h4>
-                                <ul>
-                                    <li><strong>Centroids:</strong> The center points of each cluster</li>
-                                    <li><strong>WCSS:</strong> Within-Cluster Sum of Squares - measures cluster quality</li>
-                                    <li><strong>Convergence:</strong> When centroids stop moving between iterations</li>
-                                    <li><strong>K Value:</strong> Number of clusters to find (must be specified beforehand)</li>
-                                </ul>
+                                <div className="concepts-grid">
+                                    <div className="concept-item">
+                                        <h5>🎯 Centroids</h5>
+                                        <p>The center points of each cluster. They represent the "average" position of all points in that cluster and are updated iteratively to minimize the total distance to their assigned points.</p>
+                                    </div>
+                                    <div className="concept-item">
+                                        <h5>📊 WCSS (Within-Cluster Sum of Squares)</h5>
+                                        <p>A measure of cluster quality that calculates the sum of squared distances from each point to its cluster centroid. Lower WCSS indicates tighter, more cohesive clusters.</p>
+                                    </div>
+                                    <div className="concept-item">
+                                        <h5>🔄 Convergence</h5>
+                                        <p>The algorithm stops when centroids stop moving significantly between iterations. This indicates the clusters have stabilized and further iterations won't improve the results.</p>
+                                    </div>
+                                    <div className="concept-item">
+                                        <h5>🔢 K Value</h5>
+                                        <p>The number of clusters to find, which must be specified beforehand. Choosing the right K is crucial - too few clusters may miss important patterns, while too many may over-segment the data.</p>
+                                    </div>
+                                </div>
 
                                 <h4>Real-World Applications</h4>
-                                <ul>
-                                    <li><strong>Customer Segmentation:</strong> Group customers by behavior patterns</li>
-                                    <li><strong>Image Compression:</strong> Reduce colors by clustering similar pixels</li>
-                                    <li><strong>Gene Expression Analysis:</strong> Find groups of co-expressed genes</li>
-                                    <li><strong>Document Clustering:</strong> Organize documents by topic similarity</li>
-                                    <li><strong>Market Research:</strong> Identify distinct market segments</li>
-                                </ul>
+                                <div className="applications-grid">
+                                    <div className="application-item">
+                                        <h5>🛍️ Customer Segmentation</h5>
+                                        <p>Group customers by purchasing behavior, demographics, and preferences to create targeted marketing campaigns and personalized experiences.</p>
+                                    </div>
+                                    <div className="application-item">
+                                        <h5>🖼️ Image Compression</h5>
+                                        <p>Reduce image file sizes by clustering similar pixel colors and replacing them with representative colors, maintaining visual quality while reducing storage.</p>
+                                    </div>
+                                    <div className="application-item">
+                                        <h5>🧬 Gene Expression Analysis</h5>
+                                        <p>Identify groups of genes that are co-expressed or have similar functions, helping researchers understand biological processes and disease mechanisms.</p>
+                                    </div>
+                                    <div className="application-item">
+                                        <h5>📚 Document Clustering</h5>
+                                        <p>Organize large collections of documents by topic similarity, enabling better search, recommendation systems, and content management.</p>
+                                    </div>
+                                    <div className="application-item">
+                                        <h5>📊 Market Research</h5>
+                                        <p>Identify distinct market segments based on consumer behavior, preferences, and demographics to inform product development and marketing strategies.</p>
+                                    </div>
+                                    <div className="application-item">
+                                        <h5>🏥 Medical Diagnosis</h5>
+                                        <p>Group patients with similar symptoms or genetic profiles to identify disease subtypes and develop personalized treatment plans.</p>
+                                    </div>
+                                </div>
+
+                                <h4>Algorithm Limitations & Best Practices</h4>
+                                <div className="limitations-grid">
+                                    <div className="limitation-item">
+                                        <h5>⚠️ Limitations</h5>
+                                        <ul>
+                                            <li><strong>Spherical Clusters:</strong> Works best with circular/spherical clusters</li>
+                                            <li><strong>Fixed K:</strong> Requires knowing the number of clusters beforehand</li>
+                                            <li><strong>Local Optima:</strong> May get stuck in suboptimal solutions</li>
+                                            <li><strong>Outliers:</strong> Sensitive to outliers and noise</li>
+                                            <li><strong>Scale Dependent:</strong> Features must be on similar scales</li>
+                                        </ul>
+                                    </div>
+                                    <div className="limitation-item">
+                                        <h5>✅ Best Practices</h5>
+                                        <ul>
+                                            <li><strong>Normalize Data:</strong> Scale features to similar ranges</li>
+                                            <li><strong>Multiple Runs:</strong> Run algorithm several times with different initializations</li>
+                                            <li><strong>Elbow Method:</strong> Use WCSS plots to find optimal K</li>
+                                            <li><strong>K-Means++:</strong> Use better initialization to avoid poor local optima</li>
+                                            <li><strong>Preprocessing:</strong> Handle outliers and missing data appropriately</li>
+                                        </ul>
+                                    </div>
+                                </div>
 
                                 <h4>Understanding the Randomized Dataset</h4>
                                 <p>
