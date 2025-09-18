@@ -51,6 +51,7 @@ npm run preview
 
 ### Deployment to GitHub Pages
 
+#### Initial Setup
 1. **Create a GitHub repository** named `ml-simulations`
 2. **Push your code** to the repository
 3. **Deploy** using the included script:
@@ -63,6 +64,49 @@ npm run preview
    - Branch: `gh-pages` / `/ (root)`
 
 Your site will be available at: `https://yourusername.github.io/ml-simulations/`
+
+#### ⚠️ Important: Two-Branch Deployment System
+
+This project uses a **two-branch system** for deployment:
+
+- **`main` branch**: Contains your **source code** (React components, TypeScript files)
+- **`gh-pages` branch**: Contains your **built website** (HTML, CSS, JS files)
+
+#### 🔄 Regular Deployment Workflow
+
+**Every time you make changes, you need to do BOTH steps:**
+
+1. **Push source code changes** (if you made any):
+   ```bash
+   git add .
+   git commit -m "Description of your changes"
+   git push origin main
+   ```
+
+2. **Deploy to GitHub Pages**:
+   ```bash
+   npm run deploy
+   ```
+
+#### 📋 What Each Command Does
+
+- **`git push origin main`**: Updates your source code repository
+- **`npm run deploy`**: Builds your app and pushes the built files to the `gh-pages` branch
+
+#### 🚨 Common Mistakes to Avoid
+
+- ❌ **Don't merge `gh-pages` into `main`** - they serve different purposes
+- ❌ **Don't edit files in the `gh-pages` branch** - they get overwritten on each deploy
+- ✅ **Always run `npm run deploy`** after making code changes
+- ✅ **Keep your source code in `main`** and let `npm run deploy` handle the website
+
+#### 🔍 Troubleshooting
+
+If your website isn't updating:
+1. Check that `npm run deploy` completed successfully
+2. Verify GitHub Pages settings (Settings → Pages)
+3. Wait a few minutes for GitHub Pages to propagate
+4. Check the Actions tab for any failed builds
 
 ## 🎨 Design System
 
