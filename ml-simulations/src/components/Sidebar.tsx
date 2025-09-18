@@ -103,7 +103,7 @@ const simulations: Simulation[] = [
         title: 'Bayes Theorem',
         description: 'Understand conditional probability and Bayesian inference',
         path: '/bayes-theorem',
-        status: 'coming-soon',
+        status: 'available',
         category: 'Statistics'
     },
     {

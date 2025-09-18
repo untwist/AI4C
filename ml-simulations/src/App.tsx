@@ -19,6 +19,8 @@ import CentralLimitTheorem from './pages/CentralLimitTheorem';
 import './pages/CentralLimitTheorem.css';
 import NormalDistribution from './pages/NormalDistribution';
 import './pages/NormalDistribution.css';
+import BayesTheorem from './pages/BayesTheorem';
+import './pages/BayesTheorem.css';
 import About from './pages/About';
 import './pages/About.css';
 import './App.css';
@@ -40,6 +42,7 @@ function App() {
                 <Route path="/linear-regression" element={<LinearRegression />} />
                 <Route path="/central-limit-theorem" element={<CentralLimitTheorem />} />
                 <Route path="/normal-distribution" element={<NormalDistribution />} />
+                <Route path="/bayes-theorem" element={<BayesTheorem />} />
                 <Route path="/about" element={<About />} />
               </Routes>
             </main>

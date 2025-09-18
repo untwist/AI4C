@@ -1,0 +1,870 @@
+/* ============================================================================
+   BAYES THEOREM SIMULATION CSS
+   ============================================================================
+   Customized from the standardized simulation template
+   Follows design system patterns for consistency
+   ============================================================================ */
+
+/* 1. PAGE WRAPPER - ALWAYS START WITH THIS */
+/* ============================================================================ */
+.bayes-theorem {
+    padding: var(--space-6) 0;
+}
+
+/* 2. STANDARDIZED PAGE HEADER - NEVER CHANGE THESE PATTERNS */
+/* ============================================================================ */
+.bayes-theorem .page-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.bayes-theorem .page-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-4) 0;
+}
+
+.bayes-theorem .page-description {
+    font-size: var(--font-size-lg);
+    color: var(--secondary-600);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: var(--line-height-relaxed);
+}
+
+/* 3. STANDARDIZED SIMULATION LAYOUT - NEVER CHANGE */
+/* ============================================================================ */
+.bayes-theorem .simulation-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+/* 4. STANDARDIZED VISUALIZATION PANEL */
+/* ============================================================================ */
+.bayes-theorem .visualization-panel {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+/* 5. STANDARDIZED VISUALIZATION HEADER - ALWAYS USE LIGHT GRAY BACKGROUND */
+/* ============================================================================ */
+.bayes-theorem .visualization-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--secondary-200);
+    background-color: var(--secondary-50);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+}
+
+.bayes-theorem .visualization-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0;
+}
+
+.bayes-theorem .visualization-controls {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bayes-theorem .control-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--secondary-700);
+    cursor: pointer;
+}
+
+.bayes-theorem .control-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-600);
+}
+
+/* 6. STANDARDIZED VISUALIZATION CONTAINER */
+/* ============================================================================ */
+.bayes-theorem .visualization-container {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 550px;
+    background-color: #f8fafc;
+    position: relative;
+}
+
+.bayes-theorem .simulation-svg {
+    border: 1px solid var(--secondary-200);
+    border-radius: var(--radius-md);
+    background-color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* 7. CUSTOM FORMULA DISPLAY */
+/* ============================================================================ */
+.bayes-theorem .formula-display {
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    background-color: white;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--secondary-200);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    max-width: 100%;
+}
+
+.bayes-theorem .formula-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin-bottom: var(--space-2);
+}
+
+.bayes-theorem .formula-text {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-600);
+    font-family: var(--font-family-mono);
+    margin-bottom: var(--space-3);
+    padding: var(--space-2);
+    background-color: var(--primary-50);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--primary-200);
+}
+
+.bayes-theorem .formula-breakdown {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-700);
+    font-family: var(--font-family-mono);
+    line-height: var(--line-height-relaxed);
+}
+
+.bayes-theorem .formula-breakdown div {
+    margin-bottom: var(--space-1);
+}
+
+/* 8. STANDARDIZED CONTROLS PANEL */
+/* ============================================================================ */
+.bayes-theorem .controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+/* 9. STANDARDIZED CARD STYLES */
+/* ============================================================================ */
+.bayes-theorem .card {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+.bayes-theorem .card-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--secondary-200);
+    background-color: var(--secondary-50);
+}
+
+.bayes-theorem .card-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0;
+    text-align: center;
+}
+
+.bayes-theorem .card-body {
+    padding: var(--space-6);
+}
+
+/* 10. STANDARDIZED FORM CONTROLS */
+/* ============================================================================ */
+.bayes-theorem .parameter-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.bayes-theorem .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.bayes-theorem .label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-700);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.bayes-theorem .parameter-description {
+    font-size: var(--font-size-xs);
+    color: var(--secondary-600);
+    font-style: italic;
+    line-height: var(--line-height-relaxed);
+}
+
+.bayes-theorem .input {
+    width: 100%;
+    padding: var(--space-3);
+    border: 1px solid var(--secondary-300);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    background-color: white;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.bayes-theorem .input:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+.bayes-theorem .slider {
+    width: 100%;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--secondary-200);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.bayes-theorem .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: var(--primary-600);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: var(--shadow-sm);
+}
+
+.bayes-theorem .slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: var(--primary-600);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: var(--shadow-sm);
+}
+
+.bayes-theorem .value-display {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--primary-600);
+    text-align: center;
+    padding: var(--space-1) var(--space-2);
+    background-color: var(--primary-50);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--primary-200);
+}
+
+.bayes-theorem .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* 11. CUSTOM PRESET CONTROLS */
+/* ============================================================================ */
+.bayes-theorem .preset-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.bayes-theorem .preset-controls .btn {
+    width: 100%;
+    justify-content: center;
+}
+
+/* 12. STANDARDIZED RESULTS DISPLAY */
+/* ============================================================================ */
+.bayes-theorem .results-display {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.bayes-theorem .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--secondary-200);
+}
+
+.bayes-theorem .result-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-700);
+}
+
+.bayes-theorem .result-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-600);
+    font-family: var(--font-family-mono);
+}
+
+.bayes-theorem .result-label {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.bayes-theorem .result-label small {
+    font-size: var(--font-size-xs);
+    color: var(--secondary-600);
+    font-weight: var(--font-weight-normal);
+}
+
+.bayes-theorem .interpretation-box {
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    background-color: var(--primary-50);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-500);
+}
+
+.bayes-theorem .interpretation-box h4 {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-700);
+    margin: 0 0 var(--space-2) 0;
+}
+
+.bayes-theorem .interpretation-box p {
+    margin: 0;
+    color: var(--primary-700);
+    line-height: var(--line-height-relaxed);
+}
+
+/* 12. TUTORIAL SECTION */
+/* ============================================================================ */
+.bayes-theorem .tutorial-section {
+    margin-top: var(--space-8);
+}
+
+.bayes-theorem .tutorial-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.bayes-theorem .tutorial-step {
+    padding: var(--space-6);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary-500);
+}
+
+.bayes-theorem .tutorial-step h4 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-4) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.bayes-theorem .tutorial-step p {
+    color: var(--secondary-700);
+    line-height: var(--line-height-relaxed);
+    margin: var(--space-4) 0;
+}
+
+.bayes-theorem .tutorial-step ul {
+    margin: var(--space-4) 0;
+    padding-left: var(--space-6);
+}
+
+.bayes-theorem .tutorial-step li {
+    margin-bottom: var(--space-2);
+    line-height: var(--line-height-relaxed);
+    color: var(--secondary-700);
+}
+
+.bayes-theorem .tutorial-step strong {
+    color: var(--secondary-800);
+    font-weight: var(--font-weight-semibold);
+}
+
+.bayes-theorem .quote-box {
+    background-color: var(--primary-50);
+    border-left: 4px solid var(--primary-500);
+    padding: var(--space-4);
+    margin: var(--space-4) 0;
+    border-radius: var(--radius-md);
+    font-style: italic;
+}
+
+.bayes-theorem .quote-box p {
+    margin: 0;
+    color: var(--primary-700);
+    font-size: var(--font-size-base);
+}
+
+.bayes-theorem .formula-breakdown {
+    background-color: var(--secondary-100);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    margin: var(--space-4) 0;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+}
+
+.bayes-theorem .formula-breakdown div {
+    margin-bottom: var(--space-2);
+    color: var(--secondary-700);
+}
+
+.bayes-theorem .formula-breakdown div:last-child {
+    margin-bottom: 0;
+}
+
+.bayes-theorem .formula-image-container {
+    margin-top: var(--space-4);
+    text-align: center;
+    padding: var(--space-2);
+    background-color: white;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--secondary-200);
+    box-shadow: var(--shadow-sm);
+    width: 100%;
+}
+
+.bayes-theorem .formula-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    object-fit: contain;
+}
+
+.bayes-theorem .math-example {
+    background-color: var(--secondary-100);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    margin: var(--space-4) 0;
+    border-left: 4px solid var(--primary-500);
+}
+
+.bayes-theorem .math-example p {
+    margin: var(--space-2) 0;
+    color: var(--secondary-700);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+}
+
+.bayes-theorem .math-example ul {
+    margin: var(--space-2) 0;
+    padding-left: var(--space-4);
+}
+
+.bayes-theorem .math-example li {
+    margin-bottom: var(--space-1);
+    color: var(--secondary-700);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+}
+
+.bayes-theorem .learning-path {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-4);
+    margin: var(--space-4) 0;
+}
+
+.bayes-theorem .learning-level {
+    padding: var(--space-4);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--secondary-200);
+}
+
+.bayes-theorem .learning-level h5 {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-3) 0;
+}
+
+.bayes-theorem .learning-level ul {
+    margin: 0;
+    padding-left: var(--space-4);
+}
+
+.bayes-theorem .learning-level li {
+    margin-bottom: var(--space-2);
+    color: var(--secondary-700);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+}
+
+/* Enhanced Pedagogical Elements */
+.bayes-theorem .foundation-step {
+    background-color: var(--primary-50);
+    border-left: 4px solid var(--primary-500);
+}
+
+.bayes-theorem .probability-basics {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin: var(--space-4) 0;
+}
+
+.bayes-theorem .probability-example {
+    padding: var(--space-4);
+    background-color: white;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--secondary-200);
+    box-shadow: var(--shadow-sm);
+}
+
+.bayes-theorem .conditional-examples {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin: var(--space-4) 0;
+}
+
+.bayes-theorem .example-box {
+    padding: var(--space-3);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-500);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+}
+
+.bayes-theorem .intuition-example {
+    background-color: var(--secondary-50);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    margin: var(--space-4) 0;
+}
+
+.bayes-theorem .scenario {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin-bottom: var(--space-3);
+}
+
+.bayes-theorem .thinking-process {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.bayes-theorem .step {
+    padding: var(--space-2);
+    background-color: white;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--primary-400);
+}
+
+.bayes-theorem .visualization-guide {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-3);
+    margin: var(--space-4) 0;
+}
+
+.bayes-theorem .visual-element {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-sm);
+}
+
+.bayes-theorem .color-box {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--secondary-300);
+}
+
+.bayes-theorem .color-box.blue {
+    background-color: #dbeafe;
+}
+
+.bayes-theorem .color-box.yellow {
+    background-color: #fef3c7;
+}
+
+.bayes-theorem .color-box.dark-blue {
+    background-color: #3b82f6;
+}
+
+.bayes-theorem .color-box.orange {
+    background-color: #f59e0b;
+}
+
+.bayes-theorem .practice-scenarios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-4);
+    margin: var(--space-4) 0;
+}
+
+.bayes-theorem .scenario-card {
+    padding: var(--space-4);
+    background-color: white;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--secondary-200);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.bayes-theorem .scenario-card h5 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-2) 0;
+}
+
+.bayes-theorem .scenario-card p {
+    margin: var(--space-2) 0;
+    color: var(--secondary-700);
+    font-size: var(--font-size-sm);
+}
+
+.bayes-theorem .reflection-step {
+    background-color: var(--success-50);
+    border-left: 4px solid var(--success-500);
+}
+
+.bayes-theorem .reflection-questions {
+    background-color: white;
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--success-200);
+}
+
+.bayes-theorem .confidence-check {
+    margin-top: var(--space-4);
+    padding: var(--space-3);
+    background-color: var(--success-100);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.bayes-theorem .confidence-check p {
+    margin: 0;
+    color: var(--success-700);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* 13. STANDARDIZED EXPLANATION SECTION */
+/* ============================================================================ */
+.bayes-theorem .explanation-section {
+    margin-top: var(--space-8);
+}
+
+.bayes-theorem .explanation-content h4 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: var(--space-6) 0 var(--space-3) 0;
+}
+
+.bayes-theorem .explanation-content h4:first-child {
+    margin-top: 0;
+}
+
+.bayes-theorem .explanation-content p {
+    color: var(--secondary-700);
+    line-height: var(--line-height-relaxed);
+    margin: var(--space-4) 0;
+}
+
+.bayes-theorem .explanation-content ul {
+    margin: var(--space-4) 0;
+    padding-left: var(--space-6);
+}
+
+.bayes-theorem .explanation-content li {
+    margin-bottom: var(--space-2);
+    line-height: var(--line-height-relaxed);
+    color: var(--secondary-700);
+}
+
+.bayes-theorem .explanation-content strong {
+    color: var(--secondary-800);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* 14. STANDARDIZED COPYRIGHT SECTION */
+/* ============================================================================ */
+.bayes-theorem .copyright-section {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--secondary-200);
+}
+
+.bayes-theorem .copyright-notice {
+    text-align: center;
+    color: var(--secondary-600);
+    font-size: var(--font-size-sm);
+}
+
+.bayes-theorem .copyright-notice p {
+    margin: 0;
+}
+
+/* 15. RESPONSIVE DESIGN - STANDARDIZED BREAKPOINTS */
+/* ============================================================================ */
+@media (max-width: 1024px) {
+    .bayes-theorem .simulation-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    .bayes-theorem .controls-panel {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .bayes-theorem {
+        padding: var(--space-4) 0;
+    }
+
+    .bayes-theorem .page-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .bayes-theorem .page-description {
+        font-size: var(--font-size-base);
+    }
+
+    .bayes-theorem .visualization-header {
+        flex-direction: column;
+        gap: var(--space-4);
+        align-items: center;
+    }
+
+    .bayes-theorem .visualization-controls {
+        flex-wrap: wrap;
+        gap: var(--space-3);
+    }
+
+    .bayes-theorem .visualization-container {
+        padding: var(--space-4);
+        min-height: 500px;
+    }
+
+    .bayes-theorem .simulation-svg {
+        width: 100%;
+        height: auto;
+    }
+
+    .bayes-theorem .formula-display {
+        margin-top: var(--space-3);
+        padding: var(--space-3);
+    }
+
+    .bayes-theorem .formula-text {
+        font-size: var(--font-size-lg);
+    }
+
+    .bayes-theorem .formula-image-container {
+        margin-top: var(--space-3);
+        padding: var(--space-2);
+    }
+
+    .bayes-theorem .formula-image {
+        width: 100%;
+    }
+
+    .bayes-theorem .result-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+    }
+
+    .bayes-theorem .result-value {
+        font-size: var(--font-size-base);
+    }
+}
+
+/* 16. CUSTOM BAYES-SPECIFIC STYLES */
+/* ============================================================================ */
+
+/* Enhanced formula display for mobile */
+@media (max-width: 480px) {
+    .bayes-theorem .formula-text {
+        font-size: var(--font-size-base);
+        word-break: break-all;
+    }
+
+    .bayes-theorem .formula-breakdown {
+        font-size: var(--font-size-xs);
+    }
+}
+
+/* Animation for smooth transitions */
+.bayes-theorem .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom styling for probability bars in visualization */
+.bayes-theorem .simulation-svg rect {
+    transition: width 0.3s ease-in-out;
+}
+
+/* Enhanced button styling for presets */
+.bayes-theorem .preset-controls .btn {
+    transition: all var(--transition-fast);
+}
+
+.bayes-theorem .preset-controls .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
