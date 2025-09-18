@@ -11,37 +11,14 @@ interface Simulation {
 }
 
 const simulations: Simulation[] = [
+    // STATISTICS - Foundation concepts
     {
-        id: 'cosine-similarity',
-        title: 'Cosine Similarity',
-        description: 'Explore how vectors relate to each other through angle and magnitude',
-        path: '/cosine-similarity',
+        id: 'normal-distribution',
+        title: 'Normal Distribution',
+        description: 'Explore the bell curve and understand statistical distributions',
+        path: '/normal-distribution',
         status: 'available',
-        category: 'Distance Metrics'
-    },
-    {
-        id: 'decision-trees',
-        title: 'Decision Trees',
-        description: 'Build and visualize decision trees with interactive feature selection',
-        path: '/decision-trees',
-        status: 'available',
-        category: 'Classification'
-    },
-    {
-        id: 'k-means',
-        title: 'K-Means Clustering',
-        description: 'Watch clusters form and move with different initialization strategies',
-        path: '/kmeans-clustering',
-        status: 'available',
-        category: 'Clustering'
-    },
-    {
-        id: 'linear-regression',
-        title: 'Linear Regression',
-        description: 'Visualize the line of best fit and understand gradient descent',
-        path: '/linear-regression',
-        status: 'available',
-        category: 'Regression'
+        category: 'Statistics'
     },
     {
         id: 'central-limit-theorem',
@@ -51,14 +28,43 @@ const simulations: Simulation[] = [
         status: 'available',
         category: 'Statistics'
     },
+    // REGRESSION - Basic predictive modeling
     {
-        id: 'normal-distribution',
-        title: 'Normal Distribution',
-        description: 'Explore the bell curve and understand statistical distributions',
-        path: '/normal-distribution',
+        id: 'linear-regression',
+        title: 'Linear Regression',
+        description: 'Visualize the line of best fit and understand gradient descent',
+        path: '/linear-regression',
         status: 'available',
-        category: 'Statistics'
+        category: 'Regression'
     },
+    // CLASSIFICATION - Categorical prediction
+    {
+        id: 'decision-trees',
+        title: 'Decision Trees',
+        description: 'Build and visualize decision trees with interactive feature selection',
+        path: '/decision-trees',
+        status: 'available',
+        category: 'Classification'
+    },
+    // CLUSTERING - Unsupervised learning
+    {
+        id: 'k-means',
+        title: 'K-Means Clustering',
+        description: 'Watch clusters form and move with different initialization strategies',
+        path: '/kmeans-clustering',
+        status: 'available',
+        category: 'Clustering'
+    },
+    // DISTANCE METRICS - Fundamental concepts
+    {
+        id: 'cosine-similarity',
+        title: 'Cosine Similarity',
+        description: 'Explore how vectors relate to each other through angle and magnitude',
+        path: '/cosine-similarity',
+        status: 'available',
+        category: 'Distance Metrics'
+    },
+    // DEEP LEARNING - Advanced concepts
     {
         id: 'neural-networks',
         title: 'Neural Networks',
