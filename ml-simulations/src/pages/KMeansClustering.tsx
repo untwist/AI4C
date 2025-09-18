@@ -41,6 +41,11 @@ const KMeansClustering: React.FC = () => {
     const [showVoronoi, setShowVoronoi] = useState<boolean>(false);
     const [wcssHistory, setWcssHistory] = useState<number[]>([]);
     const [currentWcss, setCurrentWcss] = useState<number>(0);
+    const [showElbowMethod, setShowElbowMethod] = useState<boolean>(false);
+    const [elbowData, setElbowData] = useState<{ k: number, wcss: number }[]>([]);
+    const [initializationMethod, setInitializationMethod] = useState<'random' | 'kmeans++' | 'manual'>('random');
+    const [isManualMode, setIsManualMode] = useState<boolean>(false);
+    const [showTips, setShowTips] = useState<boolean>(true);
 
     // Sample datasets
     const datasets: { [key: string]: Dataset } = {
@@ -276,6 +281,73 @@ const KMeansClustering: React.FC = () => {
         }
     };
 
+    // Calculate elbow method data
+    const calculateElbowMethod = (data: DataPoint[], maxK: number = 8) => {
+        const elbowResults: { k: number, wcss: number }[] = [];
+
+        for (let testK = 1; testK <= maxK; testK++) {
+            // Run K-means with current initialization method
+            let testCentroids: Centroid[];
+            if (initializationMethod === 'kmeans++') {
+                testCentroids = initializeCentroidsKMeansPlusPlus(data, testK);
+            } else {
+                testCentroids = initializeCentroids(data, testK);
+            }
+
+            // Run algorithm until convergence
+            let currentData = [...data];
+            let currentCentroids = [...testCentroids];
+            let iterations = 0;
+            const maxIterations = 50;
+
+            while (iterations < maxIterations) {
+                const newData = assignPointsToClusters(currentData, currentCentroids);
+                const newCentroids = updateCentroids(newData, currentCentroids);
+
+                if (hasConverged(currentCentroids, newCentroids, 0.01)) {
+                    break;
+                }
+
+                currentData = newData;
+                currentCentroids = newCentroids;
+                iterations++;
+            }
+
+            // Calculate final WCSS
+            const finalWCSS = calculateWCSS(currentData, currentCentroids);
+            elbowResults.push({ k: testK, wcss: finalWCSS });
+        }
+
+        setElbowData(elbowResults);
+    };
+
+    // Handle manual centroid movement
+    const updateCentroidPosition = (centroidId: string, newX: number, newY: number) => {
+        if (!isManualMode) return;
+
+        setCentroids(prevCentroids =>
+            prevCentroids.map(centroid =>
+                centroid.id === centroidId
+                    ? { ...centroid, x: newX, y: newY }
+                    : centroid
+            )
+        );
+
+        // Immediately reassign points to clusters
+        const updatedCentroids = centroids.map(centroid =>
+            centroid.id === centroidId
+                ? { ...centroid, x: newX, y: newY }
+                : centroid
+        );
+
+        const newDataPoints = assignPointsToClusters(dataPoints, updatedCentroids);
+        setDataPoints(newDataPoints);
+
+        // Update WCSS
+        const wcss = calculateWCSS(newDataPoints, updatedCentroids);
+        setCurrentWcss(wcss);
+    };
+
     // Initialize centroids randomly
     const initializeCentroids = (data: DataPoint[], k: number): Centroid[] => {
         const centroids: Centroid[] = [];
@@ -287,6 +359,87 @@ const KMeansClustering: React.FC = () => {
                 id: `centroid_${i}`,
                 x: point.x,
                 y: point.y,
+                cluster: i,
+                color: clusterColors[i % clusterColors.length]
+            });
+        }
+
+        return centroids;
+    };
+
+    // K-means++ initialization
+    const initializeCentroidsKMeansPlusPlus = (data: DataPoint[], k: number): Centroid[] => {
+        const centroids: Centroid[] = [];
+
+        // Choose first centroid randomly
+        const firstIndex = Math.floor(Math.random() * data.length);
+        centroids.push({
+            id: `centroid_0`,
+            x: data[firstIndex].x,
+            y: data[firstIndex].y,
+            cluster: 0,
+            color: clusterColors[0]
+        });
+
+        // Choose remaining centroids using K-means++ algorithm
+        for (let i = 1; i < k; i++) {
+            const distances: number[] = [];
+
+            // Calculate minimum distance from each point to existing centroids
+            data.forEach(point => {
+                let minDistance = Infinity;
+                centroids.forEach(centroid => {
+                    const distance = calculateDistance(point, centroid);
+                    minDistance = Math.min(minDistance, distance);
+                });
+                distances.push(minDistance * minDistance); // Square the distance for probability weighting
+            });
+
+            // Choose next centroid with probability proportional to squared distance
+            const totalDistance = distances.reduce((sum, dist) => sum + dist, 0);
+            let randomValue = Math.random() * totalDistance;
+
+            for (let j = 0; j < data.length; j++) {
+                randomValue -= distances[j];
+                if (randomValue <= 0) {
+                    centroids.push({
+                        id: `centroid_${i}`,
+                        x: data[j].x,
+                        y: data[j].y,
+                        cluster: i,
+                        color: clusterColors[i % clusterColors.length]
+                    });
+                    break;
+                }
+            }
+        }
+
+        return centroids;
+    };
+
+    // Manual initialization - place centroids in a grid pattern
+    const initializeCentroidsManually = (data: DataPoint[], k: number): Centroid[] => {
+        const centroids: Centroid[] = [];
+
+        // Calculate data bounds
+        const xExtent = d3.extent(data, d => d.x) as [number, number];
+        const yExtent = d3.extent(data, d => d.y) as [number, number];
+
+        // Place centroids in a grid pattern
+        const cols = Math.ceil(Math.sqrt(k));
+        const rows = Math.ceil(k / cols);
+
+        for (let i = 0; i < k; i++) {
+            const col = i % cols;
+            const row = Math.floor(i / cols);
+
+            const x = xExtent[0] + (xExtent[1] - xExtent[0]) * (col + 0.5) / cols;
+            const y = yExtent[0] + (yExtent[1] - yExtent[0]) * (row + 0.5) / rows;
+
+            centroids.push({
+                id: `centroid_${i}`,
+                x: x,
+                y: y,
                 cluster: i,
                 color: clusterColors[i % clusterColors.length]
             });
@@ -404,7 +557,15 @@ const KMeansClustering: React.FC = () => {
             dataset = datasets.random;
         }
 
-        const newCentroids = initializeCentroids(dataset.data, k);
+        let newCentroids: Centroid[];
+        if (initializationMethod === 'kmeans++') {
+            newCentroids = initializeCentroidsKMeansPlusPlus(dataset.data, k);
+        } else if (initializationMethod === 'manual') {
+            // For manual mode, place centroids in a grid pattern initially
+            newCentroids = initializeCentroidsManually(dataset.data, k);
+        } else {
+            newCentroids = initializeCentroids(dataset.data, k);
+        }
         const initialData = dataset.data.map(point => ({
             ...point,
             cluster: undefined,
@@ -421,7 +582,14 @@ const KMeansClustering: React.FC = () => {
     // Reset only the algorithm state (keep same data)
     const resetAlgorithm = () => {
         if (dataPoints.length > 0) {
-            const newCentroids = initializeCentroids(dataPoints, k);
+            let newCentroids: Centroid[];
+            if (initializationMethod === 'kmeans++') {
+                newCentroids = initializeCentroidsKMeansPlusPlus(dataPoints, k);
+            } else if (initializationMethod === 'manual') {
+                newCentroids = initializeCentroidsManually(dataPoints, k);
+            } else {
+                newCentroids = initializeCentroids(dataPoints, k);
+            }
             const resetData = dataPoints.map(point => ({
                 ...point,
                 cluster: undefined,
@@ -479,13 +647,20 @@ const KMeansClustering: React.FC = () => {
     // Reinitialize centroids when k changes (but keep the same data)
     useEffect(() => {
         if (dataPoints.length > 0) {
-            const newCentroids = initializeCentroids(dataPoints, k);
+            let newCentroids: Centroid[];
+            if (initializationMethod === 'kmeans++') {
+                newCentroids = initializeCentroidsKMeansPlusPlus(dataPoints, k);
+            } else if (initializationMethod === 'manual') {
+                newCentroids = initializeCentroidsManually(dataPoints, k);
+            } else {
+                newCentroids = initializeCentroids(dataPoints, k);
+            }
             setCentroids(newCentroids);
             setIterations(0);
             setWcssHistory([]);
             setCurrentWcss(0);
         }
-    }, [k]);
+    }, [k, initializationMethod]);
 
     // Draw visualization
     useEffect(() => {
@@ -566,7 +741,7 @@ const KMeansClustering: React.FC = () => {
             .style('opacity', 0.8);
 
         // Draw centroids
-        g.selectAll('.centroid')
+        const centroidCircles = g.selectAll('.centroid')
             .data(centroids)
             .enter()
             .append('circle')
@@ -577,7 +752,33 @@ const KMeansClustering: React.FC = () => {
             .style('fill', d => d.color)
             .style('stroke', '#374151')
             .style('stroke-width', 3)
-            .style('opacity', 0.9);
+            .style('opacity', 0.9)
+            .style('cursor', isManualMode ? 'grab' : 'default');
+
+        // Add drag behavior for manual mode
+        if (isManualMode) {
+            const drag = d3.drag<SVGCircleElement, Centroid>()
+                .on('start', function (event, d) {
+                    d3.select(this).style('cursor', 'grabbing');
+                })
+                .on('drag', function (event, d) {
+                    const newX = xScale.invert(event.x);
+                    const newY = yScale.invert(event.y);
+
+                    // Update centroid position
+                    d3.select(this)
+                        .attr('cx', event.x)
+                        .attr('cy', event.y);
+
+                    // Update the centroid data and trigger reassignment
+                    updateCentroidPosition(d.id, newX, newY);
+                })
+                .on('end', function (event, d) {
+                    d3.select(this).style('cursor', 'grab');
+                });
+
+            centroidCircles.call(drag);
+        }
 
         // Add centroid labels
         g.selectAll('.centroid-label')
@@ -612,7 +813,146 @@ const KMeansClustering: React.FC = () => {
             .style('fill', '#374151')
             .text(dataset.features[1]);
 
-    }, [dataPoints, centroids, showVoronoi, selectedDataset]);
+    }, [dataPoints, centroids, showVoronoi, selectedDataset, isManualMode]);
+
+    // Draw elbow method chart
+    useEffect(() => {
+        if (!showElbowMethod || elbowData.length === 0) return;
+
+        const chartContainer = document.getElementById('elbow-chart');
+        if (!chartContainer) return;
+
+        // Clear previous chart
+        chartContainer.innerHTML = '';
+
+        const width = 500;
+        const height = 300;
+        const margin = { top: 20, right: 30, bottom: 40, left: 50 };
+
+        const svg = d3.select(chartContainer)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        const g = svg.append('g')
+            .attr('transform', `translate(${margin.left},${margin.top})`);
+
+        const innerWidth = width - margin.left - margin.right;
+        const innerHeight = height - margin.top - margin.bottom;
+
+        // Create scales
+        const xScale = d3.scaleLinear()
+            .domain(d3.extent(elbowData, d => d.k) as [number, number])
+            .range([0, innerWidth]);
+
+        const yScale = d3.scaleLinear()
+            .domain(d3.extent(elbowData, d => d.wcss) as [number, number])
+            .range([innerHeight, 0]);
+
+        // Create line generator
+        const line = d3.line<{ k: number, wcss: number }>()
+            .x(d => xScale(d.k))
+            .y(d => yScale(d.wcss))
+            .curve(d3.curveMonotoneX);
+
+        // Draw line
+        g.append('path')
+            .datum(elbowData)
+            .attr('fill', 'none')
+            .attr('stroke', '#3b82f6')
+            .attr('stroke-width', 3)
+            .attr('d', line);
+
+        // Draw points
+        g.selectAll('.elbow-point')
+            .data(elbowData)
+            .enter()
+            .append('circle')
+            .attr('class', 'elbow-point')
+            .attr('cx', d => xScale(d.k))
+            .attr('cy', d => yScale(d.wcss))
+            .attr('r', 6)
+            .attr('fill', '#3b82f6')
+            .attr('stroke', 'white')
+            .attr('stroke-width', 2)
+            .style('cursor', 'pointer')
+            .on('mouseover', function (event, d) {
+                d3.select(this).attr('r', 8);
+
+                // Show tooltip
+                const tooltip = g.append('g')
+                    .attr('class', 'tooltip')
+                    .style('opacity', 0);
+
+                tooltip.append('rect')
+                    .attr('x', xScale(d.k) - 30)
+                    .attr('y', yScale(d.wcss) - 30)
+                    .attr('width', 60)
+                    .attr('height', 20)
+                    .attr('fill', 'rgba(0,0,0,0.8)')
+                    .attr('rx', 4);
+
+                tooltip.append('text')
+                    .attr('x', xScale(d.k))
+                    .attr('y', yScale(d.wcss) - 15)
+                    .attr('text-anchor', 'middle')
+                    .attr('fill', 'white')
+                    .attr('font-size', '12px')
+                    .text(`K=${d.k}, WCSS=${d.wcss.toFixed(1)}`);
+
+                tooltip.transition().duration(200).style('opacity', 1);
+            })
+            .on('mouseout', function () {
+                d3.select(this).attr('r', 6);
+                g.selectAll('.tooltip').remove();
+            });
+
+        // Add axes
+        const xAxis = d3.axisBottom(xScale).tickFormat(d3.format('d'));
+        const yAxis = d3.axisLeft(yScale);
+
+        g.append('g')
+            .attr('class', 'axis')
+            .attr('transform', `translate(0,${innerHeight})`)
+            .call(xAxis)
+            .style('color', '#64748b');
+
+        g.append('g')
+            .attr('class', 'axis')
+            .call(yAxis)
+            .style('color', '#64748b');
+
+        // Add axis labels
+        g.append('text')
+            .attr('x', innerWidth / 2)
+            .attr('y', innerHeight + 35)
+            .attr('text-anchor', 'middle')
+            .style('font-size', '14px')
+            .style('fill', '#374151')
+            .text('Number of Clusters (K)');
+
+        g.append('text')
+            .attr('x', -innerHeight / 2)
+            .attr('y', -35)
+            .attr('text-anchor', 'middle')
+            .attr('transform', 'rotate(-90)')
+            .style('font-size', '14px')
+            .style('fill', '#374151')
+            .text('WCSS (Within-Cluster Sum of Squares)');
+
+        // Highlight current K value
+        const currentKData = elbowData.find(d => d.k === k);
+        if (currentKData) {
+            g.append('circle')
+                .attr('cx', xScale(currentKData.k))
+                .attr('cy', yScale(currentKData.wcss))
+                .attr('r', 8)
+                .attr('fill', '#ef4444')
+                .attr('stroke', 'white')
+                .attr('stroke-width', 3);
+        }
+
+    }, [elbowData, showElbowMethod, k]);
 
     return (
         <div className="kmeans-clustering fade-in">
@@ -637,10 +977,41 @@ const KMeansClustering: React.FC = () => {
                             </div>
                         </div>
                         <div className="visualization-container">
-                            <div className="visualization-instructions">
-                                <strong>💡 Tips:</strong> Use controls to adjust parameters • Watch centroids move • Toggle Voronoi to see decision boundaries
-                            </div>
+                            {showTips && (
+                                <div className="visualization-instructions">
+                                    <div className="tips-content">
+                                        <strong>💡 Tips:</strong> Use controls to adjust parameters • Watch centroids move • Toggle Voronoi to see decision boundaries
+                                        {isManualMode && (
+                                            <span className="manual-mode-tip">
+                                                • <strong>Manual Mode:</strong> Drag centroids to reposition them and see immediate cluster reassignment
+                                            </span>
+                                        )}
+                                    </div>
+                                    <button
+                                        className="dismiss-tips-btn"
+                                        onClick={() => setShowTips(false)}
+                                        title="Hide tips"
+                                    >
+                                        ✕
+                                    </button>
+                                </div>
+                            )}
                             <svg ref={svgRef} className="clustering-svg"></svg>
+
+                            {showElbowMethod && elbowData.length > 0 && (
+                                <div className="elbow-method-container">
+                                    <h3 className="elbow-title">Elbow Method Analysis</h3>
+                                    <div className="elbow-chart" id="elbow-chart"></div>
+                                    <div className="elbow-explanation">
+                                        <p><strong>How to read this chart:</strong></p>
+                                        <ul>
+                                            <li>Look for the "elbow" point where the line starts to flatten</li>
+                                            <li>This indicates the optimal number of clusters (K)</li>
+                                            <li>After the elbow, adding more clusters doesn't significantly reduce WCSS</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
 
@@ -712,6 +1083,30 @@ const KMeansClustering: React.FC = () => {
                                         <span className="value-display">{animationSpeed}ms</span>
                                     </div>
 
+                                    <div className="input-group">
+                                        <label className="label">Initialization Method</label>
+                                        <select
+                                            value={initializationMethod}
+                                            onChange={(e) => {
+                                                const method = e.target.value as 'random' | 'kmeans++' | 'manual';
+                                                setInitializationMethod(method);
+                                                setIsManualMode(method === 'manual');
+                                            }}
+                                            className="input"
+                                        >
+                                            <option value="random">Random</option>
+                                            <option value="kmeans++">K-means++</option>
+                                            <option value="manual">Manual (Drag & Drop)</option>
+                                        </select>
+                                        <small className="parameter-help">
+                                            {initializationMethod === 'random'
+                                                ? 'Random centroid placement'
+                                                : initializationMethod === 'kmeans++'
+                                                    ? 'Smart initialization for better results'
+                                                    : 'Drag centroids to manually position them'}
+                                        </small>
+                                    </div>
+
                                     <div className="checkbox-group">
                                         <label className="control-label">
                                             <input
@@ -721,6 +1116,25 @@ const KMeansClustering: React.FC = () => {
                                             />
                                             Show Voronoi Diagram
                                         </label>
+                                        <label className="control-label">
+                                            <input
+                                                type="checkbox"
+                                                checked={showElbowMethod}
+                                                onChange={(e) => setShowElbowMethod(e.target.checked)}
+                                            />
+                                            Show Elbow Method
+                                        </label>
+                                        {!showTips && (
+                                            <label className="control-label show-tips-control">
+                                                <button
+                                                    className="show-tips-btn-inline"
+                                                    onClick={() => setShowTips(true)}
+                                                    title="Show tips"
+                                                >
+                                                    💡 Show Tips
+                                                </button>
+                                            </label>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -752,6 +1166,13 @@ const KMeansClustering: React.FC = () => {
                                         disabled={isAnimating}
                                     >
                                         Reset Algorithm
+                                    </button>
+                                    <button
+                                        onClick={() => calculateElbowMethod(dataPoints)}
+                                        className="btn btn-outline"
+                                        disabled={isAnimating || dataPoints.length === 0}
+                                    >
+                                        📊 Calculate Elbow Method
                                     </button>
                                 </div>
                             </div>

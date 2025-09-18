@@ -93,9 +93,79 @@
     border: 1px solid #bae6fd;
     border-radius: 8px;
     padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
     font-size: 0.875rem;
     color: #0369a1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 10;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.tips-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.dismiss-tips-btn {
+    background: #0369a1;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.dismiss-tips-btn:hover {
+    background: #075985;
+    transform: scale(1.1);
+}
+
+.show-tips-control {
+    justify-content: flex-start !important;
+    padding: 0.5rem 0 !important;
+}
+
+.show-tips-btn-inline {
+    background: #f0f9ff;
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    text-align: left;
+}
+
+.show-tips-btn-inline:hover {
+    background: #e0f2fe;
+    border-color: #0369a1;
+}
+
+.manual-mode-tip {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-radius: 6px;
+    padding: 0.5rem;
+    color: #92400e;
+    font-size: 0.8rem;
 }
 
 .clustering-svg {
@@ -757,6 +827,89 @@
         align-items: flex-start;
         gap: 0.5rem;
     }
+}
+
+/* Elbow Method Styles */
+.elbow-method-container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.elbow-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 1rem 0;
+    text-align: center;
+}
+
+.elbow-chart {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.elbow-chart svg {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+}
+
+.elbow-explanation {
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+.elbow-explanation p {
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.elbow-explanation ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.5;
+}
+
+.elbow-explanation li {
+    margin-bottom: 0.25rem;
+}
+
+/* Enhanced checkbox group for multiple options */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.checkbox-group .control-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #374151;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.checkbox-group .control-label:hover {
+    background: #f3f4f6;
+}
+
+.checkbox-group .control-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #3b82f6;
 }
 
 /* Copyright Section */
