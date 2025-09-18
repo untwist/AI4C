@@ -21,6 +21,8 @@ import NormalDistribution from './pages/NormalDistribution';
 import './pages/NormalDistribution.css';
 import BayesTheorem from './pages/BayesTheorem';
 import './pages/BayesTheorem.css';
+import LogisticRegression from './pages/LogisticRegression';
+import './pages/LogisticRegression.css';
 import About from './pages/About';
 import './pages/About.css';
 import './App.css';
@@ -43,6 +45,7 @@ function App() {
                 <Route path="/central-limit-theorem" element={<CentralLimitTheorem />} />
                 <Route path="/normal-distribution" element={<NormalDistribution />} />
                 <Route path="/bayes-theorem" element={<BayesTheorem />} />
+                <Route path="/logistic-regression" element={<LogisticRegression />} />
                 <Route path="/about" element={<About />} />
               </Routes>
             </main>

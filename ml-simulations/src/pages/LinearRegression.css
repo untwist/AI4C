@@ -470,19 +470,6 @@
     font-weight: var(--font-weight-medium);
 }
 
-/* Instructions for interaction */
-.visualization-instructions {
-    position: absolute;
-    top: var(--space-4);
-    left: var(--space-4);
-    background: rgba(255, 255, 255, 0.95);
-    padding: var(--space-2) var(--space-3);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--secondary-200);
-    font-size: var(--font-size-xs);
-    color: var(--secondary-600);
-    z-index: 10;
-}
 
 /* Responsive Design */
 @media (max-width: 1024px) {

@@ -153,7 +153,7 @@ const simulations: Simulation[] = [
         title: 'Logistic Regression Visualizer',
         description: 'Visualize how logistic regression creates decision boundaries',
         path: '/logistic-regression',
-        status: 'coming-soon',
+        status: 'available',
         category: 'Classification'
     },
     // Additional CLUSTERING methods

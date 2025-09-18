@@ -285,6 +285,29 @@ var(--radius-md)       /* 6px */
 }
 ```
 
+### 4. Tips Overlay Mistakes:
+```tsx
+/* ❌ Don't add tips overlays that cover the visualization */
+<div className="visualization-container">
+    <div className="visualization-instructions">
+        <strong>Tips:</strong> Hover over points... {/* ❌ Wrong - covers graph */}
+    </div>
+    <svg ref={svgRef}></svg>
+</div>
+
+/* ✅ Keep visualization clean and unobstructed */
+<div className="visualization-container">
+    <svg ref={svgRef}></svg>
+</div>
+```
+
+**Why avoid tips overlays:**
+- They cover important parts of the visualization
+- Users can't see the full graph clearly
+- They create accessibility issues
+- They're not dismissible in a user-friendly way
+- They break the clean, professional design
+
 ## 📚 Best Practices
 
 ### 1. Code Organization:

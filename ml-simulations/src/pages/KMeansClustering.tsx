@@ -1135,25 +1135,6 @@ const KMeansClustering: React.FC = () => {
                         <div className="visualization-container" ref={containerRef}>
                             {activeTab === 'graph' && (
                                 <>
-                                    {showTips && (
-                                        <div className="visualization-instructions">
-                                            <div className="tips-content">
-                                                <strong>Tips:</strong> Use controls to adjust parameters • Watch centroids move • Toggle Voronoi to see decision boundaries
-                                                {isManualMode && (
-                                                    <span className="manual-mode-tip">
-                                                        • <strong>Manual Mode:</strong> Drag centroids to reposition them and see immediate cluster reassignment
-                                                    </span>
-                                                )}
-                                            </div>
-                                            <button
-                                                className="dismiss-tips-btn"
-                                                onClick={() => setShowTips(false)}
-                                                title="Hide tips"
-                                            >
-                                                ×
-                                            </button>
-                                        </div>
-                                    )}
                                     <svg
                                         ref={svgRef}
                                         className="clustering-svg"

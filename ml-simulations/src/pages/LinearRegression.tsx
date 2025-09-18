@@ -419,9 +419,6 @@ const LinearRegression: React.FC = () => {
                             </div>
                         </div>
                         <div className="visualization-container">
-                            <div className="visualization-instructions">
-                                <strong>Tips:</strong> Hover over points to see values • Toggle residuals to see prediction errors
-                            </div>
                             <svg ref={svgRef} className="regression-svg"></svg>
                         </div>
                     </div>

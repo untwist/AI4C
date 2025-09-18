@@ -589,9 +589,6 @@ const DecisionTree: React.FC = () => {
                             </div>
                         </div>
                         <div className="visualization-container">
-                            <div className="visualization-instructions">
-                                <strong>Tips:</strong> Drag to pan • Scroll to zoom • Use controls for precise zoom
-                            </div>
                             <svg ref={svgRef} className="tree-svg"></svg>
                         </div>
                     </div>

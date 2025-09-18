@@ -417,19 +417,6 @@ const CentralLimitTheorem: React.FC = () => {
                             </div>
                         </div>
                         <div className="visualization-container">
-                            {showTips && (
-                                <div className="visualization-instructions">
-                                    <div className="tips-content">
-                                        <strong>Tips:</strong> Choose different distributions • Adjust sample size • Watch the magic happen!
-                                    </div>
-                                    <button
-                                        className="dismiss-tips-btn"
-                                        onClick={() => setShowTips(false)}
-                                    >
-                                        ×
-                                    </button>
-                                </div>
-                            )}
                             <svg ref={svgRef} className="population-svg"></svg>
                         </div>
 
