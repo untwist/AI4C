@@ -40,8 +40,24 @@ const simulations: Simulation[] = [
         title: 'Linear Regression',
         description: 'Visualize the line of best fit and understand gradient descent',
         path: '/linear-regression',
-        status: 'coming-soon',
+        status: 'available',
         category: 'Regression'
+    },
+    {
+        id: 'central-limit-theorem',
+        title: 'Central Limit Theorem',
+        description: 'Watch sample means converge to normality from any distribution',
+        path: '/central-limit-theorem',
+        status: 'available',
+        category: 'Statistics'
+    },
+    {
+        id: 'normal-distribution',
+        title: 'Normal Distribution',
+        description: 'Explore the bell curve and understand statistical distributions',
+        path: '/normal-distribution',
+        status: 'available',
+        category: 'Statistics'
     },
     {
         id: 'neural-networks',

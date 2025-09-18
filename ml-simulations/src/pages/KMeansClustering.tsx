@@ -1098,22 +1098,35 @@ const KMeansClustering: React.FC = () => {
 
                 <div className="simulation-layout">
                     <div className="visualization-panel">
-                        <div className="visualization-header">
-                            <div className="tab-navigation">
+                        <div className="visualization-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '1rem', backgroundColor: '#f8fafc' }}>
+                            <h2 className="visualization-title">Clustering Analysis</h2>
+                            <div className="tab-navigation" style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', alignItems: 'center' }}>
                                 <button
                                     className={`tab-button ${activeTab === 'graph' ? 'active' : ''}`}
                                     onClick={() => setActiveTab('graph')}
+                                    style={{
+                                        backgroundColor: activeTab === 'graph' ? '#3b82f6' : 'white',
+                                        color: activeTab === 'graph' ? 'white' : '#374151',
+                                        border: activeTab === 'graph' ? '1px solid #3b82f6' : '1px solid #d1d5db',
+                                        fontWeight: activeTab === 'graph' ? '600' : '500'
+                                    }}
                                 >
                                     📊 Clustering Visualization
                                 </button>
                                 <button
                                     className={`tab-button ${activeTab === 'elbow' ? 'active' : ''}`}
                                     onClick={() => setActiveTab('elbow')}
+                                    style={{
+                                        backgroundColor: activeTab === 'elbow' ? '#3b82f6' : 'white',
+                                        color: activeTab === 'elbow' ? 'white' : '#374151',
+                                        border: activeTab === 'elbow' ? '1px solid #3b82f6' : '1px solid #d1d5db',
+                                        fontWeight: activeTab === 'elbow' ? '600' : '500'
+                                    }}
                                 >
                                     📈 Elbow Method Analysis
                                 </button>
                             </div>
-                            <div className="clustering-stats">
+                            <div className="clustering-stats" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
                                 <span className="stat">Iterations: {iterations}</span>
                                 <span className="stat">WCSS: {currentWcss.toFixed(2)}</span>
                                 <span className="stat">Points: {dataPoints.length}</span>

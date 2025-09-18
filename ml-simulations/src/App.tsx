@@ -13,6 +13,12 @@ import DecisionTree from './pages/DecisionTree';
 import './pages/DecisionTree.css';
 import KMeansClustering from './pages/KMeansClustering';
 import './pages/KMeansClustering.css';
+import LinearRegression from './pages/LinearRegression';
+import './pages/LinearRegression.css';
+import CentralLimitTheorem from './pages/CentralLimitTheorem';
+import './pages/CentralLimitTheorem.css';
+import NormalDistribution from './pages/NormalDistribution';
+import './pages/NormalDistribution.css';
 import About from './pages/About';
 import './pages/About.css';
 import './App.css';
@@ -31,6 +37,9 @@ function App() {
                 <Route path="/cosine-similarity" element={<CosineSimilarity />} />
                 <Route path="/decision-trees" element={<DecisionTree />} />
                 <Route path="/kmeans-clustering" element={<KMeansClustering />} />
+                <Route path="/linear-regression" element={<LinearRegression />} />
+                <Route path="/central-limit-theorem" element={<CentralLimitTheorem />} />
+                <Route path="/normal-distribution" element={<NormalDistribution />} />
                 <Route path="/about" element={<About />} />
               </Routes>
             </main>

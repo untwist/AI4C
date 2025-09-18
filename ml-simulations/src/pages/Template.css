@@ -1,0 +1,280 @@
+/* Template CSS for new ML simulations */
+/* Copy this file and rename it to YourSimulationName.css */
+
+/* Page-specific wrapper to avoid CSS conflicts */
+.your-simulation-name {
+    padding: var(--space-6) 0;
+}
+
+/* Page Header - ALWAYS use light gray background */
+.your-simulation-name .template .page-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.your-simulation-name .template .page-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-4) 0;
+}
+
+.your-simulation-name .page-description {
+    font-size: var(--font-size-lg);
+    color: var(--secondary-600);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: var(--line-height-relaxed);
+}
+
+/* Simulation Layout */
+.your-simulation-name .simulation-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+/* Visualization Panel */
+.your-simulation-name .visualization-panel {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+/* Visualization Header - ALWAYS use light gray background */
+.your-simulation-name .template .visualization-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--secondary-200);
+    background-color: var(--secondary-50);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+}
+
+.your-simulation-name .template .visualization-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0;
+}
+
+.your-simulation-name .visualization-container {
+    padding: var(--space-4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 450px;
+    background-color: #f8fafc;
+    position: relative;
+}
+
+/* Controls Panel */
+.your-simulation-name .controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+/* Cards */
+.your-simulation-name .card {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+.your-simulation-name .card-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--secondary-200);
+    background-color: var(--secondary-50);
+}
+
+.your-simulation-name .card-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0;
+    text-align: center;
+}
+
+.your-simulation-name .card-body {
+    padding: var(--space-6);
+}
+
+/* Form Controls */
+.your-simulation-name .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.your-simulation-name .label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-700);
+    margin: 0;
+}
+
+.your-simulation-name .input {
+    width: 100%;
+    padding: var(--space-3);
+    border: 1px solid var(--secondary-300);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    background-color: white;
+}
+
+.your-simulation-name .slider {
+    width: 100%;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--secondary-200);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.your-simulation-name .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: var(--primary-600);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: var(--shadow-sm);
+}
+
+.your-simulation-name .value-display {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--primary-600);
+    text-align: center;
+    padding: var(--space-1) var(--space-2);
+    background-color: var(--primary-50);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--primary-200);
+}
+
+/* Stats and Metrics */
+.your-simulation-name .stat {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--primary-600);
+    background-color: var(--primary-50);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--primary-200);
+}
+
+/* Explanation Section */
+.your-simulation-name .explanation-section {
+    margin-top: var(--space-8);
+}
+
+.your-simulation-name .explanation-content h4 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: var(--space-6) 0 var(--space-3) 0;
+}
+
+.your-simulation-name .explanation-content h4:first-child {
+    margin-top: 0;
+}
+
+.your-simulation-name .explanation-content p {
+    color: var(--secondary-700);
+    line-height: var(--line-height-relaxed);
+    margin: var(--space-4) 0;
+}
+
+.your-simulation-name .explanation-content ul {
+    margin: var(--space-4) 0;
+    padding-left: var(--space-6);
+}
+
+.your-simulation-name .explanation-content li {
+    margin-bottom: var(--space-2);
+    line-height: var(--line-height-relaxed);
+    color: var(--secondary-700);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .your-simulation-name .simulation-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    .your-simulation-name .controls-panel {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .your-simulation-name {
+        padding: var(--space-4) 0;
+    }
+
+    .your-simulation-name .template .page-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .your-simulation-name .page-description {
+        font-size: var(--font-size-base);
+    }
+
+    .your-simulation-name .template .visualization-header {
+        flex-direction: column;
+        gap: var(--space-4);
+        align-items: flex-start;
+    }
+
+    .your-simulation-name .visualization-container {
+        padding: var(--space-4);
+        min-height: 400px;
+    }
+}
+
+/* Copyright Section */
+.your-simulation-name .copyright-section {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--secondary-200);
+}
+
+.your-simulation-name .copyright-notice {
+    text-align: center;
+    color: var(--secondary-600);
+    font-size: var(--font-size-sm);
+}
+
+.your-simulation-name .copyright-notice p {
+    margin: 0;
+}
+
+/* FORBIDDEN PATTERNS - DO NOT USE */
+/*
+❌ NEVER use these patterns:
+
+.your-simulation-name .template .visualization-header {
+    background-color: var(--secondary-50);
+}
+
+.your-simulation-name .template .page-header {
+    background-color: var(--primary-50);
+}
+
+❌ NEVER use dark backgrounds with light text in headers
+❌ NEVER use purple/blue gradients for readability
+❌ NEVER use inline styles that override the design system
+*/

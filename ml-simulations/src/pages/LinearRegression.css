@@ -1,21 +1,21 @@
-/* Decision Tree page styles */
-.decision-tree {
+/* Linear Regression page styles */
+.linear-regression {
     padding: var(--space-6) 0;
 }
 
-.decision-tree .page-header {
+.linear-regression .page-header {
     text-align: center;
     margin-bottom: var(--space-8);
 }
 
-.decision-tree .page-title {
+.linear-regression .page-title {
     font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-bold);
     color: var(--secondary-800);
     margin: 0 0 var(--space-4) 0;
 }
 
-.decision-tree .page-description {
+.linear-regression .page-description {
     font-size: var(--font-size-lg);
     color: var(--secondary-600);
     max-width: 800px;
@@ -38,10 +38,10 @@
     overflow: hidden;
 }
 
-.decision-tree .visualization-header {
+.linear-regression .visualization-header {
     padding: var(--space-6);
     border-bottom: 1px solid var(--secondary-200);
-    background-color: var(--secondary-50);
+    background-color: var(--secondary-50) !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,19 +50,19 @@
     gap: var(--space-4);
 }
 
-.decision-tree .visualization-title {
+.linear-regression .visualization-title {
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-semibold);
     color: var(--secondary-800);
     margin: 0;
 }
 
-.decision-tree .tree-stats {
+.linear-regression .regression-stats {
     display: flex;
     gap: var(--space-4);
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
 }
 
 .stat {
@@ -80,23 +80,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 500px;
+    min-height: 450px;
     background-color: #f8fafc;
     position: relative;
+    overflow: visible;
 }
 
-.tree-svg {
+.regression-svg {
     border: 1px solid var(--secondary-200);
     border-radius: var(--radius-md);
     background-color: white;
     max-width: 100%;
     height: auto;
     box-shadow: var(--shadow-sm);
-    cursor: grab;
-}
-
-.tree-svg:active {
-    cursor: grabbing;
+    display: block;
+    margin: 0 auto;
 }
 
 .controls-panel {
@@ -193,6 +191,82 @@
     line-height: var(--line-height-tight);
 }
 
+.visualization-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-700);
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-600);
+    cursor: pointer;
+}
+
+.control-help {
+    font-size: var(--font-size-xs);
+    color: var(--secondary-500);
+    font-style: italic;
+    margin-top: var(--space-1);
+    display: block;
+    line-height: var(--line-height-tight);
+}
+
+.performance-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--secondary-200);
+}
+
+.metric-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-700);
+}
+
+.metric-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-600);
+    font-family: var(--font-family-mono);
+}
+
+.metric-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--secondary-200);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.metric-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-500), var(--primary-600));
+    border-radius: var(--radius-full);
+    transition: width var(--transition-normal);
+}
+
 .explanation-steps {
     display: flex;
     flex-direction: column;
@@ -241,35 +315,6 @@
     line-height: var(--line-height-relaxed);
 }
 
-.tree-info {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-}
-
-.info-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--space-3);
-    background-color: var(--secondary-50);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--secondary-200);
-}
-
-.info-label {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    color: var(--secondary-700);
-}
-
-.info-value {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-    color: var(--primary-600);
-    font-family: var(--font-family-mono);
-}
-
 .explanation-section {
     margin-top: var(--space-8);
 }
@@ -307,159 +352,23 @@
     font-weight: var(--font-weight-semibold);
 }
 
-/* Feature Analysis Styles */
-.feature-analysis {
+/* Dataset Analysis Styles */
+.dataset-analysis {
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
 }
 
-.features-grid {
+.insights-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--space-4);
 }
 
-.feature-item {
-    background-color: var(--secondary-50);
-    border: 1px solid var(--secondary-200);
-    border-radius: var(--radius-lg);
-    padding: var(--space-4);
-}
-
-.feature-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--space-2);
-}
-
-.feature-name {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    color: var(--primary-700);
-}
-
-.feature-range {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    color: var(--secondary-600);
-    background-color: var(--primary-100);
-    padding: var(--space-1) var(--space-2);
-    border-radius: var(--radius-sm);
-}
-
-.feature-description {
-    color: var(--secondary-700);
-    line-height: var(--line-height-relaxed);
-    margin-bottom: var(--space-3);
-}
-
-.feature-insights {
-    background-color: white;
-    border: 1px solid var(--secondary-200);
-    border-radius: var(--radius-md);
-    padding: var(--space-3);
-}
-
-.feature-insights strong {
-    color: var(--secondary-800);
-    font-weight: var(--font-weight-semibold);
-    display: block;
-    margin-bottom: var(--space-2);
-}
-
-.feature-insights ul {
-    margin: 0;
-    padding-left: var(--space-4);
-}
-
-.feature-insights li {
-    margin-bottom: var(--space-1);
-    color: var(--secondary-700);
-    line-height: var(--line-height-relaxed);
-}
-
-/* Decision Process Styles */
-.decision-process {
-    background-color: var(--primary-50);
-    border: 1px solid var(--primary-200);
-    border-radius: var(--radius-lg);
-    padding: var(--space-6);
-}
-
-.decision-process h4 {
-    color: var(--primary-800);
-    margin-bottom: var(--space-4);
-}
-
-.process-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-4);
-}
-
-.process-step {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-3);
-    background-color: white;
-    border: 1px solid var(--primary-200);
-    border-radius: var(--radius-md);
-    padding: var(--space-4);
-}
-
-.process-step .step-number {
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    background-color: var(--primary-600);
-    color: white;
-    border-radius: var(--radius-full);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-bold);
-}
-
-.process-step .step-content strong {
-    display: block;
-    color: var(--primary-800);
-    font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--space-1);
-}
-
-.process-step .step-content p {
-    margin: 0;
-    font-size: var(--font-size-sm);
-    color: var(--secondary-700);
-    line-height: var(--line-height-relaxed);
-}
-
-/* Business Insights Styles */
-.business-insights {
-    background-color: var(--secondary-50);
-    border: 1px solid var(--secondary-200);
-    border-radius: var(--radius-lg);
-    padding: var(--space-6);
-}
-
-.business-insights h4 {
-    color: var(--secondary-800);
-    margin-bottom: var(--space-4);
-}
-
-.insights-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-4);
-}
-
 .insight-item {
-    background-color: white;
+    background-color: var(--secondary-50);
     border: 1px solid var(--secondary-200);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     padding: var(--space-4);
 }
 
@@ -477,81 +386,91 @@
     font-size: var(--font-size-sm);
 }
 
-/* Iris Context Styles */
-.iris-context {
+.business-applications {
     background-color: var(--primary-50);
     border: 1px solid var(--primary-200);
     border-radius: var(--radius-lg);
     padding: var(--space-6);
-    margin-top: var(--space-6);
 }
 
-.iris-context h4 {
+.business-applications h4 {
     color: var(--primary-800);
     margin-bottom: var(--space-4);
 }
 
-.iris-context p {
+.business-applications ul {
+    margin: 0;
+    padding-left: var(--space-6);
+}
+
+.business-applications li {
+    margin-bottom: var(--space-2);
     color: var(--secondary-700);
     line-height: var(--line-height-relaxed);
-    margin-bottom: var(--space-4);
 }
 
-.iris-context p:last-child {
-    margin-bottom: 0;
-}
-
-.iris-context strong {
+.business-applications strong {
     color: var(--primary-800);
     font-weight: var(--font-weight-semibold);
 }
 
-/* Tree visualization specific styles */
-.tree-svg .link {
-    fill: none;
-    stroke: var(--secondary-400);
-    stroke-width: 2px;
-    transition: stroke-width var(--transition-fast);
+/* Limitations and Best Practices */
+.limitations-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
 }
 
-.tree-svg .link:hover {
-    stroke-width: 3px;
-    stroke: var(--primary-500);
+.limitations-content h4 {
+    color: var(--secondary-800);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-3);
 }
 
-.tree-svg .node circle {
+.limitations-content ul {
+    margin: 0;
+    padding-left: var(--space-6);
+}
+
+.limitations-content li {
+    margin-bottom: var(--space-2);
+    color: var(--secondary-700);
+    line-height: var(--line-height-relaxed);
+}
+
+.limitations-content strong {
+    color: var(--secondary-800);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Regression visualization specific styles */
+.regression-svg .data-point {
+    transition: all var(--transition-fast);
     cursor: pointer;
-    transition: all var(--transition-fast);
 }
 
-.tree-svg .node circle:hover {
-    stroke-width: 4px;
+.regression-svg .data-point:hover {
+    stroke-width: 3px;
     stroke: var(--primary-600);
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
-.tree-svg .node text {
+.regression-svg .tooltip {
     pointer-events: none;
-    user-select: none;
 }
 
-/* Zoom controls styling */
-.zoom-controls rect {
-    transition: all var(--transition-fast);
+.regression-svg .tooltip rect {
+    fill: var(--secondary-800);
+    opacity: 0.9;
 }
 
-.zoom-controls rect:hover {
-    fill: var(--primary-50) !important;
-    stroke: var(--primary-300) !important;
-    transform: scale(1.05);
+.regression-svg .tooltip text {
+    fill: white;
+    font-size: 11px;
+    font-weight: var(--font-weight-medium);
 }
 
-.zoom-controls text {
-    pointer-events: none;
-    user-select: none;
-}
-
-/* Instructions for zoom/pan */
+/* Instructions for interaction */
 .visualization-instructions {
     position: absolute;
     top: var(--space-4);
@@ -578,25 +497,25 @@
 }
 
 @media (max-width: 768px) {
-    .decision-tree {
+    .linear-regression {
         padding: var(--space-4) 0;
     }
 
-    .decisiontree .page-title {
+    .linear-regression .page-title {
         font-size: var(--font-size-2xl);
     }
 
-    .page-description {
+    .linear-regression .page-description {
         font-size: var(--font-size-base);
     }
 
-    .decision-tree .visualization-header {
+    .linear-regression .visualization-header {
         flex-direction: column;
         gap: var(--space-4);
         align-items: center;
     }
 
-    .tree-stats {
+    .regression-stats {
         flex-wrap: wrap;
         gap: var(--space-2);
     }
@@ -606,7 +525,7 @@
         min-height: 400px;
     }
 
-    .tree-svg {
+    .regression-svg {
         width: 100%;
         height: auto;
     }
@@ -615,10 +534,12 @@
         gap: var(--space-4);
     }
 
-    .info-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-1);
+    .metric {
+        padding: var(--space-2);
+    }
+
+    .insights-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -637,13 +558,4 @@
 
 .copyright-notice p {
     margin: 0;
-}
-
-/* Card titles */
-.decision-tree .card-title {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    color: var(--secondary-800);
-    margin: 0;
-    text-align: center;
 }
