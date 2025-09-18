@@ -35,7 +35,7 @@ const CentralLimitTheorem: React.FC = () => {
     const [sampleSize, setSampleSize] = useState<number>(30);
     const [numSamples, setNumSamples] = useState<number>(100);
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
-    const [animationSpeed, setAnimationSpeed] = useState<number>(500);
+    const [animationSpeed, setAnimationSpeed] = useState<number>(100);
     const [showPopulation, setShowPopulation] = useState<boolean>(true);
     const [showSampleMeans, setShowSampleMeans] = useState<boolean>(true);
     const [showNormalOverlay, setShowNormalOverlay] = useState<boolean>(true);
@@ -44,6 +44,8 @@ const CentralLimitTheorem: React.FC = () => {
     const [sampleStats, setSampleStats] = useState<SampleStats[]>([]);
     const [currentSample, setCurrentSample] = useState<number>(0);
     const [isRunning, setIsRunning] = useState<boolean>(false);
+    const [isStopped, setIsStopped] = useState<boolean>(false);
+    const [fastMode, setFastMode] = useState<boolean>(false);
     const [showTips, setShowTips] = useState<boolean>(true);
 
     // Distribution configurations
@@ -119,6 +121,7 @@ const CentralLimitTheorem: React.FC = () => {
         if (isRunning) return;
 
         setIsRunning(true);
+        setIsStopped(false);
         setIsAnimating(true);
         setCurrentSample(0);
         setSampleMeans([]);
@@ -127,7 +130,15 @@ const CentralLimitTheorem: React.FC = () => {
         const newSampleMeans: number[] = [];
         const newSampleStats: SampleStats[] = [];
 
+        // Process samples in batches for better performance
+        const batchSize = fastMode ? Math.max(1, Math.floor(numSamples / 5)) : Math.max(1, Math.floor(numSamples / 20)); // Update every 20% in fast mode, 5% in normal mode
+
         for (let i = 0; i < numSamples; i++) {
+            // Check if simulation was stopped
+            if (isStopped) {
+                break;
+            }
+
             const sample = takeSample(populationData, sampleSize);
             const mean = calculateSampleMean(sample);
 
@@ -139,15 +150,28 @@ const CentralLimitTheorem: React.FC = () => {
                 values: sample.map(p => p.value)
             });
 
-            setCurrentSample(i + 1);
-            setSampleMeans([...newSampleMeans]);
-            setSampleStats([...newSampleStats]);
+            // Update UI in batches for better performance
+            if ((i + 1) % batchSize === 0 || i === numSamples - 1) {
+                setCurrentSample(i + 1);
+                setSampleMeans([...newSampleMeans]);
+                setSampleStats([...newSampleStats]);
 
-            await new Promise(resolve => setTimeout(resolve, animationSpeed));
+                // Only add delay for visual effect, not for every sample
+                if (animationSpeed > 0 && !fastMode) {
+                    await new Promise(resolve => setTimeout(resolve, animationSpeed));
+                }
+            }
         }
 
         setIsAnimating(false);
         setIsRunning(false);
+    };
+
+    // Stop sampling simulation
+    const stopSamplingSimulation = () => {
+        setIsStopped(true);
+        setIsRunning(false);
+        setIsAnimating(false);
     };
 
     // Reset simulation
@@ -157,6 +181,7 @@ const CentralLimitTheorem: React.FC = () => {
         setCurrentSample(0);
         setIsRunning(false);
         setIsAnimating(false);
+        setIsStopped(false);
     };
 
     // Initialize population when distribution changes
@@ -320,16 +345,19 @@ const CentralLimitTheorem: React.FC = () => {
             const variance = sampleMeans.reduce((sum, m) => sum + Math.pow(m - mean, 2), 0) / sampleMeans.length;
             const stdDev = Math.sqrt(variance);
 
-            const normalData = d3.range(0, 100, 0.5).map(x => ({
+            // Calculate the maximum frequency to scale the normal curve appropriately
+            const maxFrequency = d3.max(bins, d => d.length) || 1;
+
+            const normalData = d3.range(xScale.domain()[0], xScale.domain()[1], 0.5).map(x => ({
                 x: x,
                 y: (1 / (stdDev * Math.sqrt(2 * Math.PI))) *
                     Math.exp(-0.5 * Math.pow((x - mean) / stdDev, 2)) *
-                    (sampleMeans.length * (xScale.domain()[1] - xScale.domain()[0]) / 15)
+                    maxFrequency
             }));
 
             const line = d3.line<{ x: number, y: number }>()
                 .x(d => xScale(d.x))
-                .y(d => containerHeight - margin.bottom - yScale(d.y));
+                .y(d => yScale(d.y));
 
             svg.append("path")
                 .datum(normalData)
@@ -455,6 +483,14 @@ const CentralLimitTheorem: React.FC = () => {
                                         >
                                             {isRunning ? 'Running...' : 'Start Sampling Simulation'}
                                         </button>
+                                        {isRunning && (
+                                            <button
+                                                onClick={stopSamplingSimulation}
+                                                className="btn btn-secondary"
+                                            >
+                                                Stop Simulation
+                                            </button>
+                                        )}
                                         <button
                                             onClick={resetSimulation}
                                             className="btn btn-outline"
@@ -571,6 +607,15 @@ const CentralLimitTheorem: React.FC = () => {
                                         />
                                         <span className="checkmark"></span>
                                         Show Normal Distribution Overlay
+                                    </label>
+                                    <label className="checkbox-label">
+                                        <input
+                                            type="checkbox"
+                                            checked={fastMode}
+                                            onChange={(e) => setFastMode(e.target.checked)}
+                                        />
+                                        <span className="checkmark"></span>
+                                        Fast Mode (No Animation)
                                     </label>
                                     {!showTips && (
                                         <label className="control-label show-tips-control">
