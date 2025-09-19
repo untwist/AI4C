@@ -10,7 +10,7 @@ A comprehensive collection of web-based interactive simulations and tutorials fo
 - ✅ **Decision Tree Builder**: Interactive tree construction with feature selection and educational content
 - ✅ **K-Means Clustering Simulator**: Complete with multiple datasets, step-by-step animation, and real-world applications
 - ✅ **GitHub Pages Deployment**: Ready for production use
-- 🎯 **Next Priority**: Linear Regression Visualizer or Neural Network Explorer
+- 🎯 **Next Priority**: Euclidean Distance Explorer - Interactive distance metrics and clustering visualization
 
 ## Core Philosophy
 - **Visual Learning**: Every concept should have visual representations
@@ -50,9 +50,14 @@ A comprehensive collection of web-based interactive simulations and tutorials fo
   - Visual angle arc between vectors
   - Preset examples (identical, orthogonal, opposite, similar)
   - Comprehensive RAG/LLM applications explanation
-- **Euclidean Distance Explorer**
-  - 2D/3D point clouds with distance calculations
-  - K-means clustering visualization
+- 🎯 **Euclidean Distance Explorer** (NEXT PRIORITY)
+  - Interactive 2D point cloud manipulation with real-time distance calculations
+  - K-means clustering visualization showing how distance drives cluster assignment
+  - K-Nearest Neighbors (KNN) classification with distance-based decision boundaries
+  - Multiple educational datasets (Iris, Customer Segmentation, Synthetic clusters)
+  - Distance matrix visualization and nearest neighbor highlighting
+  - Voronoi diagrams for decision boundaries
+  - Comprehensive educational content on distance metrics in ML
 - **Manhattan Distance vs Euclidean**
   - Side-by-side comparison with different data patterns
 
@@ -210,30 +215,25 @@ ml-simulations/
 
 ## Next Steps & Recommendations
 
-### Immediate Next Simulation: Decision Tree Builder
+### Immediate Next Simulation: Euclidean Distance Explorer
 **Why this is the best next choice:**
-1. **High Educational Value**: Decision trees are fundamental to understanding ML
-2. **Visual & Interactive**: Perfect for our visual learning approach
-3. **Builds on Foundation**: Uses existing D3.js and design system
-4. **Practical Applications**: Used in real-world ML systems
-5. **Manageable Scope**: Can be completed in 1-2 weeks
+1. **Foundation for ML**: Distance metrics are fundamental to understanding clustering and classification
+2. **Visual & Interactive**: Perfect for demonstrating spatial relationships in data
+3. **Builds on Existing Work**: Extends the K-Means simulator with deeper distance understanding
+4. **Educational Value**: Connects mathematical concepts to practical ML applications
+5. **Manageable Scope**: Can be completed in 2-3 weeks with clear learning objectives
 
-**Decision Tree Builder Features:**
-- Interactive tree construction with drag-and-drop nodes
-- Real-time information gain and Gini impurity calculations
-- Visual splitting decisions with decision boundaries
-- Sample datasets (Iris, Titanic, custom data)
-- Overfitting/underfitting visualization
-- Feature importance display
-- Export tree as image/JSON
-
-### Alternative Options (if Decision Trees seem too complex):
-1. **K-Means Clustering**: Visual cluster formation, centroid movement
-2. **Linear Regression**: Interactive line fitting, residual visualization
-3. **Normal Distribution Explorer**: Bell curve manipulation, Z-scores
+**Euclidean Distance Explorer Features:**
+- Interactive 2D point cloud with draggable points and real-time distance calculations
+- K-means clustering mode showing how distance drives cluster assignment
+- K-Nearest Neighbors (KNN) classification with distance-based decision boundaries
+- Multiple educational datasets (Iris, Customer Segmentation, Synthetic clusters)
+- Distance matrix visualization and nearest neighbor highlighting
+- Voronoi diagrams for decision boundaries
+- Comprehensive educational content on distance metrics in ML
 
 ### Development Timeline:
-- **Week 1**: Decision Tree core functionality
-- **Week 2**: Polish, testing, documentation
-- **Week 3**: Deploy and gather student feedback
+- **Week 1**: Core distance calculation engine and interactive point manipulation
+- **Week 2**: K-means and KNN algorithm integration with visualizations
+- **Week 3**: Educational content, polish, testing, and deployment
 

@@ -64,6 +64,14 @@ const simulations: Simulation[] = [
         status: 'available',
         category: 'Distance Metrics'
     },
+    {
+        id: 'euclidean-distance',
+        title: 'Euclidean Distance',
+        description: 'Explore distance metrics and their role in clustering algorithms',
+        path: '/euclidean-distance',
+        status: 'available',
+        category: 'Distance Metrics'
+    },
     // DEEP LEARNING - Advanced concepts
     {
         id: 'neural-networks',

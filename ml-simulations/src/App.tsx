@@ -9,6 +9,8 @@ import Home from './pages/Home';
 import './pages/Home.css';
 import CosineSimilarity from './pages/CosineSimilarity';
 import './pages/CosineSimilarity.css';
+import EuclideanDistance from './pages/EuclideanDistance';
+import './pages/EuclideanDistance.css';
 import DecisionTree from './pages/DecisionTree';
 import './pages/DecisionTree.css';
 import KMeansClustering from './pages/KMeansClustering';
@@ -45,6 +47,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/cosine-similarity" element={<CosineSimilarity />} />
+                <Route path="/euclidean-distance" element={<EuclideanDistance />} />
                 <Route path="/decision-trees" element={<DecisionTree />} />
                 <Route path="/kmeans-clustering" element={<KMeansClustering />} />
                 <Route path="/linear-regression" element={<LinearRegression />} />
