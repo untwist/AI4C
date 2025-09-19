@@ -132,14 +132,6 @@ const simulations: Simulation[] = [
     },
     // Additional DISTANCE METRICS
     {
-        id: 'euclidean-distance',
-        title: 'Euclidean Distance Explorer',
-        description: 'Visualize the most common distance metric in machine learning',
-        path: '/euclidean-distance',
-        status: 'coming-soon',
-        category: 'Distance Metrics'
-    },
-    {
         id: 'manhattan-euclidean',
         title: 'Manhattan Distance vs Euclidean',
         description: 'Compare different distance metrics and their applications',
