@@ -1,0 +1,555 @@
+/* ============================================================================
+   CORRELATION VS CAUSATION SIMULATION CSS
+   ============================================================================
+   Following the standardized design system for consistent styling
+   ============================================================================ */
+
+/* 1. PAGE WRAPPER - ALWAYS START WITH THIS */
+/* ============================================================================ */
+.correlation-causation {
+    padding: var(--space-6) 0;
+}
+
+/* 2. STANDARDIZED PAGE HEADER - NEVER CHANGE THESE PATTERNS */
+/* ============================================================================ */
+.correlation-causation .page-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.correlation-causation .page-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-4) 0;
+}
+
+.correlation-causation .page-description {
+    font-size: var(--font-size-lg);
+    color: var(--secondary-600);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: var(--line-height-relaxed);
+}
+
+/* 3. STANDARDIZED SIMULATION LAYOUT - NEVER CHANGE */
+/* ============================================================================ */
+.correlation-causation .simulation-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+/* 4. STANDARDIZED VISUALIZATION PANEL */
+/* ============================================================================ */
+.correlation-causation .visualization-panel {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+/* 5. STANDARDIZED VISUALIZATION HEADER - ALWAYS USE LIGHT GRAY BACKGROUND */
+/* ============================================================================ */
+.correlation-causation .visualization-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--secondary-200);
+    background-color: var(--secondary-50);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+}
+
+.correlation-causation .visualization-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0;
+}
+
+.correlation-causation .visualization-controls {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.correlation-causation .control-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--secondary-700);
+    cursor: pointer;
+}
+
+.correlation-causation .control-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-600);
+}
+
+/* 6. STANDARDIZED VISUALIZATION CONTAINER */
+/* ============================================================================ */
+.correlation-causation .visualization-container {
+    padding: var(--space-6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 450px;
+    background-color: #f8fafc;
+    position: relative;
+}
+
+.correlation-causation .simulation-svg {
+    border: 1px solid var(--secondary-200);
+    border-radius: var(--radius-md);
+    background-color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* 7. STANDARDIZED CONTROLS PANEL */
+/* ============================================================================ */
+.correlation-causation .controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+/* 8. STANDARDIZED CARD STYLES */
+/* ============================================================================ */
+.correlation-causation .card {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+.correlation-causation .card-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--secondary-200);
+    background-color: var(--secondary-50);
+}
+
+.correlation-causation .card-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0;
+    text-align: center;
+}
+
+.correlation-causation .card-body {
+    padding: var(--space-6);
+}
+
+/* 9. STANDARDIZED FORM CONTROLS */
+/* ============================================================================ */
+.correlation-causation .parameter-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.correlation-causation .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.correlation-causation .label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-700);
+    margin: 0;
+}
+
+.correlation-causation .input {
+    width: 100%;
+    padding: var(--space-3);
+    border: 1px solid var(--secondary-300);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    background-color: white;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.correlation-causation .input:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+/* 10. STANDARDIZED ALGORITHM CONTROLS */
+/* ============================================================================ */
+.correlation-causation .algorithm-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* 11. STANDARDIZED RESULTS DISPLAY */
+/* ============================================================================ */
+.correlation-causation .results-display {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.correlation-causation .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--secondary-200);
+}
+
+.correlation-causation .result-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-700);
+}
+
+.correlation-causation .result-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-600);
+    font-family: var(--font-family-mono);
+}
+
+.correlation-causation .explanation-text {
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    background-color: var(--primary-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--primary-200);
+    font-size: var(--font-size-sm);
+    color: var(--secondary-700);
+    line-height: var(--line-height-relaxed);
+}
+
+/* 12. DATASET DESCRIPTION STYLES */
+/* ============================================================================ */
+.correlation-causation .dataset-description {
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--secondary-200);
+}
+
+.correlation-causation .dataset-description p {
+    margin: 0 0 var(--space-2) 0;
+    font-size: var(--font-size-sm);
+    color: var(--secondary-700);
+    line-height: var(--line-height-relaxed);
+}
+
+.correlation-causation .dataset-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* 13. CONFOUNDING VARIABLES STYLES */
+/* ============================================================================ */
+.correlation-causation .confounding-variables {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-700);
+    line-height: var(--line-height-relaxed);
+}
+
+.correlation-causation .confounding-variables p {
+    margin: 0 0 var(--space-3) 0;
+    font-weight: var(--font-weight-medium);
+}
+
+.correlation-causation .confounding-variables ul {
+    margin: 0;
+    padding-left: var(--space-6);
+}
+
+.correlation-causation .confounding-variables li {
+    margin-bottom: var(--space-2);
+    color: var(--secondary-600);
+}
+
+.correlation-causation .confounding-variables li:last-child {
+    margin-bottom: 0;
+}
+
+/* 14. STANDARDIZED EXPLANATION SECTION */
+/* ============================================================================ */
+.correlation-causation .explanation-section {
+    margin-top: var(--space-8);
+}
+
+.correlation-causation .explanation-content h4 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: var(--space-6) 0 var(--space-3) 0;
+}
+
+.correlation-causation .explanation-content h4:first-child {
+    margin-top: 0;
+}
+
+.correlation-causation .explanation-content p {
+    color: var(--secondary-700);
+    line-height: var(--line-height-relaxed);
+    margin: var(--space-4) 0;
+}
+
+.correlation-causation .explanation-content ul {
+    margin: var(--space-4) 0;
+    padding-left: var(--space-6);
+}
+
+.correlation-causation .explanation-content li {
+    margin-bottom: var(--space-2);
+    line-height: var(--line-height-relaxed);
+    color: var(--secondary-700);
+}
+
+.correlation-causation .explanation-content strong {
+    color: var(--secondary-800);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* 15. STANDARDIZED COPYRIGHT SECTION */
+/* ============================================================================ */
+.correlation-causation .copyright-section {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--secondary-200);
+}
+
+.correlation-causation .copyright-notice {
+    text-align: center;
+    color: var(--secondary-600);
+    font-size: var(--font-size-sm);
+}
+
+.correlation-causation .copyright-notice p {
+    margin: 0;
+}
+
+/* 16. RESPONSIVE DESIGN - STANDARDIZED BREAKPOINTS */
+/* ============================================================================ */
+@media (max-width: 1024px) {
+    .correlation-causation .simulation-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    .correlation-causation .controls-panel {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .correlation-causation {
+        padding: var(--space-4) 0;
+    }
+
+    .correlation-causation .page-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .correlation-causation .page-description {
+        font-size: var(--font-size-base);
+    }
+
+    .correlation-causation .visualization-header {
+        flex-direction: column;
+        gap: var(--space-4);
+        align-items: center;
+    }
+
+    .correlation-causation .visualization-controls {
+        flex-wrap: wrap;
+        gap: var(--space-3);
+    }
+
+    .correlation-causation .visualization-container {
+        padding: var(--space-4);
+        min-height: 400px;
+    }
+
+    .correlation-causation .simulation-svg {
+        width: 100%;
+        height: auto;
+    }
+
+    .correlation-causation .result-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+    }
+
+    .correlation-causation .result-value {
+        font-size: var(--font-size-base);
+    }
+}
+
+/* 17. CUSTOM SIMULATION-SPECIFIC STYLES */
+/* ============================================================================ */
+
+/* Data point hover effects */
+.correlation-causation .data-point {
+    transition: all var(--transition-fast);
+}
+
+.correlation-causation .data-point:hover {
+    stroke-width: 3;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Trend line styling */
+.correlation-causation .trend-line {
+    stroke-dasharray: 5, 5;
+    animation: dash 2s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -10;
+    }
+}
+
+/* Tooltip styling */
+.correlation-causation .tooltip {
+    pointer-events: none;
+}
+
+/* Axis label styling */
+.correlation-causation .axis-label {
+    font-weight: var(--font-weight-medium);
+}
+
+/* Grid styling */
+.correlation-causation .grid line {
+    stroke: var(--secondary-200);
+    stroke-width: 1;
+    opacity: 0.5;
+}
+
+/* Axis styling */
+.correlation-causation .axis text {
+    font-size: 12px;
+    fill: var(--secondary-600);
+}
+
+.correlation-causation .axis path,
+.correlation-causation .axis line {
+    stroke: var(--secondary-400);
+    stroke-width: 1;
+}
+
+/* Animation for data points */
+.correlation-causation .data-point {
+    animation: fadeInScale 0.5s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+}
+
+/* Result value color coding */
+.correlation-causation .result-value.positive {
+    color: var(--success-600);
+}
+
+.correlation-causation .result-value.negative {
+    color: var(--error-600);
+}
+
+.correlation-causation .result-value.neutral {
+    color: var(--secondary-600);
+}
+
+/* Confounding variables highlight */
+.correlation-causation .confounding-variables {
+    background-color: var(--warning-50);
+    border: 1px solid var(--warning-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+}
+
+/* Dataset description styling */
+.correlation-causation .dataset-description strong {
+    color: var(--secondary-800);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Interactive Experiment styles */
+.correlation-causation .experiment-instructions {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-700);
+    line-height: var(--line-height-relaxed);
+}
+
+.correlation-causation .experiment-instructions p {
+    margin: 0 0 var(--space-3) 0;
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-800);
+}
+
+.correlation-causation .experiment-instructions ul {
+    margin: 0;
+    padding-left: var(--space-6);
+}
+
+.correlation-causation .experiment-instructions li {
+    margin-bottom: var(--space-2);
+    color: var(--secondary-600);
+}
+
+.correlation-causation .experiment-instructions li:last-child {
+    margin-bottom: 0;
+}
+
+.correlation-causation .dragging-feedback {
+    margin-top: var(--space-4);
+    padding: var(--space-3);
+    background-color: var(--primary-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--primary-200);
+    font-size: var(--font-size-sm);
+    color: var(--primary-700);
+    font-weight: var(--font-weight-medium);
+}
+
+.correlation-causation .dragging-feedback p {
+    margin: 0;
+}
+
+/* Draggable point styles */
+.correlation-causation .data-point.draggable {
+    cursor: grab;
+}
+
+.correlation-causation .data-point.draggable:active {
+    cursor: grabbing;
+}
+
+.correlation-causation .data-point.dragging {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    stroke-width: 3;
+}

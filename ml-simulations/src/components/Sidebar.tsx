@@ -127,7 +127,7 @@ const simulations: Simulation[] = [
         title: 'Correlation vs Causation',
         description: 'Learn to distinguish between correlation and causal relationships',
         path: '/correlation-causation',
-        status: 'coming-soon',
+        status: 'available',
         category: 'Statistics'
     },
     // Additional DISTANCE METRICS
@@ -224,7 +224,8 @@ const Sidebar: React.FC = () => {
 
                 <div className="sidebar-footer">
                     <p className="text-xs text-secondary-500">
-                        Built for SVA Continuing Education
+                        Built for Todd's SVA Continuing Education course:
+                        "AI for Creatives: Strategies for Success"
                     </p>
                 </div>
             </div>
