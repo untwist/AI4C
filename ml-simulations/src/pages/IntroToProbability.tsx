@@ -91,28 +91,8 @@ const IntroToProbability: React.FC = () => {
         return event.length / currentExample.sampleSpace.length;
     };
 
-    // Calculate union of two events
-    const calculateUnion = (event1: string, event2: string): number => {
-        const set1 = new Set(currentExample.events[event1] || []);
-        const set2 = new Set(currentExample.events[event2] || []);
-        const union = new Set([...set1, ...set2]);
-        return union.size / currentExample.sampleSpace.length;
-    };
 
-    // Calculate intersection of two events
-    const calculateIntersection = (event1: string, event2: string): number => {
-        const set1 = new Set(currentExample.events[event1] || []);
-        const set2 = new Set(currentExample.events[event2] || []);
-        const intersection = new Set([...set1].filter(x => set2.has(x)));
-        return intersection.size / currentExample.sampleSpace.length;
-    };
 
-    // Calculate conditional probability P(A|B)
-    const calculateConditional = (eventA: string, eventB: string): number => {
-        const intersection = calculateIntersection(eventA, eventB);
-        const probB = calculateProbability(eventB);
-        return probB > 0 ? intersection / probB : 0;
-    };
 
     // Render probability visualization
     useEffect(() => {
@@ -134,7 +114,7 @@ const IntroToProbability: React.FC = () => {
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
         // Create sample space visualization
-        const sampleSpaceRect = g.append("rect")
+        g.append("rect")
             .attr("x", 0)
             .attr("y", 0)
             .attr("width", innerWidth)
