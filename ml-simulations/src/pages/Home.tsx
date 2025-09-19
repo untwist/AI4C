@@ -8,7 +8,8 @@ const Home: React.FC = () => {
                 <section className="hero">
                     <div className="hero-content">
                         <h1 className="hero-title">
-                            Interactive Machine Learning Simulations
+                            Todd's Interactive Machine Learning Simulations for
+                            Creatives, Designers, and everyone else who wants to learn kewl stuff.
                         </h1>
                         <p className="hero-description">
                             Explore complex ML concepts through hands-on, visual simulations.
@@ -21,12 +22,6 @@ const Home: React.FC = () => {
                                 className="btn btn-primary"
                             >
                                 Learn More
-                            </a>
-                            <a
-                                href="#getting-started"
-                                className="btn btn-outline"
-                            >
-                                Get Started
                             </a>
                         </div>
                     </div>

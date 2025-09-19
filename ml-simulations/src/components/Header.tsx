@@ -9,7 +9,7 @@ const Header: React.FC = () => {
             <div className="container">
                 <Link to="/" className="header-logo">
                     <h1 className="text-xl font-bold text-primary">
-                        ML Simulations
+                        Data Science and Machine Learning Simulations
                     </h1>
                     <p className="text-sm text-secondary-600">
                         Interactive Learning Platform
