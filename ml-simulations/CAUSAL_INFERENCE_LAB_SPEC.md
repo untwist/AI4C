@@ -1,234 +1,205 @@
-# Causal Inference Lab - Simulation Specification
+# Causal Detective - Interactive Causal Inference Tutorial
 
 ## Overview
-A comprehensive interactive simulation for teaching causal inference concepts to students in data science, machine learning, and statistics courses. This simulation focuses specifically on establishing causation through controlled experiments and advanced causal inference methods.
+An engaging, mystery-solving simulation that teaches students to distinguish between correlation and causation through interactive detective scenarios. Students become "causal detectives" investigating suspicious relationships to determine if they represent true causation or spurious correlation.
 
 ## Educational Objectives
-- **Understand the difference between correlation and causation**
-- **Learn to design controlled experiments** (A/B testing, randomized controlled trials)
-- **Identify and control for confounding variables**
-- **Master causal inference methods** (instrumental variables, regression discontinuity, etc.)
-- **Interpret causal diagrams** and understand causal pathways
-- **Recognize common biases** in causal inference
+- **Master the core question**: "Does A cause B, or are they just correlated?"
+- **Identify confounding variables** that create spurious relationships
+- **Design controlled experiments** to test causal claims
+- **Recognize common biases** in observational studies
+- **Understand the importance of randomization** in causal inference
+- **Develop critical thinking skills** for evaluating causal claims
 
 ## Core Features
 
-### 1. Experiment Designer
-**Interactive A/B Testing Simulator**
-- **Random Assignment Tool**: Students assign subjects to treatment/control groups
-- **Sample Size Calculator**: Show how sample size affects statistical power
-- **Blinding Controls**: Demonstrate single-blind and double-blind studies
-- **Placebo Effects**: Show how placebos can create false causation
-- **Multiple Treatment Arms**: Compare different interventions
+### 1. The Detective Interface
+**Mystery-Solving Dashboard**
+- **Case Selection**: Choose from three engaging mystery scenarios
+- **Evidence Collection**: Interactive tools to gather and analyze data
+- **Hypothesis Testing**: Form and test theories about causal relationships
+- **Case Resolution**: Determine if relationships are causal or spurious
+- **Learning Feedback**: Immediate explanations of detective reasoning
 
 **Visual Elements:**
-- Drag-and-drop subject assignment interface
-- Real-time statistical power calculations
-- Animated randomization process
-- Treatment effect visualization
+- Detective-themed interface with case files
+- Interactive data visualization tools
+- Evidence collection notebooks
+- Hypothesis testing forms
+- Case resolution certificates
 
-### 2. Confounding Variables Explorer
-**Hidden Confounders Simulator**
-- **Toggle Confounders**: Add/remove confounding variables to see their impact
-- **Mediation Analysis**: Trace causal pathways through intermediate variables
-- **Collider Bias**: Demonstrate how conditioning on certain variables creates bias
-- **Selection Bias**: Show how non-random sampling affects causal inference
+### 2. Three Core Mystery Scenarios
 
-**Interactive Features:**
-- Slider controls for confounding strength
-- Causal pathway animations
-- Bias detection warnings
-- Sensitivity analysis tools
+#### **Mystery #1: The Ice Cream Conspiracy**
+**The Case**: "Ice cream sales correlate with drowning deaths - is ice cream dangerous?"
+- **Student Investigation**: Add temperature data to reveal the confounding variable
+- **Learning Objective**: Understand how confounding variables create spurious correlation
+- **Interactive Elements**: 
+  - Toggle temperature overlay on scatter plot
+  - See correlation change when controlling for temperature
+  - Discover the true causal relationship (temperature → both ice cream and swimming)
 
-### 3. Causal Diagrams (DAGs)
-**Directed Acyclic Graph Builder**
-- **Node Creation**: Add variables, treatments, outcomes, confounders
-- **Edge Drawing**: Create causal relationships between variables
-- **Path Highlighting**: Show direct vs indirect causal effects
-- **Collision Detection**: Identify colliders and their effects
-- **Backdoor Paths**: Visualize confounding through backdoor paths
+#### **Mystery #2: The Laptop Learning Experiment**
+**The Case**: "Students with laptops score higher - do laptops cause better learning?"
+- **Student Investigation**: Design a controlled experiment to test the causal claim
+- **Learning Objective**: Understand the difference between observational studies and experiments
+- **Interactive Elements**:
+  - Random assignment interface (drag students to treatment/control groups)
+  - See how randomization controls for confounding variables
+  - Compare observational vs experimental results
 
-**Educational Content:**
-- Pre-built scenarios (medical trials, policy evaluation, social experiments)
-- Step-by-step DAG construction tutorials
-- Common causal diagram patterns
-- Bias identification exercises
+#### **Mystery #3: The Miracle Medicine Trial**
+**The Case**: "New drug shows amazing results - but is it really effective?"
+- **Student Investigation**: Identify biases and design a proper clinical trial
+- **Learning Objective**: Understand placebo effects, blinding, and randomization in medical trials
+- **Interactive Elements**:
+  - Patient assignment with blinding controls
+  - Placebo effect demonstration
+  - Bias detection checklist
+  - Proper trial design validation
 
-### 4. Advanced Causal Methods
-**Instrumental Variables Explorer**
-- **Natural Experiments**: Find variables that create random assignment
-- **Exclusion Restriction**: Verify instrumental variable assumptions
-- **First Stage/Reduced Form**: Show two-stage least squares process
-- **Weak Instruments**: Demonstrate problems with weak instruments
+### 3. Detective Tools and Methods
+**Evidence Collection Tools**
+- **Data Visualization**: Interactive scatter plots, bar charts, and time series
+- **Statistical Analysis**: Real-time correlation calculations and significance testing
+- **Confounding Detection**: Tools to identify and control for confounding variables
+- **Bias Recognition**: Checklists and warnings for common biases
+- **Experiment Design**: Step-by-step controlled experiment builder
 
-**Regression Discontinuity Designer**
-- **Sharp Cutoffs**: Create treatment assignment rules
-- **Fuzzy RDD**: Handle imperfect compliance
-- **Bandwidth Selection**: Choose appropriate analysis windows
-- **Placebo Tests**: Verify the design assumptions
-
-**Difference-in-Differences Simulator**
-- **Pre/Post Comparison**: Show treatment effects over time
-- **Parallel Trends**: Verify the key identifying assumption
-- **Multiple Time Periods**: Handle panel data structures
-- **Event Studies**: Analyze dynamic treatment effects
-
-### 5. Real-World Scenarios
-**Medical Trials Laboratory**
-- **Drug Effectiveness**: Test new medications with proper controls
-- **Side Effect Analysis**: Identify causal vs spurious relationships
-- **Dosage Response**: Explore treatment intensity effects
-- **Patient Stratification**: Control for patient characteristics
-
-**Policy Evaluation Center**
-- **Education Interventions**: Test educational program effectiveness
-- **Economic Policies**: Evaluate policy impacts on outcomes
-- **Social Programs**: Analyze welfare and social program effects
-- **Environmental Regulations**: Study environmental policy impacts
-
-**Social Experiments Hub**
-- **Behavioral Interventions**: Test nudges and behavioral changes
-- **Social Network Effects**: Analyze peer influence and contagion
-- **Discrimination Studies**: Measure causal effects of bias
-- **Market Experiments**: Test economic theory predictions
+**Learning Progression**
+- **Beginner Detective**: Guided investigations with hints and explanations
+- **Intermediate Detective**: More complex scenarios with multiple confounding variables
+- **Expert Detective**: Open-ended investigations with minimal guidance
 
 ## Technical Implementation
 
 ### User Interface Design
-**Main Dashboard Layout:**
-- **Experiment Designer Panel**: Left side with controls and parameters
-- **Causal Diagram Canvas**: Center for DAG construction and visualization
-- **Results Panel**: Right side showing statistical results and interpretations
-- **Method Selector**: Top navigation for different causal inference approaches
+**Detective Dashboard Layout:**
+- **Case Selection Panel**: Left side with three mystery scenarios
+- **Investigation Canvas**: Center for data visualization and analysis
+- **Evidence Notebook**: Right side for hypothesis testing and notes
+- **Detective Tools**: Top navigation for different analysis methods
 
 **Interactive Elements:**
-- Drag-and-drop interface for subject assignment
-- Click-to-create nodes for causal diagrams
-- Slider controls for parameter adjustment
+- Drag-and-drop interface for experiment design
+- Toggle controls for revealing confounding variables
 - Real-time statistical calculations
-- Animated causal pathway highlighting
+- Animated data point highlighting
+- Interactive hypothesis testing forms
 
 ### Data Visualization
-**Causal Diagrams (DAGs):**
-- Node-and-edge graph visualization using D3.js
-- Interactive node creation and connection
-- Color coding for different variable types
-- Path highlighting for causal chains
-- Zoom and pan functionality for complex diagrams
+**Mystery-Specific Visualizations:**
+- **Ice Cream Mystery**: Interactive scatter plots with temperature overlay
+- **Laptop Experiment**: Student assignment interface with randomization
+- **Medicine Trial**: Patient assignment with blinding controls and bias detection
 
-**Statistical Results:**
+**Statistical Analysis:**
+- Real-time correlation calculations
 - Treatment effect estimates with confidence intervals
-- Statistical power calculations
-- Bias detection warnings
-- Sensitivity analysis plots
-- Forest plots for multiple studies
-
-**Experiment Visualization:**
-- Subject assignment visualization
-- Treatment group comparisons
-- Outcome distribution plots
-- Time series for longitudinal studies
-- Heat maps for complex experimental designs
+- Bias detection warnings and explanations
+- Controlled vs uncontrolled comparisons
+- Placebo effect demonstrations
 
 ### Educational Content Structure
-**Progressive Learning Path:**
-1. **Basic Concepts**: Correlation vs causation, confounding
-2. **Simple Experiments**: A/B testing, randomization
-3. **Advanced Methods**: IV, RDD, DiD
-4. **Real Applications**: Medical, policy, social experiments
-5. **Bias Recognition**: Common pitfalls and solutions
+**Detective Learning Path:**
+1. **Case Introduction**: Present the mystery and initial evidence
+2. **Evidence Collection**: Use tools to gather additional data
+3. **Hypothesis Formation**: Develop theories about causal relationships
+4. **Experiment Design**: Create controlled experiments to test hypotheses
+5. **Case Resolution**: Determine if relationships are causal or spurious
 
 **Interactive Tutorials:**
-- Step-by-step experiment design
-- Causal diagram construction guides
-- Method selection decision trees
-- Bias identification exercises
-- Interpretation practice problems
+- Step-by-step detective work guides
+- Confounding variable identification exercises
+- Experiment design decision trees
+- Bias recognition checklists
+- Critical thinking practice problems
 
-## Sample Datasets and Scenarios
+## Mystery Scenarios and Datasets
 
-### Medical Trials
-- **Drug Effectiveness**: Placebo-controlled drug trials
-- **Surgical Procedures**: Treatment vs control group comparisons
-- **Preventive Measures**: Vaccination and screening programs
-- **Behavioral Interventions**: Lifestyle change programs
+### Mystery #1: The Ice Cream Conspiracy
+**Dataset**: Monthly ice cream sales vs drowning deaths
+- **Initial Evidence**: Strong positive correlation (r = 0.85)
+- **Student Investigation**: Add temperature data to reveal confounding
+- **Learning Outcome**: Understand how temperature causes both ice cream sales and swimming activity
+- **Real-World Context**: Classic example of spurious correlation
 
-### Policy Evaluation
-- **Education**: Class size reduction, teacher training, curriculum changes
-- **Economic**: Minimum wage, tax policy, unemployment benefits
-- **Environmental**: Pollution regulations, carbon pricing
-- **Social**: Welfare programs, housing assistance
+### Mystery #2: The Laptop Learning Experiment  
+**Dataset**: Student laptop usage vs test scores
+- **Initial Evidence**: Students with laptops score 15% higher
+- **Student Investigation**: Design randomized experiment to test causal claim
+- **Learning Outcome**: Understand difference between observational studies and controlled experiments
+- **Real-World Context**: Common educational technology evaluation
 
-### Social Experiments
-- **Behavioral**: Nudges, incentives, information provision
-- **Network Effects**: Peer influence, social contagion
-- **Discrimination**: Audit studies, hiring experiments
-- **Market**: Price discrimination, auction mechanisms
+### Mystery #3: The Miracle Medicine Trial
+**Dataset**: New drug effectiveness vs placebo
+- **Initial Evidence**: Drug shows 40% improvement over baseline
+- **Student Investigation**: Identify biases and design proper clinical trial
+- **Learning Outcome**: Understand placebo effects, blinding, and randomization
+- **Real-World Context**: Pharmaceutical trial design and bias detection
 
 ## Assessment and Learning Outcomes
 
-### Knowledge Checks
-- **Concept Identification**: Recognize causal vs correlational relationships
-- **Method Selection**: Choose appropriate causal inference methods
-- **Bias Detection**: Identify potential sources of bias
-- **Interpretation**: Correctly interpret causal estimates
+### Detective Skills Assessment
+- **Evidence Analysis**: Correctly identify confounding variables in mystery scenarios
+- **Hypothesis Testing**: Form and test appropriate theories about causal relationships
+- **Experiment Design**: Create valid controlled experiments to test causal claims
+- **Bias Recognition**: Identify common biases in observational studies
 
 ### Practical Skills
-- **Experiment Design**: Create valid controlled experiments
-- **Causal Diagramming**: Construct accurate DAGs
-- **Statistical Analysis**: Perform causal inference calculations
-- **Critical Thinking**: Evaluate causal claims in research
+- **Critical Thinking**: Evaluate whether relationships are causal or spurious
+- **Statistical Reasoning**: Understand correlation vs causation
+- **Experimental Design**: Design controlled experiments with proper randomization
+- **Bias Detection**: Recognize and control for confounding variables
 
 ### Real-World Application
-- **Research Evaluation**: Critically assess published studies
-- **Policy Analysis**: Evaluate policy effectiveness
-- **Business Decisions**: Make data-driven causal inferences
-- **Scientific Communication**: Present causal findings clearly
+- **Research Evaluation**: Critically assess causal claims in news and research
+- **Data Interpretation**: Distinguish between correlation and causation in real data
+- **Experimental Thinking**: Apply causal reasoning to everyday problems
+- **Scientific Literacy**: Understand the importance of controlled experiments
 
 ## Technical Requirements
 
 ### Frontend Technologies
 - **React.js with TypeScript**: Component-based architecture
-- **D3.js**: Interactive causal diagrams and statistical visualizations
-- **Math.js**: Statistical calculations and causal inference methods
-- **React Router**: Navigation between different causal methods
+- **D3.js**: Interactive scatter plots and statistical visualizations
+- **Math.js**: Statistical calculations and correlation analysis
+- **React Router**: Navigation between mystery scenarios
 
 ### Data Management
-- **Sample Datasets**: Pre-loaded scenarios for different domains
-- **User Experiments**: Save and load custom experimental designs
-- **Results Export**: Download statistical results and diagrams
-- **Progress Tracking**: Monitor learning progress through exercises
+- **Mystery Datasets**: Pre-loaded scenarios for each detective case
+- **Evidence Collection**: Save student hypotheses and findings
+- **Case Progress**: Track completion of each mystery scenario
+- **Detective Notes**: Interactive notebook for evidence collection
 
 ### Performance Considerations
-- **Real-time Calculations**: Fast statistical computations
-- **Smooth Animations**: Fluid causal pathway highlighting
-- **Responsive Design**: Mobile-friendly interface
+- **Real-time Calculations**: Fast correlation and statistical computations
+- **Smooth Animations**: Fluid data point highlighting and transitions
+- **Responsive Design**: Mobile-friendly detective interface
 - **Accessibility**: Screen reader support and keyboard navigation
 
 ## Success Metrics
-- **Student Engagement**: Time spent exploring different causal methods
-- **Learning Outcomes**: Pre/post assessment of causal inference knowledge
-- **Practical Skills**: Ability to design valid experiments
-- **Critical Thinking**: Recognition of causal vs correlational relationships
+- **Student Engagement**: Time spent solving mystery scenarios
+- **Learning Outcomes**: Pre/post assessment of causal reasoning skills
+- **Detective Skills**: Ability to identify confounding variables and design experiments
+- **Critical Thinking**: Recognition of causal vs spurious relationships
 
 ## Future Enhancements
-- **Collaborative Features**: Multi-user experiment design
+- **Additional Mysteries**: More complex scenarios with multiple confounding variables
 - **Real Data Integration**: Connect to actual research datasets
-- **Advanced Methods**: Machine learning for causal inference
-- **Publication Tools**: Generate research-ready causal diagrams
-- **API Integration**: Connect to statistical software (R, Python)
+- **Collaborative Detection**: Multi-user mystery solving
+- **Advanced Cases**: More sophisticated causal inference scenarios
+- **Detective Badges**: Gamification elements for completed cases
 
 ## Development Timeline
-- **Phase 1 (Weeks 1-2)**: Basic experiment designer and A/B testing
-- **Phase 2 (Weeks 3-4)**: Causal diagrams and confounding variables
-- **Phase 3 (Weeks 5-6)**: Advanced methods (IV, RDD, DiD)
-- **Phase 4 (Weeks 7-8)**: Real-world scenarios and educational content
-- **Phase 5 (Weeks 9-10)**: Polish, testing, and deployment
+- **Week 1**: Detective interface and Ice Cream Mystery
+- **Week 2**: Laptop Learning Experiment scenario
+- **Week 3**: Medicine Trial scenario and educational content
+- **Week 4**: Polish, testing, and deployment
 
 ## Integration with Existing Simulations
-- **Correlation Simulation**: Builds on correlation concepts
-- **Bayes Theorem**: Connects to Bayesian causal inference
-- **Decision Trees**: Links to causal tree methods
-- **K-Means Clustering**: Relates to causal clustering approaches
+- **Correlation Simulation**: Natural progression from correlation to causation
+- **Bayes Theorem**: Connects to Bayesian reasoning in evidence evaluation
+- **Decision Trees**: Links to causal decision-making processes
 
-This Causal Inference Lab will provide students with a comprehensive, hands-on understanding of causal inference methods, preparing them for advanced data science and research applications.
+This Causal Detective simulation will provide students with an engaging, hands-on understanding of causal inference through mystery-solving, preparing them to think critically about causal relationships in real-world data.

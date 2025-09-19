@@ -553,3 +553,107 @@
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
     stroke-width: 3;
 }
+
+/* 6. ENHANCED EDUCATIONAL CONTENT STYLES */
+/* ============================================================================ */
+.correlation .concept-section {
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+.correlation .concept-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.correlation .math-explanation {
+    background-color: var(--neutral-50);
+    border: 1px solid var(--neutral-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    margin: var(--space-4) 0;
+}
+
+.correlation .formula {
+    background-color: var(--primary-50);
+    border: 2px solid var(--primary-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    margin: var(--space-3) 0;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: var(--font-size-lg);
+}
+
+.correlation .correlation-strength,
+.correlation .correlation-types,
+.correlation .creative-applications,
+.correlation .pitfalls,
+.correlation .significance-explanation,
+.correlation .applications,
+.correlation .simulation-guide,
+.correlation .learning-resources {
+    margin: var(--space-4) 0;
+}
+
+.correlation .example-box {
+    background-color: var(--warning-50);
+    border-left: 4px solid var(--warning-500);
+    padding: var(--space-4);
+    margin: var(--space-3) 0;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.correlation .example-box h6 {
+    color: var(--warning-700);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-2);
+}
+
+.correlation .creative-applications h5 {
+    color: var(--primary-600);
+    font-weight: var(--font-weight-semibold);
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+}
+
+.correlation .creative-applications h5:first-child {
+    margin-top: var(--space-4);
+}
+
+.correlation .pitfalls h5 {
+    color: var(--error-600);
+    font-weight: var(--font-weight-semibold);
+}
+
+.correlation .significance-explanation h5 {
+    color: var(--success-600);
+    font-weight: var(--font-weight-semibold);
+}
+
+.correlation .simulation-guide h5 {
+    color: var(--info-600);
+    font-weight: var(--font-weight-semibold);
+}
+
+.correlation .learning-resources h5 {
+    color: var(--secondary-600);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Enhanced list styling for educational content */
+.correlation .explanation-content ul {
+    margin: var(--space-3) 0;
+    padding-left: var(--space-6);
+}
+
+.correlation .explanation-content li {
+    margin-bottom: var(--space-2);
+    line-height: var(--line-height-relaxed);
+}
+
+.correlation .explanation-content strong {
+    color: var(--neutral-800);
+    font-weight: var(--font-weight-semibold);
+}

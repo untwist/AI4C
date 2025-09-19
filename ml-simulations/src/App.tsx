@@ -33,6 +33,8 @@ import PerceptronLearning from './pages/PerceptronLearning';
 import './pages/PerceptronLearning.css';
 import CorrelationCausation from './pages/CorrelationCausation';
 import './pages/CorrelationCausation.css';
+import CausalDetective from './pages/CausalDetective';
+import './pages/CausalDetective.css';
 import About from './pages/About';
 import './pages/About.css';
 import './App.css';
@@ -61,6 +63,7 @@ function App() {
                 <Route path="/perceptron-anatomy" element={<PerceptronAnatomy />} />
                 <Route path="/perceptron-learning" element={<PerceptronLearning />} />
                 <Route path="/correlation-causation" element={<CorrelationCausation />} />
+                <Route path="/causal-detective" element={<CausalDetective />} />
                 <Route path="/about" element={<About />} />
               </Routes>
             </main>

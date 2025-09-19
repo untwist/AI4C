@@ -11,7 +11,7 @@ A comprehensive collection of web-based interactive simulations and tutorials fo
 - ✅ **K-Means Clustering Simulator**: Complete with multiple datasets, step-by-step animation, and real-world applications
 - ✅ **Correlation Simulator**: Interactive correlation exploration with real-time analysis and hands-on experimentation
 - ✅ **GitHub Pages Deployment**: Ready for production use
-- 🎯 **Next Priority**: Causal Inference Lab - Comprehensive causal inference methods and experiment design
+- 🎯 **Next Priority**: Causal Detective - Interactive mystery-solving tutorial for causal inference
 
 ## Core Philosophy
 - **Visual Learning**: Every concept should have visual representations
@@ -34,12 +34,11 @@ A comprehensive collection of web-based interactive simulations and tutorials fo
   - Interactive scatter plots with different correlation coefficients
   - Real-time correlation calculation and visualization
   - Interactive experiment mode for hands-on exploration
-- **Causal Inference Lab** (PLANNED)
-  - Controlled experiment designer (A/B testing, randomized trials)
-  - Causal diagrams (DAGs) with interactive construction
-  - Confounding variables explorer and bias detection
-  - Advanced causal methods (IV, RDD, DiD, matching)
-  - Real-world scenarios (medical trials, policy evaluation, social experiments)
+- 🎯 **Causal Detective** (NEXT PRIORITY)
+  - Mystery-solving interface for causal inference learning
+  - Three engaging scenarios: Ice Cream Conspiracy, Laptop Learning, Medicine Trial
+  - Interactive confounding variable detection and experiment design
+  - Detective-themed educational content with progressive difficulty
 
 ### 2. Linear Algebra Fundamentals
 - **Vector Operations Visualizer**
@@ -223,25 +222,25 @@ ml-simulations/
 
 ## Next Steps & Recommendations
 
-### Immediate Next Simulation: Euclidean Distance Explorer
+### Immediate Next Simulation: Causal Detective
 **Why this is the best next choice:**
-1. **Foundation for ML**: Distance metrics are fundamental to understanding clustering and classification
-2. **Visual & Interactive**: Perfect for demonstrating spatial relationships in data
-3. **Builds on Existing Work**: Extends the K-Means simulator with deeper distance understanding
-4. **Educational Value**: Connects mathematical concepts to practical ML applications
-5. **Manageable Scope**: Can be completed in 2-3 weeks with clear learning objectives
+1. **Builds on Correlation**: Natural progression from correlation to causation
+2. **Engaging Format**: Mystery-solving approach makes complex concepts accessible
+3. **Practical Skills**: Teaches critical thinking about causal relationships
+4. **Educational Value**: Connects abstract concepts to real-world decision-making
+5. **Manageable Scope**: Can be completed in 3-4 weeks with clear learning objectives
 
-**Euclidean Distance Explorer Features:**
-- Interactive 2D point cloud with draggable points and real-time distance calculations
-- K-means clustering mode showing how distance drives cluster assignment
-- K-Nearest Neighbors (KNN) classification with distance-based decision boundaries
-- Multiple educational datasets (Iris, Customer Segmentation, Synthetic clusters)
-- Distance matrix visualization and nearest neighbor highlighting
-- Voronoi diagrams for decision boundaries
-- Comprehensive educational content on distance metrics in ML
+**Causal Detective Features:**
+- Detective-themed interface with three mystery scenarios
+- Interactive confounding variable detection (Ice Cream Mystery)
+- Controlled experiment design (Laptop Learning scenario)
+- Bias detection and clinical trial design (Medicine Trial)
+- Progressive difficulty with guided learning
+- Comprehensive educational content on causal reasoning
 
 ### Development Timeline:
-- **Week 1**: Core distance calculation engine and interactive point manipulation
-- **Week 2**: K-means and KNN algorithm integration with visualizations
-- **Week 3**: Educational content, polish, testing, and deployment
+- **Week 1**: Detective interface and Ice Cream Mystery scenario
+- **Week 2**: Laptop Learning Experiment scenario with A/B testing
+- **Week 3**: Medicine Trial scenario with bias detection
+- **Week 4**: Educational content, polish, testing, and deployment
 

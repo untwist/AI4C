@@ -130,6 +130,14 @@ const simulations: Simulation[] = [
         status: 'available',
         category: 'Statistics'
     },
+    {
+        id: 'causal-detective',
+        title: 'Causal Detective',
+        description: 'Solve mysteries by investigating causal relationships',
+        path: '/causal-detective',
+        status: 'available',
+        category: 'Statistics'
+    },
     // Additional DISTANCE METRICS
     {
         id: 'manhattan-euclidean',

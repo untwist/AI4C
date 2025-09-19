@@ -944,9 +944,9 @@ const PerceptronLearning: React.FC = () => {
                                     that perfectly separates the two classes.
                                 </p>
                                 <ul>
-                                    <li><strong>AND Gate:</strong> ✅ Linearly separable (can draw a line to separate 0s from 1s)</li>
-                                    <li><strong>OR Gate:</strong> ✅ Linearly separable (can draw a line to separate 0s from 1s)</li>
-                                    <li><strong>XOR Gate:</strong> ❌ NOT linearly separable (impossible to draw a single line)</li>
+                                    <li><strong>AND Gate:</strong> Linearly separable (can draw a line to separate 0s from 1s)</li>
+                                    <li><strong>OR Gate:</strong> Linearly separable (can draw a line to separate 0s from 1s)</li>
+                                    <li><strong>XOR Gate:</strong> NOT linearly separable (impossible to draw a single line)</li>
                                 </ul>
 
                                 <h5>Learning Rate</h5>

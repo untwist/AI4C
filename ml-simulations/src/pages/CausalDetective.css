@@ -1,0 +1,722 @@
+/* ============================================================================
+   CAUSAL DETECTIVE - Causal Inference Tutorial
+   ============================================================================
+   Following the standardized design system for consistent styling
+   ============================================================================ */
+
+/* 1. PAGE WRAPPER - ALWAYS START WITH THIS */
+/* ============================================================================ */
+.causal-detective {
+    padding: var(--space-6) 0;
+}
+
+/* 2. STANDARDIZED PAGE HEADER - NEVER CHANGE THESE PATTERNS */
+/* ============================================================================ */
+.causal-detective .page-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.causal-detective .page-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-4) 0;
+}
+
+.causal-detective .page-description {
+    font-size: var(--font-size-lg);
+    color: var(--secondary-600);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: var(--line-height-relaxed);
+}
+
+/* 3. MYSTERY SELECTION SECTION */
+/* ============================================================================ */
+.causal-detective .mystery-selection {
+    margin-bottom: var(--space-8);
+}
+
+.causal-detective .section-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+.causal-detective .mystery-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.causal-detective .mystery-card {
+    background-color: white;
+    border: 1px solid var(--secondary-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.causal-detective .mystery-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-300);
+    box-shadow: var(--shadow-md);
+}
+
+.causal-detective .mystery-card.selected {
+    border-color: var(--primary-500);
+    background-color: var(--primary-50);
+    box-shadow: var(--shadow-md);
+}
+
+.causal-detective .mystery-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin-bottom: var(--space-2);
+}
+
+.causal-detective .mystery-description {
+    color: var(--secondary-600);
+    margin-bottom: var(--space-4);
+    line-height: var(--line-height-relaxed);
+}
+
+.causal-detective .mystery-evidence {
+    background-color: var(--secondary-50);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-500);
+}
+
+.causal-detective .mystery-evidence strong {
+    color: var(--secondary-800);
+}
+
+/* 4. STANDARDIZED SIMULATION LAYOUT - NEVER CHANGE */
+/* ============================================================================ */
+.causal-detective .detective-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+/* 5. STANDARDIZED VISUALIZATION PANEL */
+/* ============================================================================ */
+.causal-detective .investigation-canvas {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+/* 6. STANDARDIZED VISUALIZATION HEADER - ALWAYS USE LIGHT GRAY BACKGROUND */
+/* ============================================================================ */
+.causal-detective .canvas-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--secondary-200);
+    background-color: var(--secondary-50);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.causal-detective .canvas-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0;
+}
+
+.causal-detective .canvas-controls {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.causal-detective .control-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--secondary-700);
+    cursor: pointer;
+}
+
+.causal-detective .control-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-600);
+}
+
+/* 7. STANDARDIZED VISUALIZATION CONTAINER */
+/* ============================================================================ */
+.causal-detective .visualization-container {
+    padding: var(--space-6);
+    background-color: white;
+    overflow: auto;
+    min-width: 600px;
+}
+
+.causal-detective .detective-svg {
+    height: 400px;
+    background-color: white;
+    border-radius: var(--radius-md);
+    min-width: 600px;
+}
+
+/* 8. STANDARDIZED CONTROLS PANEL */
+/* ============================================================================ */
+.causal-detective .detective-tools {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.causal-detective .investigation-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.causal-detective .btn {
+    padding: var(--space-3) var(--space-6);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: var(--font-size-sm);
+}
+
+.causal-detective .btn-primary {
+    background-color: var(--primary-600);
+    color: white;
+}
+
+.causal-detective .btn-primary:hover:not(:disabled) {
+    background-color: var(--primary-700);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.causal-detective .btn-success {
+    background-color: var(--success-600);
+    color: white;
+}
+
+.causal-detective .btn-success:hover:not(:disabled) {
+    background-color: var(--success-700);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.causal-detective .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 9. STANDARDIZED CARD STYLING */
+/* ============================================================================ */
+.causal-detective .detective-notes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.causal-detective .note-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.causal-detective .note-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    font-size: var(--font-size-sm);
+}
+
+.causal-detective .note-input {
+    background-color: white;
+    border: 1px solid var(--secondary-300);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    color: var(--secondary-800);
+    font-family: inherit;
+    resize: vertical;
+    min-height: 60px;
+}
+
+.causal-detective .note-input:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 2px var(--primary-100);
+}
+
+.causal-detective .note-input::placeholder {
+    color: var(--secondary-400);
+}
+
+.causal-detective .evidence-list {
+    background-color: var(--secondary-50);
+    border: 1px solid var(--secondary-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.causal-detective .evidence-item {
+    background-color: var(--primary-50);
+    border: 1px solid var(--primary-200);
+    border-radius: var(--radius-sm);
+    padding: var(--space-2);
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--secondary-700);
+}
+
+.causal-detective .evidence-item:last-child {
+    margin-bottom: 0;
+}
+
+/* 10. CONFIDENCE METER */
+/* ============================================================================ */
+.causal-detective .confidence-meter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.causal-detective .confidence-bar {
+    background-color: var(--secondary-100);
+    border: 1px solid var(--secondary-200);
+    border-radius: var(--radius-sm);
+    height: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.causal-detective .confidence-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--error-500) 0%, var(--warning-500) 50%, var(--success-500) 100%);
+    transition: width 0.5s ease;
+    border-radius: var(--radius-sm);
+}
+
+/* 11. RESULTS DISPLAY */
+/* ============================================================================ */
+.causal-detective .results-display {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.causal-detective .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--secondary-200);
+}
+
+.causal-detective .result-item:last-child {
+    border-bottom: none;
+}
+
+.causal-detective .result-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-700);
+}
+
+.causal-detective .result-value {
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-600);
+    background-color: var(--primary-50);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--primary-200);
+}
+
+/* 12. EDUCATIONAL CONTENT */
+/* ============================================================================ */
+.causal-detective .detective-education {
+    max-width: 1200px;
+    margin: var(--space-8) auto;
+    padding: 0 var(--space-6);
+}
+
+.causal-detective .education-content h4 {
+    color: var(--secondary-800);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-3);
+    margin-top: var(--space-6);
+}
+
+.causal-detective .education-content h4:first-child {
+    margin-top: 0;
+}
+
+.causal-detective .education-content p {
+    color: var(--secondary-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+}
+
+.causal-detective .education-content ul {
+    color: var(--secondary-600);
+    padding-left: var(--space-6);
+}
+
+.causal-detective .education-content li {
+    margin-bottom: var(--space-2);
+    line-height: var(--line-height-relaxed);
+}
+
+.causal-detective .education-content strong {
+    color: var(--secondary-800);
+}
+
+/* 14. EDUCATIONAL EXPLANATION */
+/* ============================================================================ */
+.causal-detective .educational-explanation {
+    background-color: var(--success-50);
+    border: 1px solid var(--success-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    margin-top: var(--space-4);
+}
+
+.causal-detective .educational-explanation h4 {
+    color: var(--success-800);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-3);
+    margin-top: 0;
+}
+
+.causal-detective .educational-explanation p {
+    color: var(--secondary-700);
+    margin-bottom: var(--space-3);
+    line-height: var(--line-height-relaxed);
+}
+
+.causal-detective .educational-explanation ul {
+    color: var(--secondary-700);
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-3);
+}
+
+.causal-detective .educational-explanation li {
+    margin-bottom: var(--space-1);
+    line-height: var(--line-height-relaxed);
+}
+
+.causal-detective .educational-explanation strong {
+    color: var(--success-800);
+}
+
+/* 15. STRUCTURED LEARNING INTERFACE */
+/* ============================================================================ */
+.causal-detective .progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-sm);
+    color: var(--secondary-600);
+    margin-top: var(--space-2);
+}
+
+.causal-detective .learning-step {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.causal-detective .step-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0;
+}
+
+.causal-detective .step-question {
+    font-size: var(--font-size-base);
+    color: var(--secondary-700);
+    margin: 0;
+    line-height: var(--line-height-relaxed);
+}
+
+.causal-detective .answer-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.causal-detective .answer-option {
+    background-color: white;
+    border: 2px solid var(--secondary-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+}
+
+.causal-detective .answer-option:hover:not(:disabled) {
+    border-color: var(--primary-300);
+    background-color: var(--primary-50);
+}
+
+.causal-detective .answer-option.selected {
+    border-color: var(--primary-500);
+    background-color: var(--primary-100);
+}
+
+.causal-detective .answer-option.correct {
+    border-color: var(--success-500);
+    background-color: var(--success-100);
+    color: var(--success-800);
+}
+
+.causal-detective .answer-option.incorrect {
+    border-color: var(--error-500);
+    background-color: var(--error-100);
+    color: var(--error-800);
+}
+
+.causal-detective .answer-option:disabled {
+    cursor: not-allowed;
+}
+
+.causal-detective .explanation {
+    background-color: var(--primary-50);
+    border: 1px solid var(--primary-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    margin-top: var(--space-4);
+}
+
+.causal-detective .explanation-text {
+    color: var(--secondary-700);
+    margin-bottom: var(--space-4);
+    line-height: var(--line-height-relaxed);
+}
+
+.causal-detective .learning-summary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.causal-detective .summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--secondary-200);
+}
+
+.causal-detective .summary-item:last-child {
+    border-bottom: none;
+}
+
+.causal-detective .summary-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-700);
+}
+
+.causal-detective .summary-value {
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-600);
+    background-color: var(--primary-50);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--primary-200);
+}
+
+.causal-detective .completed-steps {
+    margin-top: var(--space-4);
+}
+
+.causal-detective .completed-steps h5 {
+    color: var(--secondary-800);
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-base);
+}
+
+.causal-detective .completed-steps ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.causal-detective .completed-steps li {
+    padding: var(--space-1) 0;
+    color: var(--secondary-600);
+    font-size: var(--font-size-sm);
+}
+
+.causal-detective .completed-steps li.completed {
+    color: var(--success-600);
+    font-weight: var(--font-weight-semibold);
+}
+
+.causal-detective .completed-steps li.completed::before {
+    content: '✓ ';
+    color: var(--success-600);
+    font-weight: var(--font-weight-bold);
+}
+
+/* 13. RESPONSIVE DESIGN */
+/* ============================================================================ */
+@media (max-width: 1024px) {
+    .causal-detective .detective-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    .causal-detective .detective-tools {
+        order: -1;
+    }
+}
+
+/* 16. COMPACT LAYOUT */
+/* ============================================================================ */
+.causal-detective .detective-layout-compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    min-height: 80vh;
+    align-items: start;
+}
+
+.causal-detective .evidence-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.causal-detective .learning-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.causal-detective .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+}
+
+.causal-detective .results-grid .result-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-2);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--secondary-200);
+}
+
+.causal-detective .results-grid .result-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-600);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.causal-detective .results-grid .result-value {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-600);
+}
+
+.causal-detective .bottom-section {
+    margin-top: var(--space-6);
+    grid-column: 1 / -1;
+}
+
+.causal-detective .guide-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+}
+
+.causal-detective .guide-section h4 {
+    color: var(--secondary-800);
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-lg);
+}
+
+.causal-detective .guide-section ul,
+.causal-detective .guide-section ol {
+    margin: 0;
+    padding-left: var(--space-4);
+}
+
+.causal-detective .guide-section li {
+    margin-bottom: var(--space-2);
+    line-height: var(--line-height-relaxed);
+}
+
+@media (max-width: 1024px) {
+    .causal-detective .detective-layout-compact {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+        max-height: none;
+    }
+
+    .causal-detective .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .causal-detective .guide-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .causal-detective .mystery-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .causal-detective .canvas-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .causal-detective .canvas-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 480px) {
+    .causal-detective .mystery-card {
+        padding: var(--space-4);
+    }
+
+    .causal-detective .investigation-canvas {
+        padding: var(--space-4);
+    }
+
+    .causal-detective .detective-svg {
+        height: 300px;
+    }
+}
