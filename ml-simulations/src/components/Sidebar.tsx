@@ -124,8 +124,8 @@ const simulations: Simulation[] = [
     },
     {
         id: 'correlation-causation',
-        title: 'Correlation vs Causation',
-        description: 'Learn to distinguish between correlation and causal relationships',
+        title: 'Correlation',
+        description: 'Explore correlation through interactive data visualization',
         path: '/correlation-causation',
         status: 'available',
         category: 'Statistics'

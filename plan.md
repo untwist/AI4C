@@ -9,8 +9,9 @@ A comprehensive collection of web-based interactive simulations and tutorials fo
 - ✅ **Cosine Similarity Simulator**: Fully functional with RAG/LLM applications
 - ✅ **Decision Tree Builder**: Interactive tree construction with feature selection and educational content
 - ✅ **K-Means Clustering Simulator**: Complete with multiple datasets, step-by-step animation, and real-world applications
+- ✅ **Correlation Simulator**: Interactive correlation exploration with real-time analysis and hands-on experimentation
 - ✅ **GitHub Pages Deployment**: Ready for production use
-- 🎯 **Next Priority**: Euclidean Distance Explorer - Interactive distance metrics and clustering visualization
+- 🎯 **Next Priority**: Causal Inference Lab - Comprehensive causal inference methods and experiment design
 
 ## Core Philosophy
 - **Visual Learning**: Every concept should have visual representations
@@ -29,9 +30,16 @@ A comprehensive collection of web-based interactive simulations and tutorials fo
 - **Central Limit Theorem Demo**
   - Start with any distribution, show how sample means approach normal
   - Interactive sample size adjustment
-- **Correlation vs Causation**
-  - Visual examples of spurious correlations
+- ✅ **Correlation** (COMPLETED)
   - Interactive scatter plots with different correlation coefficients
+  - Real-time correlation calculation and visualization
+  - Interactive experiment mode for hands-on exploration
+- **Causal Inference Lab** (PLANNED)
+  - Controlled experiment designer (A/B testing, randomized trials)
+  - Causal diagrams (DAGs) with interactive construction
+  - Confounding variables explorer and bias detection
+  - Advanced causal methods (IV, RDD, DiD, matching)
+  - Real-world scenarios (medical trials, policy evaluation, social experiments)
 
 ### 2. Linear Algebra Fundamentals
 - **Vector Operations Visualizer**

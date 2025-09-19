@@ -3,10 +3,10 @@ import * as d3 from 'd3';
 import './CorrelationCausation.css';
 
 // ============================================================================
-// CORRELATION VS CAUSATION SIMULATION
+// CORRELATION SIMULATION
 // ============================================================================
-// Interactive simulation to teach students the difference between
-// correlation and causation through hands-on data exploration
+// Interactive simulation to teach students about correlation through
+// hands-on data exploration and real-time analysis
 // ============================================================================
 
 // 1. DATA INTERFACES
@@ -569,14 +569,15 @@ const CorrelationCausation: React.FC = () => {
     // 9. RENDER THE SIMULATION
     // ============================================================================
     return (
-        <div className="correlation-causation fade-in">
+        <div className="correlation fade-in">
             <div className="container">
                 {/* STANDARDIZED PAGE HEADER */}
                 <div className="page-header">
-                    <h1 className="page-title">Correlation vs Causation</h1>
+                    <h1 className="page-title">Correlation</h1>
                     <p className="page-description">
-                        Explore the crucial difference between correlation and causation through interactive data visualization.
-                        Learn to identify spurious correlations and understand when relationships indicate true causation.
+                        Explore correlation through interactive data visualization.
+                        Learn to identify different types of correlations and understand how to measure
+                        the strength and direction of relationships between variables.
                     </p>
                 </div>
 
