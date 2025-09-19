@@ -28,6 +28,7 @@ const EuclideanDistance: React.FC = () => {
     const [showDistances, setShowDistances] = useState(true);
     const [showLabels, setShowLabels] = useState(true);
     const [dimensions, setDimensions] = useState<{ width: number, height: number }>({ width: 800, height: 600 });
+    const [isDragging, setIsDragging] = useState(false);
 
     // Results state
     const [knnResults, setKnnResults] = useState<KNNResult[]>([]);
@@ -393,9 +394,12 @@ const EuclideanDistance: React.FC = () => {
         }
     }, [distanceMatrix]);
 
+    // Store scales in a ref to prevent recalculation during drag
+    const scalesRef = useRef<{ xScale: d3.ScaleLinear<number, number>, yScale: d3.ScaleLinear<number, number> } | null>(null);
+
     // Draw visualization
     useEffect(() => {
-        if (!svgRef.current) return;
+        if (!svgRef.current || isDragging) return;
 
         const svg = d3.select(svgRef.current);
         svg.selectAll("*").remove();
@@ -428,6 +432,9 @@ const EuclideanDistance: React.FC = () => {
         const yScale = d3.scaleLinear()
             .domain([yExtent[0] - yPadding, yExtent[1] + yPadding])
             .range([innerHeight, 0]);
+
+        // Store scales in ref to prevent recalculation during drag
+        scalesRef.current = { xScale, yScale };
 
         // Add grid
         if (showGrid) {
@@ -523,25 +530,54 @@ const EuclideanDistance: React.FC = () => {
 
         // Add drag behavior
         const drag = d3.drag<SVGCircleElement, DataPoint>()
-            .on('start', function () {
+            .on('start', function (event, d) {
+                setIsDragging(true);
                 d3.select(this).style('cursor', 'grabbing');
+                // Store the initial mouse position and point position
+                (d as any).startMouseX = event.x;
+                (d as any).startMouseY = event.y;
+                (d as any).startPointX = d.x;
+                (d as any).startPointY = d.y;
             })
             .on('drag', function (event, d) {
-                const newX = xScale.invert(event.x);
-                const newY = yScale.invert(event.y);
+                // Use the stored scales to prevent coordinate system changes
+                const scales = scalesRef.current;
+                if (!scales) return;
 
+                const { xScale, yScale } = scales;
+
+                // Calculate the change in mouse position
+                const deltaX = event.x - (d as any).startMouseX;
+                const deltaY = event.y - (d as any).startMouseY;
+
+                // Convert the delta to data coordinates
+                const deltaDataX = xScale.invert(deltaX) - xScale.invert(0);
+                const deltaDataY = yScale.invert(deltaY) - yScale.invert(0);
+
+                // Calculate new position based on original position + delta
+                const newX = (d as any).startPointX + deltaDataX;
+                const newY = (d as any).startPointY + deltaDataY;
+
+                // Update the visual position
                 d3.select(this)
-                    .attr('cx', event.x)
-                    .attr('cy', event.y);
+                    .attr('cx', xScale(newX))
+                    .attr('cy', yScale(newY));
 
+                // Update the data
                 setDataPoints(prev =>
                     prev.map(p =>
                         p.id === d.id ? { ...p, x: newX, y: newY } : p
                     )
                 );
             })
-            .on('end', function () {
+            .on('end', function (_, d) {
+                setIsDragging(false);
                 d3.select(this).style('cursor', 'pointer');
+                // Clean up the stored values
+                delete (d as any).startMouseX;
+                delete (d as any).startMouseY;
+                delete (d as any).startPointX;
+                delete (d as any).startPointY;
             });
 
         points.call(drag);
@@ -580,7 +616,7 @@ const EuclideanDistance: React.FC = () => {
             .style('fill', '#374151')
             .text(dataset.features[1]);
 
-    }, [dataPoints, selectedPoints, distances, showGrid, showDistances, showLabels, dimensions, selectedDataset]);
+    }, [dataPoints, selectedPoints, distances, showGrid, showDistances, showLabels, dimensions, selectedDataset, isDragging]);
 
     // Handle algorithm mode changes
     const handleAlgorithmModeChange = (mode: 'explore' | 'kmeans' | 'knn') => {
