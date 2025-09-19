@@ -35,6 +35,8 @@ import CorrelationCausation from './pages/CorrelationCausation';
 import './pages/CorrelationCausation.css';
 import CausalDetective from './pages/CausalDetective';
 import './pages/CausalDetective.css';
+import IntroToProbability from './pages/IntroToProbability';
+import './pages/IntroToProbability.css';
 import About from './pages/About';
 import './pages/About.css';
 import './App.css';
@@ -64,6 +66,7 @@ function App() {
                 <Route path="/perceptron-learning" element={<PerceptronLearning />} />
                 <Route path="/correlation-causation" element={<CorrelationCausation />} />
                 <Route path="/causal-detective" element={<CausalDetective />} />
+                <Route path="/intro-probability" element={<IntroToProbability />} />
                 <Route path="/about" element={<About />} />
               </Routes>
             </main>

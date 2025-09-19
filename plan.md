@@ -23,6 +23,11 @@ A comprehensive collection of web-based interactive simulations and tutorials fo
 
 ### 1. Probability & Statistics
 - ✅ **Bayes Theorem Simulator** (Already completed)
+- ✅ **Intro to Probability** (NEW - Just completed)
+  - Interactive introduction to probability theory fundamentals
+  - Multiple examples: coin toss, dice roll, card draw
+  - Visual probability calculations and rules
+  - Real-world applications and examples
 - **Normal Distribution Explorer**
   - Interactive bell curve with adjustable mean/standard deviation
   - Show how changes affect the curve shape

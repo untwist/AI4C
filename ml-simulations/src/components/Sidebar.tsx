@@ -28,6 +28,14 @@ const simulations: Simulation[] = [
         status: 'available',
         category: 'Statistics'
     },
+    {
+        id: 'intro-probability',
+        title: 'Intro to Probability',
+        description: 'Learn the fundamentals of probability theory and basic concepts',
+        path: '/intro-probability',
+        status: 'available',
+        category: 'Statistics'
+    },
     // REGRESSION - Basic predictive modeling
     {
         id: 'linear-regression',
