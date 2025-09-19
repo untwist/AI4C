@@ -240,6 +240,7 @@ const IntroToProbability: React.FC = () => {
             <div className="simulation-header">
                 <h1>Intro to Probability</h1>
                 <h1>NOTE: THIS MODULE IS IN DEVELOPMENT!!!!</h1>
+                <h1>PLEASE DON'T USE THIS MODULE FOR ANYTHING IMPORTANT!!!!</h1>
                 <p className="simulation-description">
                     Learn the fundamentals of probability theory through interactive examples and visualizations.
                 </p>
