@@ -97,6 +97,37 @@ const calculateYourAlgorithm = (data: YourDataPoint[], params: YourParameters) =
 };
 ```
 
+### 3.1. Data Generation Best Practices
+**CRITICAL: Never generate data inside visualization functions!**
+
+```typescript
+// ❌ WRONG - Don't do this
+const drawVisualization = () => {
+    const data = generateRandomData(); // ❌ Creates new data every time!
+    // ... visualization code
+};
+
+// ✅ CORRECT - Do this instead
+const [currentData, setCurrentData] = useState<YourDataPoint[]>([]);
+
+// Generate data only when needed (e.g., dataset changes)
+useEffect(() => {
+    const newData = generateRandomData();
+    setCurrentData(newData);
+}, [selectedDataset]);
+
+const drawVisualization = () => {
+    const data = currentData; // ✅ Uses stable data
+    // ... visualization code
+};
+```
+
+**Why this matters:**
+- Prevents data points from jumping around when parameters change
+- Provides stable visualization for parameter exploration
+- Improves user experience and learning
+- Follows React best practices for state management
+
 ### 4. D3 Visualization (Lines 80-150)
 ```typescript
 // Customize your visualization
@@ -113,6 +144,447 @@ const drawVisualization = () => {
     {/* Your specific UI elements */}
 </div>
 ```
+
+### 5.1. Improved 2-Column Layout (Recommended)
+**Use this pattern for better readability and proper graph scaling:**
+
+```tsx
+{/* IMPROVED 2-COLUMN LAYOUT */}
+<div className="improved-simulation-layout">
+    {/* MAIN VISUALIZATION PANEL - WIDER */}
+    <div className="main-visualization-panel">
+        <div className="visualization-header">
+            <h2 className="visualization-title">Main Visualization</h2>
+            <div className="visualization-controls">
+                {/* Visualization controls */}
+            </div>
+        </div>
+        <div className="visualization-container">
+            <svg ref={svgRef} className="simulation-svg"></svg>
+        </div>
+        {/* IMPROVED LEGEND */}
+        <div className="improved-legend">
+            <div className="legend-items">
+                <div className="legend-item">
+                    <div className="legend-line" style={{backgroundColor: '#ef4444'}}></div>
+                    <span>Item 1</span>
+                </div>
+                <div className="legend-item">
+                    <div className="legend-line" style={{backgroundColor: '#10b981'}}></div>
+                    <span>Item 2</span>
+                </div>
+                <div className="legend-item">
+                    <div className="legend-line" style={{backgroundColor: '#f59e0b'}}></div>
+                    <span>Item 3</span>
+                </div>
+                <div className="legend-item">
+                    <div className="legend-line" style={{backgroundColor: '#3b82f6'}}></div>
+                    <span>Item 4</span>
+                </div>
+            </div>
+        </div>
+
+        {/* COMPACT MODEL PERFORMANCE */}
+        <div className="compact-performance">
+            <h4>Model Performance</h4>
+            <div className="performance-grid">
+                <div className="performance-item">
+                    <span className="performance-label">Training Score:</span>
+                    <span className="performance-value">92.2%</span>
+                </div>
+                <div className="performance-item">
+                    <span className="performance-label">Validation Score:</span>
+                    <span className="performance-value">79.8%</span>
+                </div>
+                <div className="performance-item">
+                    <span className="performance-label">Selected Features:</span>
+                    <span className="performance-value">2</span>
+                </div>
+                <div className="performance-item">
+                    <span className="performance-label">Overfitting Gap:</span>
+                    <span className="performance-value">12.4%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {/* CONTROLS PANEL - NARROW */}
+    <div className="controls-panel">
+        {/* Dataset selection */}
+        <div className="card">
+            <div className="card-header">
+                <h3 className="card-title">Dataset Selection</h3>
+            </div>
+            <div className="card-body">
+                {/* Dataset controls */}
+            </div>
+        </div>
+        
+        {/* Parameter controls */}
+        <div className="card">
+            <div className="card-header">
+                <h3 className="card-title">Parameters</h3>
+            </div>
+            <div className="card-body">
+                {/* Parameter controls */}
+            </div>
+        </div>
+        
+        {/* Algorithm controls */}
+        <div className="card">
+            <div className="card-header">
+                <h3 className="card-title">Algorithm Controls</h3>
+            </div>
+            <div className="card-body">
+                {/* Algorithm controls */}
+            </div>
+        </div>
+        
+        {/* Performance metrics */}
+        <div className="card">
+            <div className="card-header">
+                <h3 className="card-title">Model Performance</h3>
+            </div>
+            <div className="card-body">
+                {/* Performance metrics */}
+            </div>
+        </div>
+    </div>
+</div>
+
+{/* ADDITIONAL VISUALIZATIONS SECTION */}
+<div className="additional-visualizations">
+    <div className="visualization-grid">
+        {/* Secondary visualization */}
+        <div className="card">
+            <div className="card-header">
+                <h3 className="card-title">Secondary Chart</h3>
+            </div>
+            <div className="card-body">
+                <div className="visualization-container">
+                    <svg ref={secondaryRef} className="simulation-svg"></svg>
+                </div>
+            </div>
+        </div>
+        
+        {/* Tertiary visualization */}
+        <div className="card">
+            <div className="card-header">
+                <h3 className="card-title">Another Chart</h3>
+            </div>
+            <div className="card-body">
+                <div className="visualization-container">
+                    <svg ref={tertiaryRef} className="simulation-svg"></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+**CSS for Improved Layout:**
+```css
+/* Improved 2-column layout */
+.your-simulation-name .improved-simulation-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+/* Horizontal visualization controls */
+.your-simulation-name .visualization-controls {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-4);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.your-simulation-name .main-visualization-panel {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+.your-simulation-name .controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+/* Improved legend styling */
+.your-simulation-name .improved-legend {
+    padding: var(--space-4);
+    background-color: var(--secondary-50);
+    border-top: 1px solid var(--secondary-200);
+}
+
+.your-simulation-name .improved-legend .legend-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+}
+
+/* Compact performance section */
+.your-simulation-name .compact-performance {
+    padding: var(--space-4);
+    background-color: var(--secondary-50);
+    border-top: 1px solid var(--secondary-200);
+}
+
+.your-simulation-name .compact-performance h4 {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-3) 0;
+}
+
+.your-simulation-name .performance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+}
+
+.your-simulation-name .performance-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-xs);
+}
+
+.your-simulation-name .performance-label {
+    color: var(--secondary-600);
+    font-weight: var(--font-weight-medium);
+}
+
+.your-simulation-name .performance-value {
+    color: var(--primary-600);
+    font-weight: var(--font-weight-semibold);
+}
+
+.your-simulation-name .legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-xs);
+    color: var(--secondary-700);
+}
+
+.your-simulation-name .legend-line {
+    width: 20px;
+    height: 3px;
+    border-radius: var(--radius-sm);
+}
+
+/* Additional visualizations section */
+.your-simulation-name .additional-visualizations {
+    margin-top: var(--space-6);
+}
+
+.your-simulation-name .visualization-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+/* Compact additional visualizations */
+.your-simulation-name .compact-additional-visualizations {
+    margin-top: var(--space-6);
+}
+
+.your-simulation-name .compact-visualization-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+/* Responsive design for improved layout */
+@media (max-width: 1200px) {
+    .your-simulation-name .improved-simulation-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .your-simulation-name .controls-panel {
+        order: -1;
+    }
+    
+    .your-simulation-name .improved-legend .legend-items {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .your-simulation-name .visualization-grid {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+**When to use the improved layout pattern:**
+- **Better readability**: 2-column layout is easier to read and navigate
+- **Proper graph scaling**: Main visualization gets adequate space
+- **Multiple visualizations**: When you have 2+ supporting charts
+- **Performance metrics**: When metrics need to be visible alongside the main chart
+- **Complex algorithms**: When you need legend explanations for the main visualization
+- **Educational focus**: When students need to see all information clearly
+- **All screen sizes**: Works well on desktop, tablet, and mobile
+
+**Benefits:**
+- **Better readability**: 2:1 ratio provides optimal space for main chart
+- **Proper scaling**: Graphs are not clipped and display fully
+- **Clear legend**: 2-column legend is easy to read and understand
+- **Reduced scrolling**: Additional visualizations below in organized grid
+- **Responsive design**: Adapts gracefully to different screen sizes
+- **Professional appearance**: Clean, organized, and easy to understand
+- **Educational focus**: Students can see all related information clearly
+
+## 📚 Enhanced Educational Content
+
+### 6.1. Comprehensive Usage Instructions
+**Include step-by-step guidance for students:**
+
+```tsx
+<div className="card">
+    <div className="card-header">
+        <h3 className="card-title">How to Use This Simulation</h3>
+    </div>
+    <div className="card-body">
+        <div className="explanation-content">
+            <h4>Step-by-Step Instructions</h4>
+            <ol className="instruction-list">
+                <li><strong>Start with the main graph:</strong> Observe how different parameters affect the visualization</li>
+                <li><strong>Adjust parameters:</strong> Use sliders to change values and watch the effects</li>
+                <li><strong>Try different datasets:</strong> Switch between different data scenarios</li>
+                <li><strong>Experiment with settings:</strong> Compare different algorithm types</li>
+                <li><strong>Watch supporting charts:</strong> See how parameters affect related visualizations</li>
+                <li><strong>Analyze results:</strong> Find optimal parameter values</li>
+            </ol>
+        </div>
+    </div>
+</div>
+```
+
+### 6.2. Parameter Explanation Guide
+**Provide clear explanations of what each parameter does:**
+
+```tsx
+<div className="parameter-guide">
+    <div className="parameter-item">
+        <h5>Parameter Name - What It Does</h5>
+        <p><strong>What it does:</strong> Clear explanation of the parameter's purpose</p>
+        <ul>
+            <li><strong>Value 1:</strong> What happens at this value</li>
+            <li><strong>Value 2:</strong> What happens at this value</li>
+            <li><strong>Value 3:</strong> What happens at this value</li>
+        </ul>
+        <p><strong>What to look for:</strong> What students should observe</p>
+    </div>
+</div>
+```
+
+### 6.3. Visualization Interpretation Guide
+**Help students understand what they're seeing:**
+
+```tsx
+<div className="visualization-guide">
+    <div className="viz-explanation">
+        <h5>Graph Name - What You're Seeing</h5>
+        <p><strong>What you're seeing:</strong> Clear description of the visualization</p>
+        <ul>
+            <li><strong>X-axis:</strong> What the horizontal axis represents</li>
+            <li><strong>Y-axis:</strong> What the vertical axis represents</li>
+            <li><strong>Lines/Points:</strong> What different elements mean</li>
+        </ul>
+        <p><strong>What to look for:</strong></p>
+        <ul>
+            <li><strong>Pattern 1:</strong> What this pattern indicates</li>
+            <li><strong>Pattern 2:</strong> What this pattern indicates</li>
+            <li><strong>Optimal values:</strong> How to identify the best settings</li>
+        </ul>
+    </div>
+</div>
+```
+
+**CSS for Enhanced Educational Content:**
+```css
+/* Enhanced educational content styling */
+.your-simulation-name .instruction-list {
+    counter-reset: step-counter;
+    list-style: none;
+    padding-left: 0;
+}
+
+.your-simulation-name .instruction-list li {
+    counter-increment: step-counter;
+    margin-bottom: var(--space-4);
+    padding-left: var(--space-8);
+    position: relative;
+}
+
+.your-simulation-name .instruction-list li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: var(--primary-600);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+}
+
+.your-simulation-name .parameter-guide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin: var(--space-6) 0;
+}
+
+.your-simulation-name .parameter-item {
+    background-color: var(--secondary-50);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-500);
+}
+
+.your-simulation-name .visualization-guide {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    margin: var(--space-6) 0;
+}
+
+.your-simulation-name .viz-explanation {
+    background-color: var(--secondary-50);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--secondary-500);
+}
+
+/* Responsive design for educational content */
+@media (max-width: 768px) {
+    .your-simulation-name .parameter-guide {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+**Benefits of Enhanced Educational Content:**
+- **Clear instructions**: Students know exactly how to use the simulation
+- **Parameter understanding**: Clear explanations of what each control does
+- **Graph interpretation**: Students learn to read and understand visualizations
+- **Learning objectives**: Clear goals for what students should achieve
+- **Professional appearance**: Well-organized, visually appealing educational content
 
 ## 🎨 CSS Customization Guide
 
@@ -160,6 +632,7 @@ const drawVisualization = () => {
 - [ ] **Simulation Layout**: Grid with visualization and controls
 - [ ] **Visualization Panel**: D3.js visualization with controls
 - [ ] **Controls Panel**: Parameter controls, algorithm controls, results
+- [ ] **Additional Visualizations** (Optional): Performance metrics, secondary charts
 - [ ] **Explanation Section**: Educational content
 - [ ] **Copyright Notice**: Standard footer
 
@@ -167,6 +640,11 @@ const drawVisualization = () => {
 - [ ] **Parameter Controls**: Sliders, inputs, dropdowns
 - [ ] **Algorithm Controls**: Run, reset, step buttons
 - [ ] **Results Display**: Metrics and calculations
+
+### Optional Additional Visualizations Section:
+- [ ] **Performance Metrics**: Training/validation scores, overfitting gap
+- [ ] **Secondary Charts**: Coefficient paths, validation curves, confusion matrices
+- [ ] **Responsive Grid**: 3 columns on desktop, 2 on tablet, 1 on mobile
 
 ## 🎯 Design System Compliance
 
@@ -285,7 +763,35 @@ var(--radius-md)       /* 6px */
 }
 ```
 
-### 4. Tips Overlay Mistakes:
+### 4. Data Generation Mistakes:
+```typescript
+/* ❌ Don't generate data inside visualization functions */
+const drawVisualization = () => {
+    const data = generateRandomData(); // ❌ Wrong - creates new data every time
+    // ... visualization code
+};
+
+/* ✅ Generate data in useEffect and store in state */
+const [currentData, setCurrentData] = useState<YourDataPoint[]>([]);
+
+useEffect(() => {
+    const newData = generateRandomData();
+    setCurrentData(newData);
+}, [selectedDataset]);
+
+const drawVisualization = () => {
+    const data = currentData; // ✅ Correct - uses stable data
+    // ... visualization code
+};
+```
+
+**Why avoid data generation in visualization:**
+- Data points jump around when parameters change
+- Poor user experience for parameter exploration
+- Breaks the learning flow
+- Violates React state management principles
+
+### 5. Tips Overlay Mistakes:
 ```tsx
 /* ❌ Don't add tips overlays that cover the visualization */
 <div className="visualization-container">

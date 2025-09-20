@@ -17,6 +17,8 @@ import KMeansClustering from './pages/KMeansClustering';
 import './pages/KMeansClustering.css';
 import LinearRegression from './pages/LinearRegression';
 import './pages/LinearRegression.css';
+import RegularizationExplorer from './pages/RegularizationExplorer';
+import './pages/RegularizationExplorer.css';
 import CentralLimitTheorem from './pages/CentralLimitTheorem';
 import './pages/CentralLimitTheorem.css';
 import NormalDistribution from './pages/NormalDistribution';
@@ -57,6 +59,7 @@ function App() {
                 <Route path="/decision-trees" element={<DecisionTree />} />
                 <Route path="/kmeans-clustering" element={<KMeansClustering />} />
                 <Route path="/linear-regression" element={<LinearRegression />} />
+                <Route path="/regularization-explorer" element={<RegularizationExplorer />} />
                 <Route path="/central-limit-theorem" element={<CentralLimitTheorem />} />
                 <Route path="/normal-distribution" element={<NormalDistribution />} />
                 <Route path="/bayes-theorem" element={<BayesTheorem />} />

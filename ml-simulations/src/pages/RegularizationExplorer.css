@@ -7,25 +7,25 @@
 
 /* 1. PAGE WRAPPER - ALWAYS START WITH THIS */
 /* ============================================================================ */
-.your-simulation-name {
+.regularization-explorer {
     padding: var(--space-6) 0;
 }
 
 /* 2. STANDARDIZED PAGE HEADER - NEVER CHANGE THESE PATTERNS */
 /* ============================================================================ */
-.your-simulation-name .page-header {
+.regularization-explorer .page-header {
     text-align: center;
     margin-bottom: var(--space-8);
 }
 
-.your-simulation-name .page-title {
+.regularization-explorer .page-title {
     font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-bold);
     color: var(--secondary-800);
     margin: 0 0 var(--space-4) 0;
 }
 
-.your-simulation-name .page-description {
+.regularization-explorer .page-description {
     font-size: var(--font-size-lg);
     color: var(--secondary-600);
     max-width: 800px;
@@ -35,7 +35,7 @@
 
 /* 3. STANDARDIZED SIMULATION LAYOUT - NEVER CHANGE */
 /* ============================================================================ */
-.your-simulation-name .simulation-layout {
+.regularization-explorer .simulation-layout {
     display: grid;
     grid-template-columns: 1fr 400px;
     gap: var(--space-8);
@@ -44,7 +44,7 @@
 
 /* 4. STANDARDIZED VISUALIZATION PANEL */
 /* ============================================================================ */
-.your-simulation-name .visualization-panel {
+.regularization-explorer .visualization-panel {
     background-color: white;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
@@ -54,7 +54,7 @@
 
 /* 5. STANDARDIZED VISUALIZATION HEADER - ALWAYS USE LIGHT GRAY BACKGROUND */
 /* ============================================================================ */
-.your-simulation-name .visualization-header {
+.regularization-explorer .visualization-header {
     padding: var(--space-6);
     border-bottom: 1px solid var(--secondary-200);
     background-color: var(--secondary-50);
@@ -66,14 +66,14 @@
     gap: var(--space-4);
 }
 
-.your-simulation-name .visualization-title {
+.regularization-explorer .visualization-title {
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-semibold);
     color: var(--secondary-800);
     margin: 0;
 }
 
-.your-simulation-name .visualization-controls {
+.regularization-explorer .visualization-controls {
     display: flex;
     gap: var(--space-4);
     justify-content: center;
@@ -81,7 +81,7 @@
     flex-wrap: wrap;
 }
 
-.your-simulation-name .control-label {
+.regularization-explorer .control-label {
     display: flex;
     align-items: center;
     gap: var(--space-2);
@@ -90,7 +90,7 @@
     cursor: pointer;
 }
 
-.your-simulation-name .control-label input[type="checkbox"] {
+.regularization-explorer .control-label input[type="checkbox"] {
     width: 16px;
     height: 16px;
     accent-color: var(--primary-600);
@@ -98,7 +98,7 @@
 
 /* 6. STANDARDIZED VISUALIZATION CONTAINER */
 /* ============================================================================ */
-.your-simulation-name .visualization-container {
+.regularization-explorer .visualization-container {
     padding: var(--space-6);
     display: flex;
     justify-content: center;
@@ -108,7 +108,7 @@
     position: relative;
 }
 
-.your-simulation-name .simulation-svg {
+.regularization-explorer .simulation-svg {
     border: 1px solid var(--secondary-200);
     border-radius: var(--radius-md);
     background-color: white;
@@ -117,7 +117,7 @@
 
 /* 7. STANDARDIZED CONTROLS PANEL */
 /* ============================================================================ */
-.your-simulation-name .controls-panel {
+.regularization-explorer .controls-panel {
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
@@ -125,7 +125,7 @@
 
 /* 8. STANDARDIZED CARD STYLES */
 /* ============================================================================ */
-.your-simulation-name .card {
+.regularization-explorer .card {
     background-color: white;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
@@ -133,13 +133,13 @@
     overflow: hidden;
 }
 
-.your-simulation-name .card-header {
+.regularization-explorer .card-header {
     padding: var(--space-6);
     border-bottom: 1px solid var(--secondary-200);
     background-color: var(--secondary-50);
 }
 
-.your-simulation-name .card-title {
+.regularization-explorer .card-title {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
     color: var(--secondary-800);
@@ -147,32 +147,32 @@
     text-align: center;
 }
 
-.your-simulation-name .card-body {
+.regularization-explorer .card-body {
     padding: var(--space-6);
 }
 
 /* 9. STANDARDIZED FORM CONTROLS */
 /* ============================================================================ */
-.your-simulation-name .parameter-controls {
+.regularization-explorer .parameter-controls {
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
 }
 
-.your-simulation-name .input-group {
+.regularization-explorer .input-group {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
 }
 
-.your-simulation-name .label {
+.regularization-explorer .label {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
     color: var(--secondary-700);
     margin: 0;
 }
 
-.your-simulation-name .input {
+.regularization-explorer .input {
     width: 100%;
     padding: var(--space-3);
     border: 1px solid var(--secondary-300);
@@ -182,13 +182,13 @@
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.your-simulation-name .input:focus {
+.regularization-explorer .input:focus {
     outline: none;
     border-color: var(--primary-500);
     box-shadow: 0 0 0 3px var(--primary-100);
 }
 
-.your-simulation-name .slider {
+.regularization-explorer .slider {
     width: 100%;
     height: 6px;
     border-radius: var(--radius-full);
@@ -198,7 +198,7 @@
     appearance: none;
 }
 
-.your-simulation-name .slider::-webkit-slider-thumb {
+.regularization-explorer .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 20px;
@@ -210,7 +210,7 @@
     box-shadow: var(--shadow-sm);
 }
 
-.your-simulation-name .slider::-moz-range-thumb {
+.regularization-explorer .slider::-moz-range-thumb {
     width: 20px;
     height: 20px;
     border-radius: var(--radius-full);
@@ -220,7 +220,7 @@
     box-shadow: var(--shadow-sm);
 }
 
-.your-simulation-name .value-display {
+.regularization-explorer .value-display {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
     color: var(--primary-600);
@@ -231,7 +231,7 @@
     border: 1px solid var(--primary-200);
 }
 
-.your-simulation-name .checkbox-group {
+.regularization-explorer .checkbox-group {
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
@@ -239,7 +239,7 @@
 
 /* 10. STANDARDIZED ALGORITHM CONTROLS */
 /* ============================================================================ */
-.your-simulation-name .algorithm-controls {
+.regularization-explorer .algorithm-controls {
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
@@ -247,13 +247,13 @@
 
 /* 11. STANDARDIZED RESULTS DISPLAY */
 /* ============================================================================ */
-.your-simulation-name .results-display {
+.regularization-explorer .results-display {
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
 }
 
-.your-simulation-name .result-item {
+.regularization-explorer .result-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -263,13 +263,13 @@
     border: 1px solid var(--secondary-200);
 }
 
-.your-simulation-name .result-label {
+.regularization-explorer .result-label {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
     color: var(--secondary-700);
 }
 
-.your-simulation-name .result-value {
+.regularization-explorer .result-value {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-bold);
     color: var(--primary-600);
@@ -278,115 +278,115 @@
 
 /* 12. STANDARDIZED EXPLANATION SECTION */
 /* ============================================================================ */
-.your-simulation-name .explanation-section {
+.regularization-explorer .explanation-section {
     margin-top: var(--space-8);
 }
 
-.your-simulation-name .explanation-content h4 {
+.regularization-explorer .explanation-content h4 {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
     color: var(--secondary-800);
     margin: var(--space-6) 0 var(--space-3) 0;
 }
 
-.your-simulation-name .explanation-content h4:first-child {
+.regularization-explorer .explanation-content h4:first-child {
     margin-top: 0;
 }
 
-.your-simulation-name .explanation-content p {
+.regularization-explorer .explanation-content p {
     color: var(--secondary-700);
     line-height: var(--line-height-relaxed);
     margin: var(--space-4) 0;
 }
 
-.your-simulation-name .explanation-content ul {
+.regularization-explorer .explanation-content ul {
     margin: var(--space-4) 0;
     padding-left: var(--space-6);
 }
 
-.your-simulation-name .explanation-content li {
+.regularization-explorer .explanation-content li {
     margin-bottom: var(--space-2);
     line-height: var(--line-height-relaxed);
     color: var(--secondary-700);
 }
 
-.your-simulation-name .explanation-content strong {
+.regularization-explorer .explanation-content strong {
     color: var(--secondary-800);
     font-weight: var(--font-weight-semibold);
 }
 
 /* 13. STANDARDIZED COPYRIGHT SECTION */
 /* ============================================================================ */
-.your-simulation-name .copyright-section {
+.regularization-explorer .copyright-section {
     margin-top: var(--space-16);
     padding-top: var(--space-8);
     border-top: 1px solid var(--secondary-200);
 }
 
-.your-simulation-name .copyright-notice {
+.regularization-explorer .copyright-notice {
     text-align: center;
     color: var(--secondary-600);
     font-size: var(--font-size-sm);
 }
 
-.your-simulation-name .copyright-notice p {
+.regularization-explorer .copyright-notice p {
     margin: 0;
 }
 
 /* 14. RESPONSIVE DESIGN - STANDARDIZED BREAKPOINTS */
 /* ============================================================================ */
 @media (max-width: 1024px) {
-    .your-simulation-name .simulation-layout {
+    .regularization-explorer .simulation-layout {
         grid-template-columns: 1fr;
         gap: var(--space-6);
     }
 
-    .your-simulation-name .controls-panel {
+    .regularization-explorer .controls-panel {
         order: -1;
     }
 }
 
 @media (max-width: 768px) {
-    .your-simulation-name {
+    .regularization-explorer {
         padding: var(--space-4) 0;
     }
 
-    .your-simulation-name .page-title {
+    .regularization-explorer .page-title {
         font-size: var(--font-size-2xl);
     }
 
-    .your-simulation-name .page-description {
+    .regularization-explorer .page-description {
         font-size: var(--font-size-base);
     }
 
-    .your-simulation-name .visualization-header {
+    .regularization-explorer .visualization-header {
         flex-direction: column;
         gap: var(--space-4);
         align-items: center;
     }
 
-    .your-simulation-name .visualization-controls {
+    .regularization-explorer .visualization-controls {
         flex-wrap: wrap;
         gap: var(--space-3);
     }
 
-    .your-simulation-name .visualization-container {
+    .regularization-explorer .visualization-container {
         padding: var(--space-4);
         min-height: 400px;
     }
 
-    .your-simulation-name .simulation-svg {
+    .regularization-explorer .simulation-svg {
         width: 100%;
         height: auto;
     }
 
-    .your-simulation-name .result-item {
+    .regularization-explorer .result-item {
         flex-direction: column;
         align-items: flex-start;
         gap: var(--space-1);
     }
 
-    .your-simulation-name .result-value {
+    .regularization-explorer .result-value {
         font-size: var(--font-size-base);
     }
 }
@@ -396,12 +396,12 @@
 /*
 ❌ NEVER use these patterns:
 
-.your-simulation-name .visualization-header {
+.regularization-explorer .visualization-header {
     background-color: var(--primary-50);  // ❌ Wrong background
     color: white;                         // ❌ Wrong text color
 }
 
-.your-simulation-name .page-header {
+.regularization-explorer .page-header {
     background-color: var(--primary-50);  // ❌ Wrong background
 }
 
@@ -417,37 +417,240 @@
 /* ============================================================================ */
 /* Add your specific simulation styles here, but always follow the patterns above */
 
-/* Example: Custom visualization elements */
-.your-simulation-name .custom-element {
-    /* Your custom styles here */
+/* Parameter help text styling */
+.regularization-explorer .parameter-help {
+    font-size: var(--font-size-xs);
+    color: var(--secondary-600);
+    margin-top: var(--space-1);
+    line-height: var(--line-height-tight);
 }
 
-/* Example: Custom animation classes */
-.your-simulation-name .custom-animation {
-    /* Your custom animations here */
-}
-
-/* Additional visualizations section (optional) */
-.your-simulation-name .additional-visualizations {
-    margin-top: var(--space-8);
-}
-
-.your-simulation-name .visualization-grid {
+/* Improved 2-column layout */
+.regularization-explorer .improved-simulation-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     gap: var(--space-6);
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-6);
 }
 
-/* Responsive design for additional visualizations */
+/* Horizontal visualization controls */
+.regularization-explorer .visualization-controls {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-4);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.regularization-explorer .main-visualization-panel {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+.regularization-explorer .controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+/* Improved legend styling */
+.regularization-explorer .improved-legend {
+    padding: var(--space-4);
+    background-color: var(--secondary-50);
+    border-top: 1px solid var(--secondary-200);
+}
+
+.regularization-explorer .improved-legend .legend-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+}
+
+/* Compact performance section */
+.regularization-explorer .compact-performance {
+    padding: var(--space-4);
+    background-color: var(--secondary-50);
+    border-top: 1px solid var(--secondary-200);
+}
+
+.regularization-explorer .compact-performance h4 {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-3) 0;
+}
+
+.regularization-explorer .performance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+}
+
+.regularization-explorer .performance-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-size-xs);
+}
+
+.regularization-explorer .performance-label {
+    color: var(--secondary-600);
+    font-weight: var(--font-weight-medium);
+}
+
+.regularization-explorer .performance-value {
+    color: var(--primary-600);
+    font-weight: var(--font-weight-semibold);
+}
+
+.regularization-explorer .legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-xs);
+    color: var(--secondary-700);
+}
+
+.regularization-explorer .legend-line {
+    width: 20px;
+    height: 3px;
+    border-radius: var(--radius-sm);
+}
+
+/* Additional visualizations section */
+.regularization-explorer .additional-visualizations {
+    margin-top: var(--space-6);
+}
+
+.regularization-explorer .visualization-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+/* Responsive design for improved layout */
 @media (max-width: 1200px) {
-    .your-simulation-name .visualization-grid {
-        grid-template-columns: 1fr 1fr;
+    .regularization-explorer .improved-simulation-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .regularization-explorer .controls-panel {
+        order: -1;
+    }
+
+    .regularization-explorer .improved-legend .legend-items {
+        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 768px) {
-    .your-simulation-name .visualization-grid {
+    .regularization-explorer .visualization-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Enhanced educational content styling */
+.regularization-explorer .instruction-list {
+    counter-reset: step-counter;
+    list-style: none;
+    padding-left: 0;
+}
+
+.regularization-explorer .instruction-list li {
+    counter-increment: step-counter;
+    margin-bottom: var(--space-4);
+    padding-left: var(--space-8);
+    position: relative;
+}
+
+.regularization-explorer .instruction-list li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: var(--primary-600);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+}
+
+.regularization-explorer .parameter-guide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin: var(--space-6) 0;
+}
+
+.regularization-explorer .parameter-item {
+    background-color: var(--secondary-50);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-500);
+}
+
+.regularization-explorer .parameter-item h5 {
+    color: var(--primary-700);
+    margin: 0 0 var(--space-3) 0;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+}
+
+.regularization-explorer .visualization-guide {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    margin: var(--space-6) 0;
+}
+
+.regularization-explorer .viz-explanation {
+    background-color: var(--secondary-50);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--secondary-500);
+}
+
+.regularization-explorer .viz-explanation h5 {
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-3) 0;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+}
+
+.regularization-explorer .viz-explanation ul {
+    margin: var(--space-2) 0;
+}
+
+.regularization-explorer .viz-explanation li {
+    margin-bottom: var(--space-1);
+}
+
+/* Responsive design for educational content */
+@media (max-width: 768px) {
+    .regularization-explorer .parameter-guide {
+        grid-template-columns: 1fr;
+    }
+
+    .regularization-explorer .instruction-list li {
+        padding-left: var(--space-6);
+    }
+}
+
+/* Example: Custom visualization elements */
+.regularization-explorer .custom-element {
+    /* Your custom styles here */
+}
+
+/* Example: Custom animation classes */
+.regularization-explorer .custom-animation {
+    /* Your custom animations here */
 }

@@ -73,7 +73,21 @@ A comprehensive collection of web-based interactive simulations and tutorials fo
 - **Manhattan Distance vs Euclidean**
   - Side-by-side comparison with different data patterns
 
-### 4. Classification Algorithms
+### 4. Regression & Regularization
+- **Linear Regression Visualizer** (COMPLETED)
+  - Interactive regression analysis with multiple datasets
+  - Gradient descent visualization with parameter controls
+  - Real-time performance metrics and residual analysis
+  - Basic regularization parameter (needs enhancement)
+- 🎯 **Regularization Explorer** (NEW PRIORITY)
+  - Interactive demonstration of overfitting vs. underfitting
+  - L1 (Lasso) vs L2 (Ridge) regularization comparison
+  - Coefficient path visualization as regularization strength changes
+  - High-dimensional data scenarios with feature selection
+  - Cross-validation for optimal regularization parameter selection
+  - Real-world applications: feature selection, multicollinearity handling
+
+### 5. Classification Algorithms
 - **Decision Tree Builder** (Your suggestion)
   - Interactive tree construction with feature selection
   - Show information gain, Gini impurity calculations
@@ -227,8 +241,30 @@ ml-simulations/
 
 ## Next Steps & Recommendations
 
-### Immediate Next Simulation: Causal Detective
+### Immediate Next Simulation: Regularization Explorer
 **Why this is the best next choice:**
+1. **Builds on Linear Regression**: Natural progression from basic regression to advanced concepts
+2. **Critical Gap**: Current linear regression only briefly mentions regularization without explanation
+3. **Practical Skills**: Teaches students how to prevent overfitting and improve model generalization
+4. **Educational Value**: Essential for understanding modern ML algorithms and best practices
+5. **Manageable Scope**: Can be completed in 3-4 weeks with clear learning objectives
+
+**Regularization Explorer Features:**
+- Interactive overfitting demonstration with noisy datasets
+- L1 (Lasso) vs L2 (Ridge) side-by-side comparison with coefficient paths
+- High-dimensional data scenarios (many features, few samples)
+- Cross-validation interface for optimal parameter selection
+- Real-world applications: feature selection, multicollinearity handling
+- Progressive difficulty with guided learning from basic to advanced concepts
+
+### Development Timeline:
+- **Week 1**: Overfitting demonstration and basic regularization concepts
+- **Week 2**: L1 vs L2 comparison with coefficient path visualization
+- **Week 3**: High-dimensional scenarios and cross-validation interface
+- **Week 4**: Educational content, polish, testing, and deployment
+
+### Alternative Next Simulation: Causal Detective
+**Why this is also a strong choice:**
 1. **Builds on Correlation**: Natural progression from correlation to causation
 2. **Engaging Format**: Mystery-solving approach makes complex concepts accessible
 3. **Practical Skills**: Teaches critical thinking about causal relationships
@@ -243,9 +279,93 @@ ml-simulations/
 - Progressive difficulty with guided learning
 - Comprehensive educational content on causal reasoning
 
-### Development Timeline:
-- **Week 1**: Detective interface and Ice Cream Mystery scenario
-- **Week 2**: Laptop Learning Experiment scenario with A/B testing
-- **Week 3**: Medicine Trial scenario with bias detection
-- **Week 4**: Educational content, polish, testing, and deployment
+## Detailed Simulation Specifications
+
+### Regularization Explorer - Detailed Specification
+
+#### Core Learning Objectives
+1. **Understand Overfitting**: Visual demonstration of how models can memorize training data
+2. **L1 vs L2 Intuition**: Clear explanation of when and why to use each type
+3. **Feature Selection**: How L1 regularization automatically selects important features
+4. **Cross-Validation**: How to choose the right regularization strength
+5. **Real-world Applications**: When regularization matters in practice
+
+#### Interactive Features
+
+**1. Overfitting Demonstration**
+- Start with simple dataset (e.g., house price vs size)
+- Add noise to show how models can overfit
+- Visualize training vs validation performance
+- Show how regularization prevents overfitting
+
+**2. L1 vs L2 Comparison**
+- Side-by-side coefficient visualization
+- Interactive regularization strength slider
+- Show coefficient paths as regularization increases
+- Highlight key differences:
+  - L1: Sparse solutions, feature selection
+  - L2: Smooth solutions, handles multicollinearity
+
+**3. High-Dimensional Scenarios**
+- Many features, few samples (e.g., gene expression data)
+- Show how regularization prevents overfitting
+- Feature selection demonstration
+- Multicollinearity handling
+
+**4. Cross-Validation Interface**
+- Interactive parameter selection
+- Show validation curves
+- Explain how to choose optimal parameters
+
+#### Educational Content Structure
+
+**Section 1: The Overfitting Problem**
+- What is overfitting and why it happens
+- Visual examples with different datasets
+- Training vs validation performance
+- Real-world consequences
+
+**Section 2: Regularization Solutions**
+- L1 (Lasso) regularization: Feature selection
+- L2 (Ridge) regularization: Coefficient shrinkage
+- Elastic Net: Combining both approaches
+- When to use each type
+
+**Section 3: Practical Applications**
+- High-dimensional data (genomics, text analysis)
+- Multicollinearity in real datasets
+- Feature selection for interpretability
+- Model generalization and deployment
+
+**Section 4: Best Practices**
+- Cross-validation for parameter selection
+- Regularization strength tuning
+- Model evaluation and selection
+- Common pitfalls and how to avoid them
+
+#### Technical Implementation
+
+**Datasets:**
+1. **Simple Regression**: House prices with noise
+2. **High-Dimensional**: Gene expression data (many features, few samples)
+3. **Multicollinearity**: Correlated features scenario
+4. **Feature Selection**: Dataset with irrelevant features
+
+**Visualizations:**
+- Coefficient path plots
+- Training vs validation curves
+- Feature importance rankings
+- Model performance comparisons
+
+**Interactive Controls:**
+- Regularization strength slider
+- L1/L2/Elastic Net selection
+- Cross-validation folds
+- Feature selection threshold
+
+#### Success Metrics
+- Students understand when to use L1 vs L2
+- Can identify overfitting scenarios
+- Know how to choose regularization parameters
+- Understand real-world applications
 

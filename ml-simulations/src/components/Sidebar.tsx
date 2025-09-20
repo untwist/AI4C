@@ -45,6 +45,14 @@ const simulations: Simulation[] = [
         status: 'available',
         category: 'Regression'
     },
+    {
+        id: 'regularization-explorer',
+        title: 'Regularization Explorer',
+        description: 'Explore L1 and L2 regularization to prevent overfitting',
+        path: '/regularization-explorer',
+        status: 'available',
+        category: 'Regression'
+    },
     // CLASSIFICATION - Categorical prediction
     {
         id: 'decision-trees',

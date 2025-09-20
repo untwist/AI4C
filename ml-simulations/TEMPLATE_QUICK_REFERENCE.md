@@ -24,6 +24,22 @@ sed -i 's/YourSimulationName/YourActualSimulationName/g' src/pages/YourSimulatio
 3. **Add your D3.js visualization** (lines 80-150 in template)
 4. **Customize UI text** (lines 200-400 in template)
 
+### **Step 3.1: Data Generation Best Practice**
+```typescript
+// ✅ CORRECT - Generate data in useEffect, store in state
+const [currentData, setCurrentData] = useState<YourDataPoint[]>([]);
+
+useEffect(() => {
+    const newData = generateRandomData();
+    setCurrentData(newData);
+}, [selectedDataset]);
+
+const drawVisualization = () => {
+    const data = currentData; // ✅ Uses stable data
+    // ... visualization code
+};
+```
+
 ### **Step 4: Add to Routing**
 1. Add route in `src/App.tsx`
 2. Update sidebar in `src/components/Sidebar.tsx`
@@ -91,6 +107,7 @@ grep -r "your-simulation-name" src/pages/YourSimulation.css
 ❌ **Don't override template CSS** - Customize only the algorithm and visualization  
 ❌ **Don't use hardcoded colors** - Use CSS variables  
 ❌ **Don't create custom layouts** - Use the template structure  
+❌ **Don't generate data in visualization functions** - Use stable state data  
 
 ## **Documentation**
 

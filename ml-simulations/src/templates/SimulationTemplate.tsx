@@ -342,6 +342,43 @@ const YourSimulationName: React.FC = () => {
                     </div>
                 </div>
 
+                {/* OPTIONAL ADDITIONAL VISUALIZATIONS SECTION */}
+                {/* Uncomment and customize if you need multiple visualizations */}
+                {/*
+                <div className="additional-visualizations">
+                    <div className="visualization-grid">
+                        <div className="card">
+                            <div className="card-header">
+                                <h3 className="card-title">Performance Metrics</h3>
+                            </div>
+                            <div className="card-body">
+                                <div className="results-display">
+                                    <div className="result-item">
+                                        <span className="result-label">Metric 1:</span>
+                                        <span className="result-value">{results.metric1.toFixed(3)}</span>
+                                    </div>
+                                    <div className="result-item">
+                                        <span className="result-label">Metric 2:</span>
+                                        <span className="result-value">{results.metric2.toFixed(3)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className="card">
+                            <div className="card-header">
+                                <h3 className="card-title">Secondary Visualization</h3>
+                            </div>
+                            <div className="card-body">
+                                <div className="visualization-container">
+                                    <svg ref={secondaryRef} className="simulation-svg"></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                */}
+
                 {/* STANDARDIZED EXPLANATION SECTION */}
                 <div className="explanation-section">
                     <div className="card">
