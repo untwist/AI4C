@@ -390,8 +390,23 @@ const HypothesisTesting: React.FC = () => {
                             <svg ref={svgRef} className="simulation-svg"></svg>
                         </div>
                     </div>
+                </div>
 
-                    <div className="controls-panel">
+                <div className="error-visualization-layout">
+                    <div className="error-visualization-panel">
+                        <div className="card">
+                            <div className="card-header">
+                                <h3 className="card-title">Type I and Type II Errors</h3>
+                            </div>
+                            <div className="card-body">
+                                <div className="visualization-container">
+                                    <svg ref={errorVizRef} className="simulation-svg"></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="error-controls-panel">
                         <div className="card">
                             <div className="card-header">
                                 <h3 className="card-title">Error Types Visualization</h3>
@@ -430,19 +445,6 @@ const HypothesisTesting: React.FC = () => {
                                         </label>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="additional-visualizations">
-                    <div className="card">
-                        <div className="card-header">
-                            <h3 className="card-title">Type I and Type II Errors</h3>
-                        </div>
-                        <div className="card-body">
-                            <div className="visualization-container">
-                                <svg ref={errorVizRef} className="simulation-svg"></svg>
                             </div>
                         </div>
                     </div>
