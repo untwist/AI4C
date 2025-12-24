@@ -36,6 +36,8 @@ const ChiSquareTest: React.FC = () => {
         decision: 'fail-to-reject'
     });
 
+    const [expectedFrequencies, setExpectedFrequencies] = useState<number[][]>([]);
+
     // Calculate chi-square test
     const calculateChiSquare = (params: ChiSquareParameters): ChiSquareResults => {
         const observed = params.observed;
@@ -93,6 +95,25 @@ const ChiSquareTest: React.FC = () => {
     useEffect(() => {
         const newResults = calculateChiSquare(parameters);
         setResults(newResults);
+        
+        // Calculate and store expected frequencies for display
+        const observed = parameters.observed;
+        let expected: number[][];
+        
+        if (parameters.testType === 'independence') {
+            const rowSums = observed.map(row => row.reduce((a, b) => a + b, 0));
+            const colSums = observed[0].map((_, colIdx) => observed.reduce((sum, row) => sum + row[colIdx], 0));
+            const total = rowSums.reduce((a, b) => a + b, 0);
+            expected = observed.map((row, rowIdx) =>
+                row.map((_, colIdx) => (rowSums[rowIdx] * colSums[colIdx]) / total)
+            );
+        } else {
+            const total = observed.flat().reduce((a, b) => a + b, 0);
+            const expectedValue = total / observed.flat().length;
+            expected = observed.map(row => row.map(() => expectedValue));
+        }
+        
+        setExpectedFrequencies(expected);
     }, [parameters]);
 
     // Draw chi-square distribution visualization
@@ -370,27 +391,125 @@ const ChiSquareTest: React.FC = () => {
                                 <h3 className="card-title">Contingency Table</h3>
                             </div>
                             <div className="card-body">
-                                <div ref={tableRef} className="contingency-table">
-                                    <table>
-                                        <tbody>
-                                            {parameters.observed.map((row, rowIdx) => (
-                                                <tr key={rowIdx}>
-                                                    {row.map((cell, colIdx) => (
-                                                        <td key={colIdx}>
-                                                            <input
-                                                                type="number"
-                                                                min="0"
-                                                                value={cell}
-                                                                onChange={(e) => updateCell(rowIdx, colIdx, parseInt(e.target.value) || 0)}
-                                                                className="table-input"
-                                                            />
-                                                        </td>
+                                <div ref={tableRef} className="contingency-table-wrapper">
+                                    <div className="table-section">
+                                        <h4 className="table-section-title">Observed Frequencies</h4>
+                                        <p className="table-section-description">
+                                            The actual counts you collected from your data.
+                                        </p>
+                                        <div className="contingency-table">
+                                            <table>
+                                                <tbody>
+                                                    {parameters.observed.map((row, rowIdx) => (
+                                                        <tr key={rowIdx}>
+                                                            {row.map((cell, colIdx) => (
+                                                                <td key={colIdx}>
+                                                                    <input
+                                                                        type="number"
+                                                                        min="0"
+                                                                        value={cell}
+                                                                        onChange={(e) => updateCell(rowIdx, colIdx, parseInt(e.target.value) || 0)}
+                                                                        className="table-input"
+                                                                    />
+                                                                </td>
+                                                            ))}
+                                                        </tr>
                                                     ))}
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    {expectedFrequencies.length > 0 && (
+                                        <div className="table-section">
+                                            <h4 className="table-section-title">Expected Frequencies</h4>
+                                            <p className="table-section-description">
+                                                {parameters.testType === 'independence' 
+                                                    ? 'Calculated assuming independence: (row total × column total) / grand total'
+                                                    : 'Calculated from the hypothesized distribution'}
+                                            </p>
+                                            <div className="contingency-table expected-table">
+                                                <table>
+                                                    <tbody>
+                                                        {expectedFrequencies.map((row, rowIdx) => (
+                                                            <tr key={rowIdx}>
+                                                                {row.map((cell, colIdx) => (
+                                                                    <td key={colIdx} className="expected-cell">
+                                                                        {cell.toFixed(2)}
+                                                                    </td>
+                                                                ))}
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="contingency-explanation-section">
+                    <div className="card">
+                        <div className="card-header">
+                            <h3 className="card-title">Understanding Observed vs. Expected Frequencies</h3>
+                        </div>
+                        <div className="card-body">
+                            <div className="contingency-explanation">
+                                <div className="example-box">
+                                    <p className="example-intro"><strong>Example: Testing if Coffee Preference is Independent of Gender</strong></p>
+                                    <p className="example-text">
+                                        Imagine you survey 100 people about their coffee preference (Coffee or Tea) and record their gender (Male or Female). 
+                                        You collect the actual data and count how many people fall into each category combination.
+                                    </p>
+                                    
+                                    <p className="example-text">
+                                        <strong>Observed Frequencies</strong> are the actual counts you collected from your survey:
+                                    </p>
+                                    <ul className="example-list">
+                                        <li>20 males who prefer coffee (you actually counted 20 people in this category)</li>
+                                        <li>30 males who prefer tea (you actually counted 30 people)</li>
+                                        <li>25 females who prefer coffee (you actually counted 25 people)</li>
+                                        <li>25 females who prefer tea (you actually counted 25 people)</li>
+                                    </ul>
+                                    
+                                    <p className="example-text">
+                                        <strong>Expected Frequencies</strong> are what you would expect to see if there was NO relationship between gender and coffee preference 
+                                        (i.e., if they were independent). These are calculated based on the assumption that preferences are distributed 
+                                        proportionally across genders, regardless of any actual relationship.
+                                    </p>
+                                    <ul className="example-list">
+                                        <li>If 45% of all people prefer coffee and 50% are male, you'd expect 22.5 males to prefer coffee (45% × 50% × 100)</li>
+                                        <li>If 55% prefer tea and 50% are male, you'd expect 27.5 males to prefer tea</li>
+                                        <li>And so on for females...</li>
+                                    </ul>
+                                    
+                                    <p className="example-text">
+                                        <strong>The Key Question:</strong> Are your observed frequencies (what you actually saw) significantly different from 
+                                        the expected frequencies (what you'd expect if there's no relationship)? If they're very different, it suggests 
+                                        there IS a relationship between gender and coffee preference.
+                                    </p>
+                                </div>
+                                
+                                <p className="explanation-text">
+                                    <strong>In General:</strong> Observed frequencies are the real data you collected. Expected frequencies are calculated 
+                                    theoretical values based on the null hypothesis (usually that variables are independent or that data follows a specific distribution).
+                                </p>
+                                
+                                <p className="explanation-text">
+                                    <strong>For Test of Independence:</strong> Rows represent one categorical variable (e.g., "Gender"), 
+                                    and columns represent another (e.g., "Coffee Preference"). The test determines if these variables are independent.
+                                </p>
+                                <p className="explanation-text">
+                                    <strong>For Goodness-of-Fit:</strong> The table shows observed frequencies across categories. 
+                                    The test compares these to expected frequencies to see if they match a hypothesized distribution.
+                                </p>
+                                <p className="explanation-text">
+                                    <strong>How to use:</strong> Edit the values in the contingency table above to see how changes in observed frequencies 
+                                    affect the chi-square statistic and test results. The test automatically calculates expected frequencies 
+                                    based on your data.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -405,30 +524,69 @@ const ChiSquareTest: React.FC = () => {
                             <div className="explanation-content">
                                 <h4>What is a Chi-Square Test?</h4>
                                 <p>
-                                    A chi-square test is used to determine if there is a significant association between
-                                    categorical variables or if observed frequencies match expected frequencies.
+                                    A chi-square test is a statistical method used to determine if there is a significant association between
+                                    categorical variables or if observed frequencies match expected frequencies. It compares what you actually 
+                                    observe in your data to what you would expect to see if there were no relationship (for independence tests) 
+                                    or if the data followed a specific distribution (for goodness-of-fit tests).
+                                </p>
+
+                                <h4>How the Chi-Square Test Works</h4>
+                                <p>
+                                    The chi-square test calculates a statistic by comparing observed frequencies (what you actually see in your data) 
+                                    to expected frequencies (what you would expect under the null hypothesis). The formula is:
+                                </p>
+                                <p style={{fontFamily: 'monospace', padding: 'var(--space-3)', backgroundColor: 'var(--secondary-50)', borderRadius: 'var(--radius-md)', margin: 'var(--space-4) 0'}}>
+                                    χ² = Σ [(Observed - Expected)² / Expected]
+                                </p>
+                                <p>
+                                    For each cell in the contingency table, the test calculates the squared difference between observed and expected 
+                                    frequencies, divided by the expected frequency. These values are summed across all cells to produce the chi-square statistic.
+                                </p>
+                                <p>
+                                    <strong>Expected Frequencies:</strong> For independence tests, expected frequencies are calculated assuming the variables 
+                                    are independent. Each expected frequency equals (row total × column total) / grand total. For goodness-of-fit tests, 
+                                    expected frequencies come from your hypothesized distribution.
                                 </p>
 
                                 <h4>Types of Chi-Square Tests</h4>
                                 <ul>
-                                    <li><strong>Test for Independence:</strong> Tests if two categorical variables are independent</li>
-                                    <li><strong>Goodness-of-Fit Test:</strong> Tests if observed frequencies match expected frequencies</li>
+                                    <li><strong>Test for Independence:</strong> Tests if two categorical variables are independent of each other. 
+                                    The null hypothesis states that the variables are independent (no relationship). If the test rejects this hypothesis, 
+                                    it suggests there is a significant association between the variables.</li>
+                                    <li><strong>Goodness-of-Fit Test:</strong> Tests if observed frequencies match expected frequencies from a hypothesized 
+                                    distribution. The null hypothesis states that the observed data follows the expected distribution. Rejecting this 
+                                    suggests the data does not match the expected pattern.</li>
+                                </ul>
+
+                                <h4>Interpreting the Results</h4>
+                                <ul>
+                                    <li><strong>Chi-Square Statistic:</strong> A larger value indicates a greater difference between observed and expected frequencies. 
+                                    The statistic follows a chi-square distribution with degrees of freedom based on your table size.</li>
+                                    <li><strong>Degrees of Freedom:</strong> For independence tests, df = (number of rows - 1) × (number of columns - 1). 
+                                    For goodness-of-fit, df = number of categories - 1. This determines the shape of the chi-square distribution used for comparison.</li>
+                                    <li><strong>P-Value:</strong> The probability of observing a chi-square statistic as extreme as yours if the null hypothesis is true. 
+                                    A small p-value (typically less than 0.05) suggests strong evidence against the null hypothesis.</li>
+                                    <li><strong>Critical Value:</strong> The threshold value from the chi-square distribution. If your chi-square statistic exceeds 
+                                    this value, you reject the null hypothesis.</li>
+                                    <li><strong>Decision:</strong> Based on comparing the p-value to your significance level (α), you either reject or fail to reject 
+                                    the null hypothesis. Rejecting means there is evidence of an association or that the data doesn't fit the expected distribution.</li>
                                 </ul>
 
                                 <h4>When to Use Chi-Square Tests</h4>
                                 <ul>
-                                    <li>Data are categorical (nominal or ordinal)</li>
-                                    <li>Observations are independent</li>
-                                    <li>Expected frequencies are at least 5 in each cell</li>
-                                    <li>Testing relationships between categorical variables</li>
+                                    <li>Data are categorical (nominal or ordinal) rather than continuous</li>
+                                    <li>Observations are independent (one observation doesn't influence another)</li>
+                                    <li>Expected frequencies are at least 5 in each cell (for reliable results)</li>
+                                    <li>You want to test relationships between categorical variables or compare observed to expected distributions</li>
                                 </ul>
 
                                 <h4>Real-World Applications</h4>
                                 <ul>
-                                    <li><strong>Survey Research:</strong> Testing if responses vary by demographic groups</li>
-                                    <li><strong>Medical Research:</strong> Testing if treatment outcomes vary by patient characteristics</li>
-                                    <li><strong>Marketing:</strong> Testing if purchase behavior varies by customer segments</li>
-                                    <li><strong>Quality Control:</strong> Testing if defect rates vary by production line</li>
+                                    <li><strong>Survey Research:</strong> Testing if responses vary by demographic groups (e.g., "Do voting preferences differ by age group?")</li>
+                                    <li><strong>Medical Research:</strong> Testing if treatment outcomes vary by patient characteristics (e.g., "Does recovery rate differ by treatment type?")</li>
+                                    <li><strong>Marketing:</strong> Testing if purchase behavior varies by customer segments (e.g., "Do product preferences differ by region?")</li>
+                                    <li><strong>Quality Control:</strong> Testing if defect rates vary by production line (e.g., "Are defect rates consistent across shifts?")</li>
+                                    <li><strong>Genetics:</strong> Testing if observed genetic ratios match expected Mendelian ratios</li>
                                 </ul>
                             </div>
                         </div>

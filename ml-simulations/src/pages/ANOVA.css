@@ -52,6 +52,16 @@
     margin: 0;
 }
 
+.anova .visualization-description {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-600);
+    margin: var(--space-3) 0 0 0;
+    line-height: var(--line-height-relaxed);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .anova .visualization-container {
     padding: var(--space-6);
     display: flex;
@@ -132,6 +142,14 @@
     text-align: center;
 }
 
+.anova .card-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-600);
+    margin: var(--space-2) 0 0 0;
+    text-align: center;
+    line-height: var(--line-height-relaxed);
+}
+
 .anova .card-body {
     padding: var(--space-6);
 }
@@ -153,6 +171,23 @@
     font-weight: var(--font-weight-medium);
     color: var(--secondary-700);
     margin: 0;
+}
+
+.anova .parameter-help {
+    font-size: var(--font-size-xs);
+    color: var(--secondary-600);
+    margin: var(--space-1) 0 var(--space-2) 0;
+    line-height: var(--line-height-relaxed);
+    font-style: italic;
+}
+
+.anova .group-description {
+    font-size: var(--font-size-xs);
+    color: var(--secondary-600);
+    margin: 0 0 var(--space-3) 0;
+    line-height: var(--line-height-relaxed);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--secondary-200);
 }
 
 .anova .input {
@@ -225,7 +260,7 @@
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-semibold);
     color: var(--secondary-800);
-    margin: 0 0 var(--space-3) 0;
+    margin: 0 0 var(--space-2) 0;
 }
 
 .anova .explanation-section {
