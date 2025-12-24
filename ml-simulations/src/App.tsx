@@ -39,6 +39,20 @@ import CausalDetective from './pages/CausalDetective';
 import './pages/CausalDetective.css';
 import IntroToProbability from './pages/IntroToProbability';
 import './pages/IntroToProbability.css';
+import HypothesisTesting from './pages/HypothesisTesting';
+import './pages/HypothesisTesting.css';
+import PValues from './pages/PValues';
+import './pages/PValues.css';
+import ZTest from './pages/ZTest';
+import './pages/ZTest.css';
+import TTest from './pages/TTest';
+import './pages/TTest.css';
+import ChiSquareTest from './pages/ChiSquareTest';
+import './pages/ChiSquareTest.css';
+import ANOVA from './pages/ANOVA';
+import './pages/ANOVA.css';
+import EValues from './pages/EValues';
+import './pages/EValues.css';
 import About from './pages/About';
 import './pages/About.css';
 import './App.css';
@@ -70,6 +84,13 @@ function App() {
                 <Route path="/correlation-causation" element={<CorrelationCausation />} />
                 <Route path="/causal-detective" element={<CausalDetective />} />
                 <Route path="/intro-probability" element={<IntroToProbability />} />
+                <Route path="/hypothesis-testing" element={<HypothesisTesting />} />
+                <Route path="/p-values" element={<PValues />} />
+                <Route path="/z-test" element={<ZTest />} />
+                <Route path="/t-test" element={<TTest />} />
+                <Route path="/chi-square-test" element={<ChiSquareTest />} />
+                <Route path="/anova" element={<ANOVA />} />
+                <Route path="/e-values" element={<EValues />} />
                 <Route path="/about" element={<About />} />
               </Routes>
             </main>

@@ -154,6 +154,62 @@ const simulations: Simulation[] = [
         status: 'available',
         category: 'Statistics'
     },
+    {
+        id: 'hypothesis-testing',
+        title: 'Hypothesis Testing',
+        description: 'Introduction to hypothesis testing and statistical inference',
+        path: '/hypothesis-testing',
+        status: 'available',
+        category: 'Statistics'
+    },
+    {
+        id: 'z-test',
+        title: 'Z-Test',
+        description: 'Z-test for means when variance is known',
+        path: '/z-test',
+        status: 'available',
+        category: 'Statistics'
+    },
+    {
+        id: 't-test',
+        title: 'T-Test',
+        description: 'Interactive t-test for comparing means',
+        path: '/t-test',
+        status: 'available',
+        category: 'Statistics'
+    },
+    {
+        id: 'chi-square-test',
+        title: 'Chi-Square Test',
+        description: 'Test for independence and goodness-of-fit',
+        path: '/chi-square-test',
+        status: 'available',
+        category: 'Statistics'
+    },
+    {
+        id: 'anova',
+        title: 'ANOVA',
+        description: 'Analysis of Variance for comparing multiple groups',
+        path: '/anova',
+        status: 'available',
+        category: 'Statistics'
+    },
+    {
+        id: 'p-values',
+        title: 'P-Values Tutorial',
+        description: 'Understanding P-values and statistical significance',
+        path: '/p-values',
+        status: 'available',
+        category: 'Statistics'
+    },
+    {
+        id: 'e-values',
+        title: 'E-Values Tutorial',
+        description: 'Learn about E-values as an alternative to P-values',
+        path: '/e-values',
+        status: 'available',
+        category: 'Statistics'
+    },
     // Additional DISTANCE METRICS
     {
         id: 'manhattan-euclidean',
