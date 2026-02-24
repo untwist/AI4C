@@ -33,10 +33,14 @@ import PerceptronAnatomy from './pages/PerceptronAnatomy';
 import './pages/PerceptronAnatomy.css';
 import PerceptronLearning from './pages/PerceptronLearning';
 import './pages/PerceptronLearning.css';
+import MultilayerPerceptron from './pages/MultilayerPerceptron';
+import './pages/MultilayerPerceptron.css';
 import CorrelationCausation from './pages/CorrelationCausation';
 import './pages/CorrelationCausation.css';
 import CausalDetective from './pages/CausalDetective';
 import './pages/CausalDetective.css';
+import DiffusionModel from './pages/DiffusionModel';
+import './pages/DiffusionModel.css';
 import IntroToProbability from './pages/IntroToProbability';
 import './pages/IntroToProbability.css';
 import HypothesisTesting from './pages/HypothesisTesting';
@@ -81,8 +85,10 @@ function App() {
                 <Route path="/k-nearest-neighbors" element={<KNearestNeighbors />} />
                 <Route path="/perceptron-anatomy" element={<PerceptronAnatomy />} />
                 <Route path="/perceptron-learning" element={<PerceptronLearning />} />
+                <Route path="/multilayer-perceptron" element={<MultilayerPerceptron />} />
                 <Route path="/correlation-causation" element={<CorrelationCausation />} />
                 <Route path="/causal-detective" element={<CausalDetective />} />
+                <Route path="/diffusion-model" element={<DiffusionModel />} />
                 <Route path="/intro-probability" element={<IntroToProbability />} />
                 <Route path="/hypothesis-testing" element={<HypothesisTesting />} />
                 <Route path="/p-values" element={<PValues />} />

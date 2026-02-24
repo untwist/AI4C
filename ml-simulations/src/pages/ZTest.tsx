@@ -67,22 +67,19 @@ const ZTest: React.FC = () => {
         const criticalValue = params.tailType === 'one-tailed' ? 1.645 : 1.96;
 
         // Calculate P-value (approximation)
-        const pValue = params.tailType === 'one-tailed'
-            ? 1 - d3.cumsum([0, ...Array(1000).fill(0.001)].map((_, i) => {
-                const x = -4 + i * 0.008;
-                return (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * x * x) * 0.008;
-            })).find((cum, i) => -4 + i * 0.008 >= Math.abs(zStatistic)) || 0
-            : 2 * (1 - d3.cumsum([0, ...Array(1000).fill(0.001)].map((_, i) => {
-                const x = -4 + i * 0.008;
-                return (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * x * x) * 0.008;
-            })).find((cum, i) => -4 + i * 0.008 >= Math.abs(zStatistic)) || 0);
+        const cdfArr = d3.cumsum([0, ...Array(1000).fill(0.001)].map((_, i) => {
+            const x = -4 + i * 0.008;
+            return (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * x * x) * 0.008;
+        }));
+        const cdfZ = cdfArr.find((_, i) => -4 + i * 0.008 >= Math.abs(zStatistic)) ?? cdfArr[cdfArr.length - 1] ?? 0;
+        const pValue = params.tailType === 'one-tailed' ? 1 - cdfZ : 2 * (1 - cdfZ);
 
         // Calculate confidence interval
         const margin = criticalValue * standardError;
         const confidenceInterval: [number, number] = params.testType === 'one-sample'
             ? [params.sampleMean - margin, params.sampleMean + margin]
-            : [(params.sampleMean - (params.sample2Mean || params.populationMean)) - margin,
-               (params.sampleMean - (params.sample2Mean || params.populationMean)) + margin];
+            : [(params.sampleMean - (params.sample2Mean ?? params.populationMean)) - margin,
+               (params.sampleMean - (params.sample2Mean ?? params.populationMean)) + margin];
 
         const decision = pValue <= params.alpha ? 'reject' : 'fail-to-reject';
 

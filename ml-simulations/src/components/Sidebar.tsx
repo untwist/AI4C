@@ -118,7 +118,7 @@ const simulations: Simulation[] = [
         title: 'Multi-layer Perceptron Explorer',
         description: 'Explore how multiple layers create complex decision boundaries',
         path: '/multilayer-perceptron',
-        status: 'coming-soon',
+        status: 'available',
         category: 'Deep Learning'
     },
     {
@@ -127,6 +127,14 @@ const simulations: Simulation[] = [
         description: 'Visualize how CNNs process images through convolutional layers',
         path: '/cnn-demo',
         status: 'coming-soon',
+        category: 'Deep Learning'
+    },
+    {
+        id: 'diffusion-model',
+        title: 'Diffusion Model Tutorial',
+        description: 'Learn how diffusion models work: forward process, training, and inference',
+        path: '/diffusion-model',
+        status: 'available',
         category: 'Deep Learning'
     },
     // Additional STATISTICS concepts
@@ -304,8 +312,15 @@ const Sidebar: React.FC = () => {
 
                 <div className="sidebar-footer">
                     <p className="text-xs text-secondary-500">
-                        Built for Todd's SVA Continuing Education course:
-                        "AI for Creatives: Strategies for Success"
+                        Built for Todd's SVA Continuing Education course:{" "}
+                        <a
+                            href="https://sva.edu/academics/continuing-education/courses?instructorName=brous"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-secondary-500 underline hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded"
+                        >
+                            AI for Creatives: Strategies for Success
+                        </a>
                     </p>
                 </div>
             </div>

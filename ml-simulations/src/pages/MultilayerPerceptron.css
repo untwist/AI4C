@@ -1,0 +1,404 @@
+/* ============================================================================
+   MULTI-LAYER PERCEPTRON EXPLORER CSS
+   ============================================================================
+   Based on standardized simulation template (PerceptronLearning)
+   ============================================================================ */
+
+.multilayer-perceptron {
+    padding: var(--space-6) 0;
+}
+
+.multilayer-perceptron .page-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.multilayer-perceptron .page-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-4) 0;
+}
+
+.multilayer-perceptron .page-description {
+    font-size: var(--font-size-lg);
+    color: var(--secondary-600);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: var(--line-height-relaxed);
+}
+
+.multilayer-perceptron .simulation-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+.multilayer-perceptron .visualization-panel {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+.multilayer-perceptron .visualization-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--secondary-200);
+    background-color: var(--secondary-50);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-4);
+}
+
+.multilayer-perceptron .visualization-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0;
+}
+
+.multilayer-perceptron .visualization-controls {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.multilayer-perceptron .control-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--secondary-700);
+    cursor: pointer;
+}
+
+.multilayer-perceptron .control-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-600);
+}
+
+.multilayer-perceptron .visualization-container {
+    padding: var(--space-6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 450px;
+    background-color: var(--secondary-50);
+    position: relative;
+}
+
+.multilayer-perceptron .simulation-svg {
+    border: 1px solid var(--secondary-200);
+    border-radius: var(--radius-md);
+    background-color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.multilayer-perceptron .visualization-hint {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-600);
+    padding: var(--space-3) var(--space-6);
+    margin: 0;
+    border-top: 1px solid var(--secondary-200);
+}
+
+.multilayer-perceptron .controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.multilayer-perceptron .card {
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--secondary-200);
+    overflow: hidden;
+}
+
+.multilayer-perceptron .card-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--secondary-200);
+    background-color: var(--secondary-50);
+}
+
+.multilayer-perceptron .card-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: 0;
+    text-align: center;
+}
+
+.multilayer-perceptron .card-body {
+    padding: var(--space-6);
+}
+
+.multilayer-perceptron .card-hint {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-600);
+    padding: 0 var(--space-6) var(--space-4);
+    margin: 0;
+}
+
+.multilayer-perceptron .parameter-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.multilayer-perceptron .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.multilayer-perceptron .label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-700);
+    margin: 0;
+}
+
+.multilayer-perceptron .input {
+    width: 100%;
+    padding: var(--space-3);
+    border: 1px solid var(--secondary-300);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    background-color: white;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.multilayer-perceptron .input:focus {
+    outline: none;
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+.multilayer-perceptron .slider {
+    width: 100%;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--secondary-200);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.multilayer-perceptron .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: var(--primary-600);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: var(--shadow-sm);
+}
+
+.multilayer-perceptron .slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: var(--primary-600);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: var(--shadow-sm);
+}
+
+.multilayer-perceptron .value-display {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--primary-600);
+    text-align: center;
+    padding: var(--space-1) var(--space-2);
+    background-color: var(--primary-50);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--primary-200);
+}
+
+.multilayer-perceptron .algorithm-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.multilayer-perceptron .results-display {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.multilayer-perceptron .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background-color: var(--secondary-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--secondary-200);
+}
+
+.multilayer-perceptron .result-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--secondary-700);
+}
+
+.multilayer-perceptron .result-value {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-600);
+    font-family: var(--font-family-mono);
+}
+
+.multilayer-perceptron .network-section {
+    margin-bottom: var(--space-8);
+}
+
+.multilayer-perceptron .network-diagram-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 240px;
+    background-color: var(--secondary-50);
+}
+
+.multilayer-perceptron .network-svg {
+    border: 1px solid var(--secondary-200);
+    border-radius: var(--radius-md);
+    background-color: white;
+}
+
+.multilayer-perceptron .forward-section,
+.multilayer-perceptron .backward-section {
+    margin-bottom: var(--space-8);
+}
+
+.multilayer-perceptron .forward-trace {
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family-mono);
+    color: var(--secondary-800);
+}
+
+.multilayer-perceptron .forward-point {
+    margin: 0 0 var(--space-2);
+    font-weight: var(--font-weight-medium);
+}
+
+.multilayer-perceptron .forward-values {
+    margin: 0;
+    word-break: break-all;
+}
+
+.multilayer-perceptron .gradients-display {
+    margin-top: var(--space-4);
+}
+
+.multilayer-perceptron .gradients-intro {
+    font-size: var(--font-size-sm);
+    color: var(--secondary-700);
+    margin: 0 0 var(--space-2);
+}
+
+.multilayer-perceptron .gradients-output {
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family-mono);
+    color: var(--secondary-800);
+    margin: 0 0 var(--space-1);
+}
+
+.multilayer-perceptron .explanation-section {
+    margin-top: var(--space-8);
+}
+
+.multilayer-perceptron .explanation-content h4 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--secondary-800);
+    margin: var(--space-6) 0 var(--space-3) 0;
+}
+
+.multilayer-perceptron .explanation-content h4:first-child {
+    margin-top: 0;
+}
+
+.multilayer-perceptron .explanation-content p {
+    color: var(--secondary-700);
+    line-height: var(--line-height-relaxed);
+    margin: var(--space-4) 0;
+}
+
+.multilayer-perceptron .explanation-content strong {
+    color: var(--secondary-800);
+    font-weight: var(--font-weight-semibold);
+}
+
+.multilayer-perceptron .text-sm {
+    font-size: var(--font-size-sm);
+}
+
+.multilayer-perceptron .text-secondary-600 {
+    color: var(--secondary-600);
+}
+
+.multilayer-perceptron .data-point:hover {
+    transform: scale(1.1);
+    transition: transform var(--transition-fast);
+}
+
+.multilayer-perceptron .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 1024px) {
+    .multilayer-perceptron .simulation-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    .multilayer-perceptron .controls-panel {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .multilayer-perceptron {
+        padding: var(--space-4) 0;
+    }
+
+    .multilayer-perceptron .page-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .multilayer-perceptron .page-description {
+        font-size: var(--font-size-base);
+    }
+
+    .multilayer-perceptron .visualization-container {
+        padding: var(--space-4);
+        min-height: 400px;
+    }
+
+    .multilayer-perceptron .simulation-svg {
+        width: 100%;
+        height: auto;
+    }
+
+    .multilayer-perceptron .result-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+    }
+}

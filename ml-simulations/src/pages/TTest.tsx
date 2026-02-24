@@ -32,14 +32,14 @@ const tCDF = (t: number, df: number): number => {
         return d3.cumsum([0, ...Array(1000).fill(0.001)].map((_, i) => {
             const x = -4 + i * 0.008;
             return (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * x * x) * 0.008;
-        })).find((cum, i) => -4 + i * 0.008 >= Math.abs(t)) || 0;
+        })).find((_, i) => -4 + i * 0.008 >= Math.abs(t)) || 0;
     }
     // For smaller df, use approximation
     const z = t * Math.sqrt(df / (df + t * t));
     return d3.cumsum([0, ...Array(1000).fill(0.001)].map((_, i) => {
         const x = -4 + i * 0.008;
         return (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * x * x) * 0.008;
-    })).find((cum, i) => -4 + i * 0.008 >= Math.abs(z)) || 0;
+    })).find((_, i) => -4 + i * 0.008 >= Math.abs(z)) || 0;
 };
 
 const TTest: React.FC = () => {

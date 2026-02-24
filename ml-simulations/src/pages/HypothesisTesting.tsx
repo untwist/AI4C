@@ -74,9 +74,6 @@ const HypothesisTesting: React.FC = () => {
         const width = 800;
         const height = 550;
         const margin = { top: 40, right: 40, bottom: 40, left: 40 };
-        const innerWidth = width - margin.left - margin.right;
-        const innerHeight = height - margin.top - margin.bottom;
-
         const g = svg
             .attr("width", width)
             .attr("height", height)
@@ -154,8 +151,6 @@ const HypothesisTesting: React.FC = () => {
 
             // Calculate line spacing based on number of lines
             const lineHeight = 14;
-            const totalHeight = (step.text.length - 1) * lineHeight;
-            const startY = step.y + step.height / 2 - totalHeight / 2 + lineHeight / 2;
 
             // Add each line as a tspan
             step.text.forEach((line, index) => {
@@ -179,7 +174,6 @@ const HypothesisTesting: React.FC = () => {
         const margin = { top: 40, right: 40, bottom: 60, left: 60 };
         const innerWidth = width - margin.left - margin.right;
         const innerHeight = height - margin.top - margin.bottom;
-
         const g = svg
             .attr("width", width)
             .attr("height", height)

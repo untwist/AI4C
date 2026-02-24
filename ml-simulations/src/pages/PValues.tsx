@@ -55,16 +55,18 @@ const PValues: React.FC = () => {
     // Calculate P-value for standard normal distribution
     const calculatePValue = (z: number, tailType: 'one-tailed' | 'two-tailed'): number => {
         if (tailType === 'one-tailed') {
-            return 1 - d3.cumsum([0, ...Array(1000).fill(0.001)].map((_, i) => {
+            const arr = d3.cumsum([0, ...Array(1000).fill(0.001)].map((_, i) => {
                 const x = -4 + i * 0.008;
                 return (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * x * x) * 0.008;
-            })).find((cum, i) => -4 + i * 0.008 >= z) || 0;
+            }));
+            return 1 - (arr.find((_, i) => -4 + i * 0.008 >= z) ?? arr[arr.length - 1] ?? 0);
         } else {
             // Two-tailed: multiply by 2
-            const oneTail = 1 - d3.cumsum([0, ...Array(1000).fill(0.001)].map((_, i) => {
+            const arr2 = d3.cumsum([0, ...Array(1000).fill(0.001)].map((_, i) => {
                 const x = -4 + i * 0.008;
                 return (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * x * x) * 0.008;
-            })).find((cum, i) => -4 + i * 0.008 >= Math.abs(z)) || 0;
+            }));
+            const oneTail = 1 - (arr2.find((_, i) => -4 + i * 0.008 >= Math.abs(z)) ?? arr2[arr2.length - 1] ?? 0);
             return oneTail * 2;
         }
     };
